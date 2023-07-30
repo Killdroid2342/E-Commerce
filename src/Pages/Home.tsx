@@ -1,33 +1,26 @@
 import React, { useState } from 'react';
+import Login from '../components/Login';
+import Register from '../components/Register';
 
 const Home = () => {
-  const [login, setLogin] = useState({ username: '', password: '' });
+  const [form, setForm] = useState('Register');
 
-  function submitForm(e: any) {
-    e.preventDefault();
-    console.log('submitted form: ', login);
-  }
-
-  function handleLoginInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-    setLogin((data) => ({
-      ...data,
-      [name]: value,
-    }));
-  }
+  const changeForm = () => {
+    if (form === 'Register') {
+      setForm('Login');
+    } else {
+      setForm('Register');
+    }
+  };
 
   return (
     <>
-      <h1>Login Page</h1>
-      <form onSubmit={submitForm}>
-        <input type='text' name='username' onChange={handleLoginInputChange} />
-        <input
-          type='password'
-          name='password'
-          onChange={handleLoginInputChange}
-        />
-        <input type='submit' value='Submit' />
-      </form>
+      <h1 className='text-center text-xl'>Sign-Up/Login To Use Website</h1>
+      {form === 'Register' ? (
+        <Login changeForm={changeForm} />
+      ) : (
+        <Register changeForm={changeForm} />
+      )}
     </>
   );
 };
