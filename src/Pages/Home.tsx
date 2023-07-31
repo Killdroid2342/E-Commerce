@@ -15,7 +15,9 @@ const Home = () => {
 
   return (
     <>
-      <h1 className='text-center text-xl'>Sign-Up/Login To Use Website</h1>
+      <h1 className='text-center text-xl font-bold'>
+        Sign-Up/Login To Use Website
+      </h1>
       {form === 'Register' ? (
         <Login changeForm={changeForm} />
       ) : (
