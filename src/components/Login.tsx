@@ -19,7 +19,7 @@ const Login = ({ changeForm }: any) => {
       <h1 className='text-center mt-10 text-2xl'>Login Here</h1>
       <form className='py-2' onSubmit={submitForm}>
         <div className='flex flex-col mx-auto w-fit'>
-          <label className=' text-lg py-2'>Username</label>
+          <label className=' text-lg py-2 font-semibold'>Username</label>
           <input
             type='text'
             name='username'
@@ -30,7 +30,7 @@ const Login = ({ changeForm }: any) => {
           />
         </div>
         <div className='flex flex-col mx-auto w-fit'>
-          <label className=' text-lg py-2 pt-5 '>Password</label>
+          <label className=' text-lg py-2 pt-5 font-semibold'>Password</label>
           <input
             type='password'
             name='password'
@@ -44,9 +44,9 @@ const Login = ({ changeForm }: any) => {
           <input
             type='submit'
             value='Login'
-            className='mt-10 text-xl cursor-pointer border-2 border-white p-3 rounded-lg'
+            className='mt-10 text-xl cursor-pointer border-2 border-white p-3 rounded-lg font-semibold'
           />
-          <p className='mt-5 cursor-pointer' onClick={changeForm}>
+          <p className='mt-5 cursor-pointer font-semibold' onClick={changeForm}>
             Not A User? Register Here.
           </p>
         </div>
