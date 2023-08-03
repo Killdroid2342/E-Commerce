@@ -1,9 +1,15 @@
 import React from 'react';
+import Nav from '../components/Nav';
 
 const Accessories = () => {
   return (
     <div>
-      <h1>this is the Accessories Page</h1>
+      <Nav />
+      <h1>Shoes</h1>
+      <p>
+        Buy and Sell Shoes on StockX. Every item is
+        <a className='text-green-900'>StockX Verified.</a>
+      </p>
     </div>
   );
 };

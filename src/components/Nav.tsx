@@ -4,6 +4,7 @@ const Nav = () => {
   const [dropdownNav, setDropdownNav] = useState(false);
 
   const navigate = useNavigate();
+
   const hover = () => {
     setDropdownNav(true);
   };
@@ -13,13 +14,13 @@ const Nav = () => {
   };
   return (
     <>
-      <nav className='fixed top-0 left-0 right-0 z-50 flex p-2 border-2 border-white justify-evenly bg-white'>
+      <nav className='fixed top-0 left-0 right-0 z-50 flex p-2 justify-evenly bg-white border-b border-neutral-300'>
         <div>
           <img
             src='src/assets/images/logo.png'
             alt=''
             width='200px'
-            className='p-5'
+            className='p-5 cursor-pointer'
             onClick={() => navigate('/main')}
           />
         </div>
@@ -65,7 +66,7 @@ const Nav = () => {
         </ul>
       </nav>
       <div className='pt-24'>
-        <div className='flex justify-evenly bg-neutral-100 p-5 border-t-2 border-neutral-300'>
+        <div className='flex justify-evenly bg-neutral-100 p-5 '>
           <p
             className='font-bold cursor-pointer'
             onClick={() => navigate('/shoes')}
