@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 const Nav = () => {
   const [dropdownNav, setDropdownNav] = useState(false);
 
@@ -62,7 +63,7 @@ const Nav = () => {
             )}
           </li>
           <li className='p-5 ml-auto'>Account: {'1'}</li>
-          <li className='p-5 cursor-pointer relative'>{'Basket: 🛒'}</li>
+          <li className='p-5 cursor-pointer relative'>{`Basket: 🛒`}</li>
         </ul>
       </nav>
       <div className='pt-24'>

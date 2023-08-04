@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
@@ -9,6 +9,7 @@ const shoes = [
     des: 'This is a shoe',
     lowPrice: 'Lowest Ask',
     price: '£100',
+    UUID: '1',
   },
   {
     img: 'src/assets/images/shoe2.png',
@@ -84,13 +85,6 @@ const Shoes = () => {
             <p className='font-bold text-xl'>{image.price}</p>
           </div>
         ))}
-      </div>
-      <div className='flex flex-row justify-center mb-10'>
-        <p className='p-5 border border-black m-2'>1</p>
-        <p className='p-5 border border-black m-2'>2</p>
-        <p className='p-5 border border-black m-2'>3</p>
-        <p className='p-5 border border-black m-2'>4</p>
-        <p className='p-5 border border-black m-2'>5</p>
       </div>
       <Footer />
     </div>
