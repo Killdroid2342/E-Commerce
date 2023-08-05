@@ -13,6 +13,9 @@ const Nav = () => {
   const leave = () => {
     setDropdownNav(false);
   };
+  const LogOut = () => {
+    navigate('/');
+  };
   return (
     <>
       <nav className='fixed top-0 left-0 right-0 z-50 flex p-2 justify-evenly bg-white border-b border-neutral-300'>
@@ -62,8 +65,11 @@ const Nav = () => {
               </ul>
             )}
           </li>
-          <li className='p-5 ml-auto'>Account: {'1'}</li>
+          <li className='p-5 ml-auto'>{'Account: 1'}</li>
           <li className='p-5 cursor-pointer relative'>{`Basket: 🛒`}</li>
+          <li className='p-5 ml-auto' onClick={LogOut}>
+            Log Out
+          </li>
         </ul>
       </nav>
       <div className='pt-24'>

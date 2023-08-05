@@ -4,19 +4,19 @@ import Footer from '../components/Footer';
 const accessories = [
   {
     img: 'src/assets/images/bag.png',
-    des: 'This is a shoe',
+    des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
     price: '£500',
   },
   {
     img: 'src/assets/images/glasses.png',
-    des: 'This is a shoe',
+    des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
     price: '£500',
   },
   {
     img: 'src/assets/images/watch.png',
-    des: 'This is a shoe',
+    des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
     price: '£500',
   },

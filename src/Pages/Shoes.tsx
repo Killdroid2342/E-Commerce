@@ -12,7 +12,7 @@ const shoes = [
     UUID: '1',
   },
   {
-    img: 'src/assets/images/shoe2.png',
+    img: 'src/assets/images/LatestShoe2.png',
     des: 'This is a shoe',
     lowPrice: 'Lowest Ask',
     price: '£100',
@@ -24,7 +24,7 @@ const shoes = [
     price: '£100',
   },
   {
-    img: 'src/assets/images/shoe2.png',
+    img: 'src/assets/images/LatestShoe2.png',
     des: 'This is a shoe',
     lowPrice: 'Lowest Ask',
     price: '£100',
