@@ -8,6 +8,10 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.otherBGColor {
+  background-color: rgb(238, 236, 236);
+  min-height: 100vh;
+}
 
 * {
   box-sizing: border-box;

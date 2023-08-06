@@ -15,43 +15,48 @@ const Login = ({ changeForm }: any) => {
     }));
   }
   return (
-    <>
-      <h1 className='text-center mt-10 text-2xl'>Login Here</h1>
-      <form className='py-2' onSubmit={submitForm}>
-        <div className='flex flex-col mx-auto w-fit'>
-          <label className=' text-lg py-2 font-semibold'>Username</label>
-          <input
-            type='text'
-            name='username'
-            placeholder='Username'
-            onChange={loginInput}
-            className='p-2 rounded-md text-black border border-black'
-            required
-          />
-        </div>
-        <div className='flex flex-col mx-auto w-fit'>
-          <label className=' text-lg py-2 pt-5 font-semibold'>Password</label>
-          <input
-            type='password'
-            name='password'
-            placeholder='Password'
-            onChange={loginInput}
-            className='p-2 rounded-md text-black border border-black'
-            required
-          />
-        </div>
-        <div className='flex flex-col mx-auto w-fit'>
-          <input
-            type='submit'
-            value='Login'
-            className='mt-10 text-xl cursor-pointer border-2 border-white p-3 rounded-lg font-semibold'
-          />
-          <p className='mt-5 cursor-pointer font-semibold' onClick={changeForm}>
-            Not A User? Register Here.
-          </p>
-        </div>
-      </form>
-    </>
+    <div className='flex justify-center'>
+      <div className='border border-neutral-300 rounded-md w-80 mt-20 bg-white'>
+        <h1 className='text-center mt-10 text-2xl '>Login Here</h1>
+        <form className='py-2' onSubmit={submitForm}>
+          <div className='flex flex-col mx-auto w-fit'>
+            <label className=' text-lg py-2 font-semibold'>Username</label>
+            <input
+              type='text'
+              name='username'
+              placeholder='Username'
+              onChange={loginInput}
+              className='p-2 rounded-md text-black border border-neutral-300'
+              required
+            />
+          </div>
+          <div className='flex flex-col mx-auto w-fit'>
+            <label className=' text-lg py-2 pt-5 font-semibold'>Password</label>
+            <input
+              type='password'
+              name='password'
+              placeholder='Password'
+              onChange={loginInput}
+              className='p-2 rounded-md text-black border border-neutral-300'
+              required
+            />
+          </div>
+          <div className='flex flex-col mx-auto w-fit'>
+            <input
+              type='submit'
+              value='Login'
+              className='mt-10 text-xl cursor-pointer border-2 border-white p-3 rounded-lg font-semibold'
+            />
+            <p
+              className='mt-5 cursor-pointer font-semibold'
+              onClick={changeForm}
+            >
+              Not A User? Register Here.
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

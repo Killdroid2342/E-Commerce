@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Login from '../components/Login';
 import Register from '../components/Register';
-
+import '../index.css';
 const Home = () => {
   const [form, setForm] = useState('Register');
 
@@ -14,16 +14,16 @@ const Home = () => {
   };
 
   return (
-    <>
-      <h1 className='text-center text-xl font-bold'>
-        Sign-Up/Login To Use Website
-      </h1>
+    <div className='otherBGColor'>
+      <div className='flex justify-center p-10 border-b border-neutral-300 bg-white'>
+        <img src='src/assets/images/logo.png' alt='' className='w-80' />
+      </div>
       {form === 'Register' ? (
         <Login changeForm={changeForm} />
       ) : (
         <Register changeForm={changeForm} />
       )}
-    </>
+    </div>
   );
 };
 
