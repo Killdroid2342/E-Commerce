@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const carouselImages = [
   'src/assets/images/dummyImage1.png',
@@ -75,7 +76,7 @@ const igImage = [
 ];
 const Home = () => {
   const [img, setImg] = useState(0);
-
+  const navigate = useNavigate();
   const preivImg = () => {
     setImg((prevImg) => (prevImg + 1) % carouselImages.length);
   };
@@ -104,16 +105,25 @@ const Home = () => {
         </div>
         <p className='font-bold ml-80 mt-10'>Recommended For You</p>
         <div className='flex justify-center'>
-          {productImages.map((image, index) => (
-            <div key={index} className='flex flex-col items-center'>
-              <img
-                src={image.img}
-                alt={`Product ${index}`}
-                className='w-56 h-48 m-1 border border-neutral-400'
-              />
-              <p>{image.name}</p>
-            </div>
-          ))}
+          <div className='flex justify-center'>
+            {productImages.map((image, index) => (
+              <div key={index} className='relative group'>
+                <img
+                  src={image.img}
+                  alt={`Product ${index}`}
+                  className='w-56 h-48 m-1 border border-neutral-400 transition duration-300 ease-in-out transform group-hover:scale-105'
+                />
+                <div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-80 backdrop-blur-md transition-opacity duration-300'>
+                  <div
+                    onClick={() => navigate('/shoes')}
+                    className='bg-black text-white text-center p-2 rounded-md'
+                  >
+                    <p>Click here to go to shoes page</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
         <p className='font-bold ml-80 mt-10'>Popular Brands</p>
         <div className='flex justify-center'>

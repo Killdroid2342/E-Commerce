@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
+import Modal from '../components/Modal';
 
 const shoes = [
   {
@@ -32,6 +33,16 @@ const shoes = [
 ];
 
 const Shoes = () => {
+  const [modalI, setModalI] = useState(null);
+
+  const openModal = (image: any) => {
+    setModalI(image);
+  };
+
+  const closeModal = () => {
+    setModalI(null);
+  };
+
   return (
     <div className='flex flex-col'>
       <Nav />
@@ -51,12 +62,14 @@ const Shoes = () => {
               src={image.img}
               alt={`Product ${index}`}
               className='w-56 h-48 m-1 '
+              onClick={() => openModal(image.img)}
             />
             <p>{image.des}</p>
             <p className='text-xs'>{image.lowPrice}</p>
             <p className='font-bold text-xl'>{image.price}</p>
           </div>
         ))}
+        {modalI && <Modal onClose={closeModal} image={modalI} />}
       </div>
       <div className='flex justify-center flex-row'>
         {shoes.map((image, index) => (
