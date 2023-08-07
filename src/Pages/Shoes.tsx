@@ -10,7 +10,6 @@ const shoes = [
     des: 'This is a shoe',
     lowPrice: 'Lowest Ask',
     price: '£100',
-    UUID: '1',
   },
   {
     img: 'src/assets/images/LatestShoe2.png',
@@ -34,6 +33,7 @@ const shoes = [
 
 const Shoes = () => {
   const [modalI, setModalI] = useState(null);
+  const [amount, setAmount] = useState(1);
 
   const openModal = (image: any) => {
     setModalI(image);
@@ -41,6 +41,16 @@ const Shoes = () => {
 
   const closeModal = () => {
     setModalI(null);
+  };
+
+  const add = () => {
+    setAmount(amount + 1);
+  };
+
+  const remove = () => {
+    if (amount > 1) {
+      setAmount(amount - 1);
+    }
   };
 
   return (
@@ -69,7 +79,15 @@ const Shoes = () => {
             <p className='font-bold text-xl'>{image.price}</p>
           </div>
         ))}
-        {modalI && <Modal onClose={closeModal} image={modalI} />}
+        {modalI && (
+          <Modal
+            onClose={closeModal}
+            image={modalI}
+            amount={amount}
+            add={add}
+            remove={remove}
+          />
+        )}
       </div>
       <div className='flex justify-center flex-row'>
         {shoes.map((image, index) => (
@@ -78,12 +96,22 @@ const Shoes = () => {
               src={image.img}
               alt={`Product ${index}`}
               className='w-56 h-48 m-1 '
+              onClick={() => openModal(image.img)}
             />
             <p>{image.des}</p>
             <p className='text-xs'>{image.lowPrice}</p>
             <p className='font-bold text-xl'>{image.price}</p>
           </div>
         ))}
+        {modalI && (
+          <Modal
+            onClose={closeModal}
+            image={modalI}
+            amount={amount}
+            add={add}
+            remove={remove}
+          />
+        )}
       </div>
       <div className='flex justify-center flex-row'>
         {shoes.map((image, index) => (
@@ -92,12 +120,22 @@ const Shoes = () => {
               src={image.img}
               alt={`Product ${index}`}
               className='w-56 h-48 m-1 '
+              onClick={() => openModal(image.img)}
             />
             <p>{image.des}</p>
             <p className='text-xs'>{image.lowPrice}</p>
             <p className='font-bold text-xl'>{image.price}</p>
           </div>
         ))}
+        {modalI && (
+          <Modal
+            onClose={closeModal}
+            image={modalI}
+            amount={amount}
+            add={add}
+            remove={remove}
+          />
+        )}
       </div>
       <Footer />
     </div>
