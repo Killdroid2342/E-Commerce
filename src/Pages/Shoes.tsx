@@ -30,10 +30,16 @@ const shoes = [
     price: '£100',
   },
 ];
+interface Item {
+  shoe: string;
+  price: number;
+  amount: number;
+}
 
 const Shoes = () => {
   const [modalI, setModalI] = useState(null);
   const [amount, setAmount] = useState(1);
+  const [basketItems, setBasketItems] = useState<Item[]>([]);
 
   const openModal = (image: any) => {
     setModalI(image);
@@ -50,6 +56,19 @@ const Shoes = () => {
   const remove = () => {
     if (amount > 1) {
       setAmount(amount - 1);
+    }
+  };
+
+  const addBasket = () => {
+    if (modalI) {
+      const newItem = {
+        shoe: modalI,
+        price: 100,
+        amount: amount,
+      };
+      setBasketItems([...basketItems, newItem]);
+      console.log(basketItems);
+      closeModal();
     }
   };
 
@@ -86,54 +105,7 @@ const Shoes = () => {
             amount={amount}
             add={add}
             remove={remove}
-          />
-        )}
-      </div>
-      <div className='flex justify-center flex-row'>
-        {shoes.map((image, index) => (
-          <div key={index} className='border border-neutral-400 m-10'>
-            <img
-              src={image.img}
-              alt={`Product ${index}`}
-              className='w-56 h-48 m-1 '
-              onClick={() => openModal(image.img)}
-            />
-            <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
-          </div>
-        ))}
-        {modalI && (
-          <Modal
-            onClose={closeModal}
-            image={modalI}
-            amount={amount}
-            add={add}
-            remove={remove}
-          />
-        )}
-      </div>
-      <div className='flex justify-center flex-row'>
-        {shoes.map((image, index) => (
-          <div key={index} className='border border-neutral-400 m-10'>
-            <img
-              src={image.img}
-              alt={`Product ${index}`}
-              className='w-56 h-48 m-1 '
-              onClick={() => openModal(image.img)}
-            />
-            <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
-          </div>
-        ))}
-        {modalI && (
-          <Modal
-            onClose={closeModal}
-            image={modalI}
-            amount={amount}
-            add={add}
-            remove={remove}
+            addBasket={addBasket}
           />
         )}
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = ({ onClose, image, amount, add, remove, shoe }: any) => {
+const Modal = ({ onClose, image, amount, add, remove, addBasket }: any) => {
   const totalCost = 100 * amount;
 
   return (
@@ -27,7 +27,10 @@ const Modal = ({ onClose, image, amount, add, remove, shoe }: any) => {
           >
             {'-'}
           </button>
-          <button className='border-2 border-red-300 p-2 rounded-md font-bold m-2'>
+          <button
+            onClick={addBasket}
+            className='border-2 border-red-300 p-2 rounded-md font-bold m-2'
+          >
             Add To Basket
           </button>
         </div>
