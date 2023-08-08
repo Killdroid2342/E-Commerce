@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
@@ -67,10 +67,12 @@ const Shoes = () => {
         amount: amount,
       };
       setBasketItems([...basketItems, newItem]);
-      console.log(basketItems);
       closeModal();
     }
   };
+  useEffect(() => {
+    console.log(basketItems);
+  }, [basketItems]);
 
   return (
     <div className='flex flex-col'>
