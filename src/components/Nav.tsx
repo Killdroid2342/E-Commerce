@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BasketModal from './BasketModal';
 
 const Nav = () => {
   const [dropdownNav, setDropdownNav] = useState(false);
+  const [basketModal, setBasketModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -15,6 +17,9 @@ const Nav = () => {
   };
   const LogOut = () => {
     navigate('/');
+  };
+  const OpenModal = () => {
+    setBasketModal(!basketModal);
   };
   return (
     <>
@@ -66,7 +71,11 @@ const Nav = () => {
             )}
           </li>
           <li className='p-5 ml-auto'>{'Account: 1'}</li>
-          <li className='p-5 cursor-pointer relative'>{`Basket: 🛒`}</li>
+          <li
+            className='p-5 cursor-pointer relative'
+            onClick={OpenModal}
+          >{`Basket: 🛒`}</li>
+          {basketModal && <BasketModal setBasketModal={setBasketModal} />}
           <li className='p-5 ml-auto' onClick={LogOut}>
             Log Out
           </li>

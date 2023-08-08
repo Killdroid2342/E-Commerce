@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Modal = ({ onClose, image, amount, add, remove, addBasket }: any) => {
   const totalCost = 100 * amount;
 
