@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
 import Footer from '../components/Footer';
-import Nav from '../components/Nav';
+import Nav from '../components/nav/Nav';
 import Modal from '../components/Modal';
 
-const shoes = [
+const shoesOne = [
   {
     img: 'src/assets/images/shoe1.png',
     des: 'This is a shoe',
@@ -30,7 +30,62 @@ const shoes = [
     price: '£100',
   },
 ];
-interface Item {
+
+const shoesTwo = [
+  {
+    img: 'src/assets/images/jordan4.png',
+    des: 'This is a shoe',
+    lowPrice: 'Lowest Ask',
+    price: '£100',
+  },
+  {
+    img: 'src/assets/images/dunks.png',
+    des: 'This is a shoe',
+    lowPrice: 'Lowest Ask',
+    price: '£100',
+  },
+  {
+    img: 'src/assets/images/jordan4.png',
+    des: 'This is a shoe',
+    lowPrice: 'Lowest Ask',
+    price: '£100',
+  },
+  {
+    img: 'src/assets/images/dunks.png',
+    des: 'This is a shoe',
+    lowPrice: 'Lowest Ask',
+    price: '£100',
+  },
+];
+
+const shoesThree = [
+  {
+    img: 'src/assets/images/jordan9.png',
+    des: 'This is a shoe',
+    lowPrice: 'Lowest Ask',
+    price: '£100',
+  },
+  {
+    img: 'src/assets/images/jordan11.png',
+    des: 'This is a shoe',
+    lowPrice: 'Lowest Ask',
+    price: '£100',
+  },
+  {
+    img: 'src/assets/images/jordan9.png',
+    des: 'This is a shoe',
+    lowPrice: 'Lowest Ask',
+    price: '£100',
+  },
+  {
+    img: 'src/assets/images/jordan11.png',
+    des: 'This is a shoe',
+    lowPrice: 'Lowest Ask',
+    price: '£100',
+  },
+];
+export interface Item {
+  name: string;
   shoe: string;
   price: number;
   amount: number;
@@ -65,18 +120,17 @@ const Shoes = () => {
         shoe: modalI,
         price: 100,
         amount: amount,
+        name: 'Shoes',
       };
       setBasketItems([...basketItems, newItem]);
       closeModal();
     }
   };
-  useEffect(() => {
-    console.log(basketItems);
-  }, [basketItems]);
+  useEffect(() => {}, [basketItems]);
 
   return (
     <div className='flex flex-col'>
-      <Nav />
+      <Nav basketItems={basketItems} />
       <div className='flex justify-center'>
         <div className='mt-40 p-16 w-8/12 bg-neutral-200'>
           <h2 className='text-4xl'>Shoes</h2>
@@ -87,7 +141,57 @@ const Shoes = () => {
         </div>
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {shoes.map((image, index) => (
+        {shoesOne.map((image, index) => (
+          <div key={index} className='border border-neutral-400 m-10'>
+            <img
+              src={image.img}
+              alt={`Product ${index}`}
+              className='w-56 h-48 m-1 '
+              onClick={() => openModal(image.img)}
+            />
+            <p>{image.des}</p>
+            <p className='text-xs'>{image.lowPrice}</p>
+            <p className='font-bold text-xl'>{image.price}</p>
+          </div>
+        ))}
+        {modalI && (
+          <Modal
+            onClose={closeModal}
+            image={modalI}
+            amount={amount}
+            add={add}
+            remove={remove}
+            addBasket={addBasket}
+          />
+        )}
+      </div>
+      <div className='flex justify-center flex-row mt-20'>
+        {shoesTwo.map((image, index) => (
+          <div key={index} className='border border-neutral-400 m-10'>
+            <img
+              src={image.img}
+              alt={`Product ${index}`}
+              className='w-56 h-48 m-1 '
+              onClick={() => openModal(image.img)}
+            />
+            <p>{image.des}</p>
+            <p className='text-xs'>{image.lowPrice}</p>
+            <p className='font-bold text-xl'>{image.price}</p>
+          </div>
+        ))}
+        {modalI && (
+          <Modal
+            onClose={closeModal}
+            image={modalI}
+            amount={amount}
+            add={add}
+            remove={remove}
+            addBasket={addBasket}
+          />
+        )}
+      </div>
+      <div className='flex justify-center flex-row mt-20'>
+        {shoesThree.map((image, index) => (
           <div key={index} className='border border-neutral-400 m-10'>
             <img
               src={image.img}
