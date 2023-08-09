@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BasketModal from './BasketModal';
+import BasketModal from './basketModal/BasketModal';
 
-const Nav = () => {
+const Nav = ({ basketItems }: any) => {
   const [dropdownNav, setDropdownNav] = useState(false);
   const [basketModal, setBasketModal] = useState(false);
 
   const navigate = useNavigate();
-
   const hover = () => {
     setDropdownNav(true);
   };
@@ -75,7 +74,12 @@ const Nav = () => {
             className='p-5 cursor-pointer relative'
             onClick={OpenModal}
           >{`Basket: 🛒`}</li>
-          {basketModal && <BasketModal setBasketModal={setBasketModal} />}
+          {basketModal && (
+            <BasketModal
+              setBasketModal={setBasketModal}
+              basketItems={basketItems}
+            />
+          )}
           <li className='p-5 ml-auto' onClick={LogOut}>
             Log Out
           </li>

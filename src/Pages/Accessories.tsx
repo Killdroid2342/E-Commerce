@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from '../components/Nav';
+import Nav from '../components/nav/Nav';
 import Footer from '../components/Footer';
 const accessories = [
   {
@@ -15,13 +15,65 @@ const accessories = [
     price: '£500',
   },
   {
+    img: 'src/assets/images/bag.png',
+    des: 'This is an accessories',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+  {
+    img: 'src/assets/images/glasses.png',
+    des: 'This is an accessories',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+];
+const accessoriesTwo = [
+  {
     img: 'src/assets/images/watch.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
     price: '£500',
   },
   {
-    img: 'src/assets/images/bag.png',
+    img: 'src/assets/images/nike.png',
+    des: 'This is an accessories',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+  {
+    img: 'src/assets/images/watch.png',
+    des: 'This is an accessories',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+  {
+    img: 'src/assets/images/nike.png',
+    des: 'This is an accessories',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+];
+const accessoriesThree = [
+  {
+    img: 'src/assets/images/utopia.png',
+    des: 'This is an accessories',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+  {
+    img: 'src/assets/images/waistBag.png',
+    des: 'This is an accessories',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+  {
+    img: 'src/assets/images/utopia.png',
+    des: 'This is an accessories',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+  {
+    img: 'src/assets/images/waistBag.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
     price: '£500',
@@ -55,7 +107,7 @@ const Accessories = () => {
         ))}
       </div>
       <div className='flex justify-center flex-row'>
-        {accessories.map((image, index) => (
+        {accessoriesTwo.map((image, index) => (
           <div key={index} className='border border-neutral-400 m-10'>
             <img
               src={image.img}
@@ -69,7 +121,7 @@ const Accessories = () => {
         ))}
       </div>
       <div className='flex justify-center flex-row'>
-        {accessories.map((image, index) => (
+        {accessoriesThree.map((image, index) => (
           <div key={index} className='border border-neutral-400 m-10'>
             <img
               src={image.img}

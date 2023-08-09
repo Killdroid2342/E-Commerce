@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from '../components/Nav';
+import Nav from '../components/nav/Nav';
 import Footer from '../components/Footer';
 
 const electronics = [
@@ -16,19 +16,70 @@ const electronics = [
     price: '£200',
   },
   {
+    img: 'src/assets/images/ps5.png',
+    des: 'This is a Electronics',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+  {
+    img: 'src/assets/images/mouse.png',
+    des: 'This is a Electronics',
+    lowPrice: 'Lowest Ask',
+    price: '£200',
+  },
+];
+const electronicsTwo = [
+  {
     img: 'src/assets/images/airpods.png',
     des: 'This is a Electronics',
     lowPrice: 'Lowest Ask',
     price: '£150',
   },
   {
-    img: 'src/assets/images/ps5.png',
+    img: 'src/assets/images/phone.png',
+    des: 'This is Electronics',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+  {
+    img: 'src/assets/images/airpods.png',
+    des: 'This is a Electronics',
+    lowPrice: 'Lowest Ask',
+    price: '£150',
+  },
+  {
+    img: 'src/assets/images/phone.png',
     des: 'This is Electronics',
     lowPrice: 'Lowest Ask',
     price: '£500',
   },
 ];
-
+const electronicsThree = [
+  {
+    img: 'src/assets/images/mouse2.png',
+    des: 'This is a Electronics',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+  {
+    img: 'src/assets/images/steamDeck.png',
+    des: 'This is a Electronics',
+    lowPrice: 'Lowest Ask',
+    price: '£200',
+  },
+  {
+    img: 'src/assets/images/mouse2.png',
+    des: 'This is a Electronics',
+    lowPrice: 'Lowest Ask',
+    price: '£500',
+  },
+  {
+    img: 'src/assets/images/steamDeck.png',
+    des: 'This is a Electronics',
+    lowPrice: 'Lowest Ask',
+    price: '£200',
+  },
+];
 const Electronics = () => {
   return (
     <div className='flex flex-col'>
@@ -57,7 +108,7 @@ const Electronics = () => {
         ))}
       </div>
       <div className='flex justify-center flex-row'>
-        {electronics.map((image, index) => (
+        {electronicsTwo.map((image, index) => (
           <div key={index} className='border border-neutral-400 m-10'>
             <img
               src={image.img}
@@ -71,7 +122,7 @@ const Electronics = () => {
         ))}
       </div>
       <div className='flex justify-center flex-row'>
-        {electronics.map((image, index) => (
+        {electronicsThree.map((image, index) => (
           <div key={index} className='border border-neutral-400 m-10'>
             <img
               src={image.img}
