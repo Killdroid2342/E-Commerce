@@ -1,6 +1,8 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import Nav from '../components/nav/Nav';
 import Footer from '../components/Footer';
+import { Item } from './Shoes';
+import Modal from '../components/Modal';
 
 const electronics = [
   {
@@ -81,9 +83,44 @@ const electronicsThree = [
   },
 ];
 const Electronics = () => {
+  const [modalI, setModalI] = useState(null);
+  const [amount, setAmount] = useState(1);
+  const [basketItems, setBasketItems] = useState<Item[]>([]);
+
+  const openModal = (image: any) => {
+    setModalI(image);
+  };
+
+  const closeModal = () => {
+    setModalI(null);
+  };
+
+  const add = () => {
+    setAmount(amount + 1);
+  };
+
+  const remove = () => {
+    if (amount > 1) {
+      setAmount(amount - 1);
+    }
+  };
+
+  const addBasket = () => {
+    if (modalI) {
+      const newItem = {
+        shoe: modalI,
+        price: 100,
+        amount: amount,
+        name: 'Electronics',
+      };
+      setBasketItems([...basketItems, newItem]);
+      closeModal();
+    }
+  };
+  useEffect(() => {}, [basketItems]);
   return (
     <div className='flex flex-col'>
-      <Nav />
+      <Nav basketItems={basketItems} />
       <div className='flex justify-center'>
         <div className='mt-40 p-16 w-8/12 bg-neutral-200'>
           <h2 className='text-4xl'>Electronics</h2>
@@ -100,40 +137,73 @@ const Electronics = () => {
               src={image.img}
               alt={`Product ${index}`}
               className='w-56 h-48 m-1 '
+              onClick={() => openModal(image.img)}
             />
             <p>{image.des}</p>
             <p className='text-xs'>{image.lowPrice}</p>
             <p className='font-bold text-xl'>{image.price}</p>
           </div>
         ))}
+        {modalI && (
+          <Modal
+            onClose={closeModal}
+            image={modalI}
+            amount={amount}
+            add={add}
+            remove={remove}
+            addBasket={addBasket}
+          />
+        )}
       </div>
-      <div className='flex justify-center flex-row'>
+      <div className='flex justify-center flex-row '>
         {electronicsTwo.map((image, index) => (
           <div key={index} className='border border-neutral-400 m-10'>
             <img
               src={image.img}
               alt={`Product ${index}`}
               className='w-56 h-48 m-1 '
+              onClick={() => openModal(image.img)}
             />
             <p>{image.des}</p>
             <p className='text-xs'>{image.lowPrice}</p>
             <p className='font-bold text-xl'>{image.price}</p>
           </div>
         ))}
+        {modalI && (
+          <Modal
+            onClose={closeModal}
+            image={modalI}
+            amount={amount}
+            add={add}
+            remove={remove}
+            addBasket={addBasket}
+          />
+        )}
       </div>
-      <div className='flex justify-center flex-row'>
+      <div className='flex justify-center flex-row '>
         {electronicsThree.map((image, index) => (
           <div key={index} className='border border-neutral-400 m-10'>
             <img
               src={image.img}
               alt={`Product ${index}`}
               className='w-56 h-48 m-1 '
+              onClick={() => openModal(image.img)}
             />
             <p>{image.des}</p>
             <p className='text-xs'>{image.lowPrice}</p>
             <p className='font-bold text-xl'>{image.price}</p>
           </div>
         ))}
+        {modalI && (
+          <Modal
+            onClose={closeModal}
+            image={modalI}
+            amount={amount}
+            add={add}
+            remove={remove}
+            addBasket={addBasket}
+          />
+        )}
       </div>
       <Footer />
     </div>
