@@ -94,8 +94,10 @@ export interface Item {
 const Shoes = () => {
   const [modalI, setModalI] = useState(null);
   const [amount, setAmount] = useState(1);
-  const [basketItems, setBasketItems] = useState<Item[]>([]);
-
+  const initialBasketItems = localStorage.getItem('basketItems');
+  const [basketItems, setBasketItems] = useState<Item[]>(
+    initialBasketItems ? JSON.parse(initialBasketItems) : []
+  );
   const openModal = (image: any) => {
     setModalI(image);
   };
@@ -118,7 +120,7 @@ const Shoes = () => {
     if (modalI) {
       const newItem = {
         shoe: modalI,
-        price: 100,
+        price: (modalI as any).price * amount,
         amount: amount,
         name: 'Shoes',
       };
@@ -126,11 +128,14 @@ const Shoes = () => {
       closeModal();
     }
   };
-  useEffect(() => {}, [basketItems]);
+
+  useEffect(() => {
+    localStorage.setItem('basketItems', JSON.stringify(basketItems));
+  }, [basketItems]);
 
   return (
     <div className='flex flex-col'>
-      <Nav basketItems={basketItems} />
+      <Nav basketItems={basketItems} setBasketItems={setBasketItems} />
       <div className='flex justify-center'>
         <div className='mt-40 p-16 w-8/12 bg-neutral-200'>
           <h2 className='text-4xl'>Shoes</h2>

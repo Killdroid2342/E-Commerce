@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BasketModal from './basketModal/BasketModal';
 
-const Nav = ({ basketItems }: any) => {
+const Nav = ({ basketItems, setBasketItems }: any) => {
   const [dropdownNav, setDropdownNav] = useState(false);
   const [basketModal, setBasketModal] = useState(false);
 
@@ -78,6 +78,7 @@ const Nav = ({ basketItems }: any) => {
             <BasketModal
               setBasketModal={setBasketModal}
               basketItems={basketItems}
+              setBasketItems={setBasketItems}
             />
           )}
           <li className='p-5 ml-auto' onClick={LogOut}>

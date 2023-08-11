@@ -9,25 +9,25 @@ const electronics = [
     img: 'src/assets/images/ps5.png',
     des: 'This is a Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/mouse.png',
     des: 'This is a Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£200',
+    price: '£100',
   },
   {
     img: 'src/assets/images/ps5.png',
     des: 'This is a Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/mouse.png',
     des: 'This is a Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£200',
+    price: '£100',
   },
 ];
 const electronicsTwo = [
@@ -35,25 +35,25 @@ const electronicsTwo = [
     img: 'src/assets/images/airpods.png',
     des: 'This is a Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£150',
+    price: '£100',
   },
   {
     img: 'src/assets/images/phone.png',
     des: 'This is Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/airpods.png',
     des: 'This is a Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£150',
+    price: '£100',
   },
   {
     img: 'src/assets/images/phone.png',
     des: 'This is Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
 ];
 const electronicsThree = [
@@ -61,32 +61,35 @@ const electronicsThree = [
     img: 'src/assets/images/mouse2.png',
     des: 'This is a Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/steamDeck.png',
     des: 'This is a Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£200',
+    price: '£100',
   },
   {
     img: 'src/assets/images/mouse2.png',
     des: 'This is a Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/steamDeck.png',
     des: 'This is a Electronics',
     lowPrice: 'Lowest Ask',
-    price: '£200',
+    price: '£100',
   },
 ];
 const Electronics = () => {
   const [modalI, setModalI] = useState(null);
   const [amount, setAmount] = useState(1);
-  const [basketItems, setBasketItems] = useState<Item[]>([]);
-
+  const initialBasketItems = localStorage.getItem('basketItems');
+  const [basketItems, setBasketItems] = useState<Item[]>(
+    initialBasketItems ? JSON.parse(initialBasketItems) : []
+  );
+  console.log(basketItems, 'asdsd');
   const openModal = (image: any) => {
     setModalI(image);
   };
@@ -109,18 +112,22 @@ const Electronics = () => {
     if (modalI) {
       const newItem = {
         shoe: modalI,
-        price: 100,
+        price: (modalI as any).price * amount,
         amount: amount,
-        name: 'Electronics',
+        name: 'Shoes',
       };
+      console.log(modalI);
       setBasketItems([...basketItems, newItem]);
       closeModal();
     }
   };
-  useEffect(() => {}, [basketItems]);
+  useEffect(() => {
+    localStorage.setItem('basketItems', JSON.stringify(basketItems));
+  }, [basketItems]);
+
   return (
     <div className='flex flex-col'>
-      <Nav basketItems={basketItems} />
+      <Nav basketItems={basketItems} setBasketItems={setBasketItems} />
       <div className='flex justify-center'>
         <div className='mt-40 p-16 w-8/12 bg-neutral-200'>
           <h2 className='text-4xl'>Electronics</h2>

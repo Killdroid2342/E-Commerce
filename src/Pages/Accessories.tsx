@@ -8,25 +8,25 @@ const accessories = [
     img: 'src/assets/images/bag.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/glasses.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/bag.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/glasses.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
 ];
 const accessoriesTwo = [
@@ -34,25 +34,25 @@ const accessoriesTwo = [
     img: 'src/assets/images/watch.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/nike.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/watch.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/nike.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
 ];
 const accessoriesThree = [
@@ -60,32 +60,34 @@ const accessoriesThree = [
     img: 'src/assets/images/utopia.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/waistBag.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/utopia.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
   {
     img: 'src/assets/images/waistBag.png',
     des: 'This is an accessories',
     lowPrice: 'Lowest Ask',
-    price: '£500',
+    price: '£100',
   },
 ];
 const Accessories = () => {
   const [modalI, setModalI] = useState(null);
   const [amount, setAmount] = useState(1);
-  const [basketItems, setBasketItems] = useState<Item[]>([]);
-
+  const initialBasketItems = localStorage.getItem('basketItems');
+  const [basketItems, setBasketItems] = useState<Item[]>(
+    initialBasketItems ? JSON.parse(initialBasketItems) : []
+  );
   const openModal = (image: any) => {
     setModalI(image);
   };
@@ -117,11 +119,13 @@ const Accessories = () => {
     }
   };
 
-  useEffect(() => {}, [basketItems]);
+  useEffect(() => {
+    localStorage.setItem('basketItems', JSON.stringify(basketItems));
+  }, [basketItems]);
 
   return (
     <div className='flex flex-col'>
-      <Nav basketItems={basketItems} />
+      <Nav basketItems={basketItems} setBasketItems={setBasketItems} />
       <div className='flex justify-center'>
         <div className='mt-40 p-16 w-8/12 bg-neutral-200'>
           <h2 className='text-4xl'>Accessories</h2>
