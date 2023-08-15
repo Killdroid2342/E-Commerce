@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+const { VITE_API_URL } = import.meta.env;
 
 const Register = ({ changeForm }: any) => {
+  const instance = axios.create({
+    baseURL: VITE_API_URL,
+  });
   const [register, setRegister] = useState({
     username: '',
     password: '',
   });
-  function submitRegForm(e: any) {
+  async function submitRegForm(e: any) {
     e.preventDefault();
-    console.log('submitted form: ', register);
+    const res = await instance.post('/user/register-user', {
+      username: register.username,
+      password: register.password,
+    });
+    console.log(res);
+    console.log(res.data.message);
   }
 
   function loginRegInput(e: React.ChangeEvent<HTMLInputElement>) {

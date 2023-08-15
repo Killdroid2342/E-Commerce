@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Nav from '../components/nav/Nav';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
