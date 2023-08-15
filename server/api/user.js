@@ -3,8 +3,14 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-const { createUser, isUserExists, hashPassword } = require('../modal/user');
+const {
+  createUser,
+  isUserExists,
+  hashPassword,
+  comparePassswords,
+} = require('../modal/user');
 
+const { jwtToken } = require('../modal/token');
 router.use(bodyParser.json());
 
 router.post('/register-user', async (req, res) => {
@@ -20,6 +26,28 @@ router.post('/register-user', async (req, res) => {
     res.send({
       message: 'Username already exists',
     });
+  }
+});
+
+router.post('/login-user', async (req, res) => {
+  const { username, clientpassword } = req.body;
+  const { password } = await isUserExists(username);
+  try {
+    if (
+      (await isUserExists(username)) !== false &&
+      (await comparePassswords(clientpassword, password)) == true
+    ) {
+      res.send({
+        message: 'Correct Details',
+        token: jwtToken(username),
+      });
+    } else {
+      res.send({
+        message: 'Wrong Details',
+      });
+    }
+  } catch (err) {
+    console.log(err);
   }
 });
 
