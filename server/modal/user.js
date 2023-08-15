@@ -32,4 +32,7 @@ const isUserExists = async (username) => {
     });
   return res;
 };
-module.exports = { createUser, hashPassword, isUserExists };
+async function comparePassswords(passwords, hash) {
+  return bcrypt.compareSync(passwords, hash);
+}
+module.exports = { createUser, hashPassword, isUserExists, comparePassswords };
