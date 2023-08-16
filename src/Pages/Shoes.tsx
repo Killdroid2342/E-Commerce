@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
 import Nav from '../components/nav/Nav';
 import Modal from '../components/Modal';
+import Auth from '../hooks/Auth';
 
 const shoesOne = [
   {
@@ -92,6 +93,7 @@ export interface Item {
 }
 
 const Shoes = () => {
+  Auth();
   const [modalI, setModalI] = useState(null);
   const [amount, setAmount] = useState(1);
   const initialBasketItems = localStorage.getItem('basketItems');

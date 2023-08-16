@@ -3,6 +3,7 @@ import Nav from '../components/nav/Nav';
 import Footer from '../components/Footer';
 import { Item } from './Shoes';
 import Modal from '../components/Modal';
+import Auth from '../hooks/Auth';
 
 const electronics = [
   {
@@ -83,6 +84,7 @@ const electronicsThree = [
   },
 ];
 const Electronics = () => {
+  Auth();
   const [modalI, setModalI] = useState(null);
   const [amount, setAmount] = useState(1);
   const initialBasketItems = localStorage.getItem('basketItems');

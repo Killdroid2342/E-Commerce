@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Nav from '../components/nav/Nav';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
-
+import Auth from '../hooks/Auth';
 const carouselImages = [
   'src/assets/images/dummyImage1.png',
   'src/assets/images/dummyImage2.png',
@@ -75,6 +75,7 @@ const igImage = [
   },
 ];
 const Home = () => {
+  Auth();
   const [img, setImg] = useState(0);
   const navigate = useNavigate();
   const preivImg = () => {

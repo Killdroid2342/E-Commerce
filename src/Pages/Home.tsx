@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Login from '../components/Login';
-import Register from '../components/Register';
+import Login from '../components/Forms/Login';
+import Register from '../components/Forms/Register';
 import '../index.css';
 const Home = () => {
   const [form, setForm] = useState('Register');
@@ -12,7 +12,6 @@ const Home = () => {
       setForm('Register');
     }
   };
-
   return (
     <div className='otherBGColor'>
       <div className='flex justify-center p-10 border-b border-neutral-300 bg-white'>
