@@ -122,7 +122,7 @@ const Shoes = () => {
     if (modalI) {
       const newItem = {
         shoe: modalI,
-        price: (modalI as any).price * amount,
+        price: amount * 100,
         amount: amount,
         name: 'Shoes',
       };

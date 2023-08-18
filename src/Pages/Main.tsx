@@ -119,7 +119,9 @@ const Home = () => {
                     onClick={() => navigate('/shoes')}
                     className='bg-black text-white text-center p-2 rounded-md'
                   >
-                    <p>Click here to go to shoes page</p>
+                    <p className='cursor-pointer'>
+                      Click here to go to shoes page
+                    </p>
                   </div>
                 </div>
               </div>

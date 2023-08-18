@@ -91,7 +91,6 @@ const Electronics = () => {
   const [basketItems, setBasketItems] = useState<Item[]>(
     initialBasketItems ? JSON.parse(initialBasketItems) : []
   );
-  console.log(basketItems, 'asdsd');
   const openModal = (image: any) => {
     setModalI(image);
   };
@@ -114,15 +113,15 @@ const Electronics = () => {
     if (modalI) {
       const newItem = {
         shoe: modalI,
-        price: (modalI as any).price * amount,
+        price: amount * 100,
         amount: amount,
-        name: 'Shoes',
+        name: 'Electronics',
       };
-      console.log(modalI);
       setBasketItems([...basketItems, newItem]);
       closeModal();
     }
   };
+
   useEffect(() => {
     localStorage.setItem('basketItems', JSON.stringify(basketItems));
   }, [basketItems]);

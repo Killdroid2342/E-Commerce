@@ -5,6 +5,8 @@ import Home from './Pages/Home';
 import Shoes from './Pages/Shoes';
 import Accessories from './Pages/Accessories';
 import Electronics from './Pages/Electronics';
+import Checkout from './Pages/Checkout';
+import Payment from './Pages/Payment';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
   {
     path: '/Electronics',
     element: <Electronics />,
+  },
+  {
+    path: '/Checkout',
+    element: <Checkout />,
+  },
+  {
+    path: '/Payment',
+    element: <Payment />,
   },
   {
     path: '*',
