@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import BasketModal from './basketModal/BasketModal';
 import { decodeToken } from 'react-jwt';
 import Cookies from 'js-cookie';
@@ -7,8 +7,10 @@ import Cookies from 'js-cookie';
 const Nav = ({ basketItems, setBasketItems }: any) => {
   const [dropdownNav, setDropdownNav] = useState(false);
   const [basketModal, setBasketModal] = useState(false);
+  const [clientUsername, setClientUsername] = useState('');
 
   const navigate = useNavigate();
+
   const hover = () => {
     setDropdownNav(true);
   };
@@ -17,11 +19,25 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
     setDropdownNav(false);
   };
   const LogOut = () => {
+    Cookies.remove('UserjwtToken');
     navigate('/');
   };
   const OpenModal = () => {
     setBasketModal(!basketModal);
   };
+  const usernameJWT = () => {
+    const getJWT = Cookies.get('UserjwtToken');
+    if (getJWT) {
+      const decodedTokenUsername = (decodeToken(getJWT) as { username: string })
+        .username;
+      setClientUsername(decodedTokenUsername);
+    } else return;
+  };
+  console.log(clientUsername);
+  useEffect(() => {
+    usernameJWT();
+  });
+  console.log('Current Path: ', location.pathname);
   return (
     <>
       <nav className='fixed top-0 left-0 right-0 z-50 flex p-2 justify-evenly bg-white border-b border-neutral-300'>
@@ -39,7 +55,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
           name=''
           id=''
           placeholder='Search Item'
-          className='text-black w-3/6 ml-10 pl-10 border border-neutral-300 bg-neutral-100 focus:border-none focus:outline-none'
+          className='text-black w-3/6 ml-10 pl-10 border border-neutral-300 bg-neutral-100 focus:outline-none'
         />
         <ul className='flex'>
           <li
@@ -49,7 +65,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
           >
             Browse
             {dropdownNav && (
-              <ul className='absolute bg-white p-2 mt-2 text-black'>
+              <ul className='absolute bg-neutral-50 p-2 mt-2 text-black border border-black rounded-md'>
                 <li
                   className='hover:bg-neutral-400 cursor-pointer'
                   onClick={() => navigate('/shoes')}
@@ -71,19 +87,19 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
               </ul>
             )}
           </li>
-          <li className='p-5 ml-auto'>{'Account: 1'}</li>
-          <li
-            className='p-5 cursor-pointer relative'
-            onClick={OpenModal}
-          >{`Basket: 🛒`}</li>
+          <li className='p-5 ml-auto'>{`Account: ${clientUsername}`}</li>
+          <li className='p-5 cursor-pointer relative' onClick={OpenModal}>
+            {`Basket: 🛒`}
+          </li>
           {basketModal && (
             <BasketModal
               setBasketModal={setBasketModal}
               basketItems={basketItems}
               setBasketItems={setBasketItems}
+              basketModal={basketModal}
             />
           )}
-          <li className='p-5 ml-auto' onClick={LogOut}>
+          <li className='p-5 ml-auto cursor-pointer' onClick={LogOut}>
             Log Out
           </li>
         </ul>
