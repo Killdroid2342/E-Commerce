@@ -18,7 +18,6 @@ const jwtToken = (username) => {
     process.env.TokenA,
     { expiresIn: '7d' }
   );
-  console.log(username);
   return jwtSignin;
 };
 

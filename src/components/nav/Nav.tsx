@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BasketModal from './basketModal/BasketModal';
+import { decodeToken } from 'react-jwt';
+import Cookies from 'js-cookie';
 
 const Nav = ({ basketItems, setBasketItems }: any) => {
   const [dropdownNav, setDropdownNav] = useState(false);
