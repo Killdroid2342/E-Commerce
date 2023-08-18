@@ -1,6 +1,10 @@
 import { Item } from '../../../Pages/Shoes';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const closeModal = () => {
     setBasketModal(false);
   };
@@ -10,6 +14,9 @@ const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
     localStorage.removeItem('basketItems');
     setBasketItems([]);
   };
+  if (location.pathname === '/main') {
+    return null;
+  }
   return (
     <>
       <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black'>
@@ -21,7 +28,7 @@ const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
             X
           </button>
           <h2>{'Current Basket 🛒'}</h2>
-          {basketItems.map((item: Item, index: number) => (
+          {basketItems?.map((item: Item, index: number) => (
             <div key={index} className='flex'>
               <img
                 src={item.shoe}
@@ -33,12 +40,20 @@ const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
               <p className='border border-black p-2'>Name: {item.name}</p>
             </div>
           ))}
-          <button
-            onClick={removeItems}
-            className='mt-2 px-4 py-2 bg-gray-500 text-white rounded-lg'
-          >
-            Clear All Items
-          </button>
+          <div className='flex flex-row justify-between'>
+            <button
+              onClick={removeItems}
+              className='mt-2 px-4 py-2 bg-gray-500 text-white rounded-lg'
+            >
+              Clear All Items
+            </button>
+            <button
+              onClick={() => navigate('/Checkout')}
+              className='mt-2 px-4 py-2 bg-gray-500 text-white rounded-lg'
+            >
+              Proceed To Checkout
+            </button>
+          </div>
         </div>
       </div>
     </>
