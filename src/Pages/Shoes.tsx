@@ -149,7 +149,10 @@ const Shoes = () => {
       </div>
       <div className='flex justify-center flex-row mt-20'>
         {shoesOne.map((image, index) => (
-          <div key={index} className='border border-neutral-400 m-10'>
+          <div
+            key={index}
+            className='border border-neutral-400 m-10 cursor-pointer'
+          >
             <img
               src={image.img}
               alt={`Product ${index}`}
@@ -174,7 +177,10 @@ const Shoes = () => {
       </div>
       <div className='flex justify-center flex-row mt-20'>
         {shoesTwo.map((image, index) => (
-          <div key={index} className='border border-neutral-400 m-10'>
+          <div
+            key={index}
+            className='border border-neutral-400 m-10 cursor-pointer'
+          >
             <img
               src={image.img}
               alt={`Product ${index}`}
@@ -199,7 +205,10 @@ const Shoes = () => {
       </div>
       <div className='flex justify-center flex-row mt-20'>
         {shoesThree.map((image, index) => (
-          <div key={index} className='border border-neutral-400 m-10'>
+          <div
+            key={index}
+            className='border border-neutral-400 m-10 cursor-pointer'
+          >
             <img
               src={image.img}
               alt={`Product ${index}`}

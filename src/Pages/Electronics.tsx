@@ -140,7 +140,10 @@ const Electronics = () => {
       </div>
       <div className='flex justify-center flex-row mt-20'>
         {electronics.map((image, index) => (
-          <div key={index} className='border border-neutral-400 m-10'>
+          <div
+            key={index}
+            className='border border-neutral-400 m-10 cursor-pointer'
+          >
             <img
               src={image.img}
               alt={`Product ${index}`}
@@ -165,7 +168,10 @@ const Electronics = () => {
       </div>
       <div className='flex justify-center flex-row '>
         {electronicsTwo.map((image, index) => (
-          <div key={index} className='border border-neutral-400 m-10'>
+          <div
+            key={index}
+            className='border border-neutral-400 m-10 cursor-pointer'
+          >
             <img
               src={image.img}
               alt={`Product ${index}`}
@@ -190,7 +196,10 @@ const Electronics = () => {
       </div>
       <div className='flex justify-center flex-row '>
         {electronicsThree.map((image, index) => (
-          <div key={index} className='border border-neutral-400 m-10'>
+          <div
+            key={index}
+            className='border border-neutral-400 m-10 cursor-pointer'
+          >
             <img
               src={image.img}
               alt={`Product ${index}`}

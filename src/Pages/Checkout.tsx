@@ -31,7 +31,12 @@ const Checkout = () => {
   return (
     <div className='otherBGColor'>
       <div className='flex justify-center p-10 border-b border-neutral-300 bg-white'>
-        <img src='src/assets/images/logo.png' alt='' className='w-80' />
+        <img
+          src='src/assets/images/logo.png'
+          alt=''
+          className='w-80 cursor-pointer'
+          onClick={() => navigate('/main')}
+        />
       </div>
       <div className='p-8'>
         <h1 className='text-3xl font-semibold mb-4 text-center'>Checkout</h1>
@@ -46,7 +51,7 @@ const Checkout = () => {
         <div className='flex flex-col justify-center'>
           <button
             onClick={() => navigate('/Payment')}
-            className='border border-neutral-200 rounded-lg p-5 text-3xl font-bold'
+            className='border border-neutral-200 p-5 text-3xl font-bold block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 '
           >
             Payment
           </button>
