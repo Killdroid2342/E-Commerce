@@ -20,11 +20,9 @@ const Login = ({ changeForm }: any) => {
       clientpassword: login.password,
     });
 
-    console.log(e);
-    console.log(res);
     Cookies.set('UserjwtToken', res.data.token);
     setModal(res.data.message);
-    console.log(res);
+
     setTimeout(() => {
       setModal(false);
     }, 2000);
@@ -33,7 +31,6 @@ const Login = ({ changeForm }: any) => {
       navigate('/main');
     } else return;
   }
-  console.log(login);
   function loginInput(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setLogin((data) => ({

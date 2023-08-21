@@ -34,11 +34,11 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
       setClientUsername(decodedTokenUsername);
     } else return;
   };
-  console.log(clientUsername);
+
   useEffect(() => {
     usernameJWT();
   });
-  console.log('Current Path: ', location.pathname);
+
   return (
     <>
       <nav className='fixed top-0 left-0 right-0 z-50 flex p-2 justify-evenly bg-white border-b border-neutral-300'>

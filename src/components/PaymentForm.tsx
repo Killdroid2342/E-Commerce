@@ -1,4 +1,6 @@
+import { useNavigate } from 'react-router-dom';
 const PaymentForm = () => {
+  const navigate = useNavigate();
   return (
     <>
       <h2 className='text-5xl text-center p-10'>Payment</h2>
@@ -106,7 +108,10 @@ const PaymentForm = () => {
             </div>
           </div>
           <div>
-            <button className='block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold'>
+            <button
+              onClick={() => navigate('/main')}
+              className='block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold'
+            >
               PAY NOW
             </button>
           </div>

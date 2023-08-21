@@ -8,7 +8,6 @@ function Auth() {
   const [user, setUser] = useState('');
   const Nav = useNavigate();
   const checkToken = async () => {
-    console.log('Checked Token');
     const cookieVal = Cookies.get('UserjwtToken');
     if (cookieVal !== undefined) {
       const instance = axios.create({ baseURL: VITE_API_URL });
@@ -16,7 +15,6 @@ function Auth() {
         isAuth: cookieVal,
       });
       if (res.data.isAuth == false) {
-        console.log(res.data.isAuth);
         Nav('/');
       }
       setUser(res.data.isAuth);

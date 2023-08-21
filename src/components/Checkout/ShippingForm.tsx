@@ -1,13 +1,20 @@
 import Countries from './Countries/Countries';
+import { useNavigate } from 'react-router-dom';
 
 const ShippingForm = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className='flex justify-center p-10 border-b border-neutral-300 bg-white'>
-        <img src='src/assets/images/logo.png' alt='' className='w-80' />
+        <img
+          src='src/assets/images/logo.png'
+          alt=''
+          onClick={() => navigate('/main')}
+          className='w-80 cursor-pointer'
+        />
       </div>
       <div className='flex flex-col items-center'>
-        <h2 className='text-5xl'>Shipping</h2>
+        <h2 className='text-5xl mt-10'>Shipping</h2>
         <p className='text-2xl mt-3'>Please provide your shipping info</p>
         <p className='font-bold mt-10 text-2xl'>Shipping Info</p>
         <div className='flex flex-col'>
