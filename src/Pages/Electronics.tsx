@@ -1,88 +1,23 @@
 import { useEffect, useState } from 'react';
 import Nav from '../components/nav/Nav';
 import Footer from '../components/Footer';
-import { Item } from './Shoes';
 import Modal from '../components/Modal';
+import { Item } from './Shoes';
 import Auth from '../hooks/Auth';
+import axios from 'axios';
+const { VITE_API_URL } = import.meta.env;
 
-const electronics = [
-  {
-    img: 'src/assets/images/ps5.png',
-    des: 'This is a Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/mouse.png',
-    des: 'This is a Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/ps5.png',
-    des: 'This is a Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/mouse.png',
-    des: 'This is a Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-];
-const electronicsTwo = [
-  {
-    img: 'src/assets/images/airpods.png',
-    des: 'This is a Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/phone.png',
-    des: 'This is Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/airpods.png',
-    des: 'This is a Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/phone.png',
-    des: 'This is Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-];
-const electronicsThree = [
-  {
-    img: 'src/assets/images/mouse2.png',
-    des: 'This is a Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/steamDeck.png',
-    des: 'This is a Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/mouse2.png',
-    des: 'This is a Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/steamDeck.png',
-    des: 'This is a Electronics',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-];
+const instance = axios.create({
+  baseURL: VITE_API_URL,
+});
+
+interface ElectronicsItems {
+  img: string;
+  des: string;
+  lowPrice: string;
+  price: string;
+}
+
 const Electronics = () => {
   Auth();
   const [modalI, setModalI] = useState(null);
@@ -91,6 +26,12 @@ const Electronics = () => {
   const [basketItems, setBasketItems] = useState<Item[]>(
     initialBasketItems ? JSON.parse(initialBasketItems) : []
   );
+  const [electronics, setElectronics] = useState<ElectronicsItems[]>([]);
+
+  async function getElectronics() {
+    const res = await instance.get('/items/getelectronicitems');
+    setElectronics(res.data);
+  }
   const openModal = (image: any) => {
     setModalI(image);
   };
@@ -121,10 +62,12 @@ const Electronics = () => {
       closeModal();
     }
   };
-
+  useEffect(() => {
+    getElectronics();
+  }, []);
   useEffect(() => {
     localStorage.setItem('basketItems', JSON.stringify(basketItems));
-  }, [basketItems]);
+  }, [basketItems, electronics]);
 
   return (
     <div className='flex flex-col'>
@@ -139,7 +82,7 @@ const Electronics = () => {
         </div>
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {electronics.map((image, index) => (
+        {electronics.slice(0, 4).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer'
@@ -167,7 +110,7 @@ const Electronics = () => {
         )}
       </div>
       <div className='flex justify-center flex-row '>
-        {electronicsTwo.map((image, index) => (
+        {electronics.slice(4, 8).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer'
@@ -195,7 +138,7 @@ const Electronics = () => {
         )}
       </div>
       <div className='flex justify-center flex-row '>
-        {electronicsThree.map((image, index) => (
+        {electronics.slice(8, 12).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer'

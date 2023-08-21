@@ -4,84 +4,19 @@ import Footer from '../components/Footer';
 import Modal from '../components/Modal';
 import { Item } from './Shoes';
 import Auth from '../hooks/Auth';
-const accessories = [
-  {
-    img: 'src/assets/images/bag.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/glasses.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/bag.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/glasses.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-];
-const accessoriesTwo = [
-  {
-    img: 'src/assets/images/watch.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/nike.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/watch.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/nike.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-];
-const accessoriesThree = [
-  {
-    img: 'src/assets/images/utopia.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/waistBag.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/utopia.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/waistBag.png',
-    des: 'This is an accessories',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-];
+import axios from 'axios';
+const { VITE_API_URL } = import.meta.env;
+
+const instance = axios.create({
+  baseURL: VITE_API_URL,
+});
+
+interface AccessoriesItems {
+  img: string;
+  des: string;
+  lowPrice: string;
+  price: string;
+}
 const Accessories = () => {
   Auth();
   const [modalI, setModalI] = useState(null);
@@ -90,6 +25,11 @@ const Accessories = () => {
   const [basketItems, setBasketItems] = useState<Item[]>(
     initialBasketItems ? JSON.parse(initialBasketItems) : []
   );
+  const [accessories, setAccessories] = useState<AccessoriesItems[]>([]);
+  async function getAccessories() {
+    const res = await instance.get('/items/getaccessoriesitems');
+    setAccessories(res.data);
+  }
   const openModal = (image: any) => {
     setModalI(image);
   };
@@ -120,10 +60,12 @@ const Accessories = () => {
       closeModal();
     }
   };
-
+  useEffect(() => {
+    getAccessories();
+  }, []);
   useEffect(() => {
     localStorage.setItem('basketItems', JSON.stringify(basketItems));
-  }, [basketItems]);
+  }, [basketItems, accessories]);
 
   return (
     <div className='flex flex-col'>
@@ -138,7 +80,7 @@ const Accessories = () => {
         </div>
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {accessories.map((image, index) => (
+        {accessories.slice(0, 4).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer'
@@ -166,7 +108,7 @@ const Accessories = () => {
         )}
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {accessoriesTwo.map((image, index) => (
+        {accessories.slice(4, 8).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer'
@@ -194,7 +136,7 @@ const Accessories = () => {
         )}
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {accessoriesThree.map((image, index) => (
+        {accessories.slice(8, 12).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer'
