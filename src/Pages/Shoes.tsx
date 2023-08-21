@@ -1,97 +1,27 @@
 import { useState, useEffect } from 'react';
-
+const { VITE_API_URL } = import.meta.env;
 import Footer from '../components/Footer';
 import Nav from '../components/nav/Nav';
 import Modal from '../components/Modal';
 import Auth from '../hooks/Auth';
+import axios from 'axios';
 
-const shoesOne = [
-  {
-    img: 'src/assets/images/shoe1.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/LatestShoe2.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/shoe1.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/LatestShoe2.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-];
+const instance = axios.create({
+  baseURL: VITE_API_URL,
+});
 
-const shoesTwo = [
-  {
-    img: 'src/assets/images/jordan4.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/dunks.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/jordan4.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/dunks.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-];
-
-const shoesThree = [
-  {
-    img: 'src/assets/images/jordan9.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/jordan11.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/jordan9.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-  {
-    img: 'src/assets/images/jordan11.png',
-    des: 'This is a shoe',
-    lowPrice: 'Lowest Ask',
-    price: '£100',
-  },
-];
 export interface Item {
   name: string;
   shoe: string;
   price: number;
   amount: number;
 }
-
+interface ShoeItem {
+  img: string;
+  des: string;
+  lowPrice: string;
+  price: string;
+}
 const Shoes = () => {
   Auth();
   const [modalI, setModalI] = useState(null);
@@ -100,6 +30,13 @@ const Shoes = () => {
   const [basketItems, setBasketItems] = useState<Item[]>(
     initialBasketItems ? JSON.parse(initialBasketItems) : []
   );
+  const [shoes, setShoes] = useState<ShoeItem[]>([]);
+  console.log(shoes);
+  async function getShoes() {
+    const res = await instance.get('/items/getshoeitems');
+    setShoes(res.data);
+  }
+
   const openModal = (image: any) => {
     setModalI(image);
   };
@@ -132,8 +69,12 @@ const Shoes = () => {
   };
 
   useEffect(() => {
+    getShoes();
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem('basketItems', JSON.stringify(basketItems));
-  }, [basketItems]);
+  }, [shoes, basketItems]);
 
   return (
     <div className='flex flex-col'>
@@ -148,7 +89,7 @@ const Shoes = () => {
         </div>
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {shoesOne.map((image, index) => (
+        {shoes.slice(0, 4).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer'
@@ -176,7 +117,7 @@ const Shoes = () => {
         )}
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {shoesTwo.map((image, index) => (
+        {shoes.slice(4, 8).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer'
@@ -204,7 +145,7 @@ const Shoes = () => {
         )}
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {shoesThree.map((image, index) => (
+        {shoes.slice(8, 12).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer'
