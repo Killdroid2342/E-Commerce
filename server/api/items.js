@@ -7,6 +7,7 @@ const {
   getshoeitems,
   getelectronicitems,
   getaccessoriesitems,
+  getAllItems,
 } = require('../modal/items');
 
 router.use(bodyParser.json());
@@ -23,4 +24,9 @@ router.get('/getaccessoriesitems', async (req, res) => {
   const totalItems = await getaccessoriesitems();
   res.send(JSON.stringify(totalItems));
 });
+router.get('/getAllItems', async (req, res) => {
+  const totalItems = await getAllItems();
+  res.send(JSON.stringify(totalItems));
+});
+
 module.exports = router;
