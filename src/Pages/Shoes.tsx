@@ -21,6 +21,7 @@ interface ShoeItem {
   des: string;
   lowPrice: string;
   price: string;
+  name: string;
 }
 const Shoes = () => {
   Auth();
@@ -92,7 +93,7 @@ const Shoes = () => {
         {shoes.slice(0, 4).map((image, index) => (
           <div
             key={index}
-            className='border border-neutral-400 m-10 cursor-pointer'
+            className='border border-neutral-400 m-10 cursor-pointer w-60'
           >
             <img
               src={image.img}
@@ -100,6 +101,7 @@ const Shoes = () => {
               className='w-56 h-48 m-1 '
               onClick={() => openModal(image.img)}
             />
+            <p className='font-bold'>{image.name}</p>
             <p>{image.des}</p>
             <p className='text-xs'>{image.lowPrice}</p>
             <p className='font-bold text-xl'>{image.price}</p>
@@ -120,7 +122,7 @@ const Shoes = () => {
         {shoes.slice(4, 8).map((image, index) => (
           <div
             key={index}
-            className='border border-neutral-400 m-10 cursor-pointer'
+            className='border border-neutral-400 m-10 cursor-pointer w-60'
           >
             <img
               src={image.img}
@@ -128,6 +130,7 @@ const Shoes = () => {
               className='w-56 h-48 m-1 '
               onClick={() => openModal(image.img)}
             />
+            <p className='font-bold'>{image.name}</p>
             <p>{image.des}</p>
             <p className='text-xs'>{image.lowPrice}</p>
             <p className='font-bold text-xl'>{image.price}</p>
@@ -148,7 +151,7 @@ const Shoes = () => {
         {shoes.slice(8, 12).map((image, index) => (
           <div
             key={index}
-            className='border border-neutral-400 m-10 cursor-pointer'
+            className='border border-neutral-400 m-10 cursor-pointer w-60'
           >
             <img
               src={image.img}
@@ -156,6 +159,7 @@ const Shoes = () => {
               className='w-56 h-48 m-1 '
               onClick={() => openModal(image.img)}
             />
+            <p className='font-bold'>{image.name}</p>
             <p>{image.des}</p>
             <p className='text-xs'>{image.lowPrice}</p>
             <p className='font-bold text-xl'>{image.price}</p>

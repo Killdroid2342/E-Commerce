@@ -8,7 +8,8 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   const [dropdownNav, setDropdownNav] = useState(false);
   const [basketModal, setBasketModal] = useState(false);
   const [clientUsername, setClientUsername] = useState('');
-
+  const [search, setSearch] = useState('');
+  console.log(search);
   const navigate = useNavigate();
 
   const hover = () => {
@@ -57,6 +58,8 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
           id=''
           placeholder='Search Item'
           className='text-black w-3/6 ml-10 pl-10 border border-neutral-300 bg-neutral-100 focus:outline-none'
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <ul className='flex'>
           <li
