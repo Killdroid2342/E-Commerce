@@ -35,8 +35,22 @@ const getaccessoriesitems = async () => {
     });
   return res;
 };
+
+const getAllItems = async () => {
+  const res = conn
+    .promise()
+    .query(
+      'SELECT * FROM accessoriesitems UNION SELECT * FROM electronicitems UNION SELECT * FROM shoeitems;'
+    )
+    .then(([rows, fields]) => {
+      return rows;
+    });
+  return res;
+};
+
 module.exports = {
   getshoeitems,
   getelectronicitems,
   getaccessoriesitems,
+  getAllItems,
 };
