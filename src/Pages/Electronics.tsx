@@ -53,14 +53,19 @@ const Electronics = () => {
 
   const addBasket = () => {
     if (modalI) {
-      const newItem = {
-        shoe: modalI,
-        price: amount * 100,
-        amount: amount,
-        name: 'Electronics',
-      };
-      setBasketItems([...basketItems, newItem]);
-      closeModal();
+      const selectedShoe = electronics.find(
+        (electronics) => electronics.img === modalI
+      );
+      if (selectedShoe) {
+        const newItem = {
+          shoe: modalI,
+          price: amount * 100,
+          amount: amount,
+          name: selectedShoe.name,
+        };
+        setBasketItems([...basketItems, newItem]);
+        closeModal();
+      }
     }
   };
   useEffect(() => {

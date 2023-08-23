@@ -58,14 +58,17 @@ const Shoes = () => {
 
   const addBasket = () => {
     if (modalI) {
-      const newItem = {
-        shoe: modalI,
-        price: amount * 100,
-        amount: amount,
-        name: 'Shoes',
-      };
-      setBasketItems([...basketItems, newItem]);
-      closeModal();
+      const selectedShoe = shoes.find((shoe) => shoe.img === modalI);
+      if (selectedShoe) {
+        const newItem = {
+          shoe: modalI,
+          price: amount * 100,
+          amount: amount,
+          name: selectedShoe.name,
+        };
+        setBasketItems([...basketItems, newItem]);
+        closeModal();
+      }
     }
   };
 
