@@ -48,9 +48,16 @@ const getAllItems = async () => {
   return res;
 };
 
+const insertItems = (name, img) => {
+  const res = conn.query('INSERT INTO main (name, img) VALUES (?, ?)', [
+    name,
+    img,
+  ]);
+};
 module.exports = {
   getshoeitems,
   getelectronicitems,
   getaccessoriesitems,
   getAllItems,
+  insertItems,
 };
