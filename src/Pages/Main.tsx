@@ -25,94 +25,6 @@ const carouselImages = [
   'src/assets/images/dummyImage2.png',
 ];
 
-const productImages = [
-  {
-    name: 'Yeezy',
-    img: 'src/assets/images/shoe1.png',
-  },
-  {
-    name: 'Jordan',
-    img: 'src/assets/images/LatestShoe2.png',
-  },
-  {
-    name: 'Yeezy',
-    img: 'src/assets/images/shoe1.png',
-  },
-  {
-    name: 'Jordan',
-    img: 'src/assets/images/LatestShoe2.png',
-  },
-  {
-    name: 'Yeezy',
-    img: 'src/assets/images/shoe1.png',
-  },
-  {
-    name: 'Jordan',
-    img: 'src/assets/images/LatestShoe2.png',
-  },
-];
-const brands = [
-  {
-    name: 'Jordan',
-    img: 'src/assets/images/Jordan.png',
-  },
-  {
-    name: 'Yeezy',
-    img: 'src/assets/images/Yeezy.png',
-  },
-  {
-    name: 'Jordan',
-    img: 'src/assets/images/Jordan.png',
-  },
-  {
-    name: 'Yeezy',
-    img: 'src/assets/images/Yeezy.png',
-  },
-  {
-    name: 'Jordan',
-    img: 'src/assets/images/Jordan.png',
-  },
-  {
-    name: 'Yeezy',
-    img: 'src/assets/images/Yeezy.png',
-  },
-];
-const igImage = [
-  {
-    img: 'src/assets/images/igImage1.png',
-    name: 'Instagram Images',
-  },
-  {
-    img: 'src/assets/images/igImage2.png',
-    name: 'Instagram Images',
-  },
-  {
-    img: 'src/assets/images/igImage3.png',
-    name: 'Instagram Images',
-  },
-  {
-    img: 'src/assets/images/igImage4.png',
-    name: 'Instagram Images',
-  },
-];
-const LatestShoes = [
-  {
-    img: 'src/assets/images/LatestShoe3.png',
-    name: 'Jordans',
-  },
-  {
-    img: 'src/assets/images/LatestShoe2.png',
-    name: 'Jordans',
-  },
-  {
-    img: 'src/assets/images/LatestShoe.png',
-    name: 'Jordans',
-  },
-  {
-    img: 'src/assets/images/jordan4.png',
-    name: 'Jordans',
-  },
-];
 const Home = () => {
   Auth();
   const [img, setImg] = useState(0);
@@ -160,7 +72,7 @@ const Home = () => {
         </div>
         <p className='font-bold ml-80 mt-10'>Recommended For You</p>
         <div className='flex justify-center'>
-          {productImages.map((image, index) => (
+          {main.slice(0, 6).map((image, index) => (
             <div key={index} className='relative group'>
               <img
                 src={image.img}
@@ -182,7 +94,7 @@ const Home = () => {
         </div>
         <p className='font-bold ml-80 mt-10'>Popular Brands</p>
         <div className='flex justify-center'>
-          {brands.map((image, index) => (
+          {main.slice(6, 12).map((image, index) => (
             <div key={index} className='flex flex-col items-center'>
               <img
                 src={image.img}
@@ -195,7 +107,7 @@ const Home = () => {
         </div>
         <p className='font-bold ml-80 mt-10'>Get The Latest Shoes</p>
         <div className='flex justify-center'>
-          {LatestShoes.map((image, index) => (
+          {main.slice(16, 20).map((image, index) => (
             <div key={index} className='flex flex-col items-center'>
               <img
                 src={image.img}
@@ -219,7 +131,7 @@ const Home = () => {
         </div>
         <p className='font-bold ml-80 mt-10'>As Seen On Instagram</p>
         <div className='flex justify-center'>
-          {igImage.map((image, index) => (
+          {main.slice(12, 16).map((image, index) => (
             <div key={index} className='flex flex-col items-center'>
               <img
                 src={image.img}
