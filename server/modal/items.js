@@ -47,7 +47,15 @@ const getAllItems = async () => {
     });
   return res;
 };
-
+const getMainItems = async () => {
+  const res = conn
+    .promise()
+    .query('SELECT * FROM main ')
+    .then(([rows, fields]) => {
+      return rows;
+    });
+  return res;
+};
 const insertItems = (name, img) => {
   const res = conn.query('INSERT INTO main (name, img) VALUES (?, ?)', [
     name,
@@ -60,4 +68,5 @@ module.exports = {
   getaccessoriesitems,
   getAllItems,
   insertItems,
+  getMainItems,
 };
