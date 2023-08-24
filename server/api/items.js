@@ -9,6 +9,7 @@ const {
   getaccessoriesitems,
   getAllItems,
   insertItems,
+  getMainItems,
 } = require('../modal/items');
 
 router.use(bodyParser.json());
@@ -29,30 +30,17 @@ router.get('/getAllItems', async (req, res) => {
   const totalItems = await getAllItems();
   res.send(JSON.stringify(totalItems));
 });
-router.get('/getMainItems', async (req, res) => {
-  const productImages = [
-    {
-      img: 'src/assets/images/LatestShoe3.png',
-      name: 'Jordans',
-    },
-    {
-      img: 'src/assets/images/LatestShoe2.png',
-      name: 'Jordans',
-    },
-    {
-      img: 'src/assets/images/LatestShoe.png',
-      name: 'Jordans',
-    },
-    {
-      img: 'src/assets/images/jordan4.png',
-      name: 'Jordans',
-    },
-  ];
-  productImages.map((index) => {
+router.get('/addToDatabase', async (req, res) => {
+  const data = [{}];
+  data.map((index) => {
     const { name, img } = index;
-    console.log('hello', name, img);
     // insertItems(name, img);
   });
   res.send('Hello');
 });
+router.get('/getMainItems', async (req, res) => {
+  const totalItems = await getMainItems();
+  res.send(JSON.stringify(totalItems));
+});
+
 module.exports = router;
