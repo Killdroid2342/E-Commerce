@@ -8,7 +8,7 @@ const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
   const closeModal = () => {
     setBasketModal(false);
   };
-  console.log(basketItems);
+
   const removeItems = () => {
     localStorage.removeItem('basketItems');
     setBasketItems([]);

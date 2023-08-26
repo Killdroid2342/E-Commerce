@@ -30,7 +30,6 @@ const Home = () => {
   const [img, setImg] = useState(0);
   const [accessories, setAccessories] = useState<Items[]>([]);
   const [main, setMain] = useState<Main[]>([]);
-  console.log(main);
   const navigate = useNavigate();
   const preivImg = () => {
     setImg((prevImg) => (prevImg + 1) % carouselImages.length);

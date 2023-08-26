@@ -32,7 +32,7 @@ const Shoes = () => {
     initialBasketItems ? JSON.parse(initialBasketItems) : []
   );
   const [shoes, setShoes] = useState<ShoeItem[]>([]);
-  console.log(shoes);
+
   async function getShoes() {
     const res = await instance.get('/items/getshoeitems');
     setShoes(res.data);

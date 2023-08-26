@@ -3,14 +3,33 @@ import { useNavigate } from 'react-router-dom';
 import BasketModal from './basketModal/BasketModal';
 import { decodeToken } from 'react-jwt';
 import Cookies from 'js-cookie';
+const { VITE_API_URL } = import.meta.env;
+import axios from 'axios';
 
+const instance = axios.create({
+  baseURL: VITE_API_URL,
+});
+
+interface AllItems {
+  id: number;
+  type: string;
+  des: string;
+  img: string;
+  lowPrice: string;
+  name: string;
+  price: string;
+}
 const Nav = ({ basketItems, setBasketItems }: any) => {
   const [dropdownNav, setDropdownNav] = useState(false);
   const [basketModal, setBasketModal] = useState(false);
   const [clientUsername, setClientUsername] = useState('');
-  const [search, setSearch] = useState('');
-  console.log(search);
+  const [allItems, setAllItems] = useState<AllItems[]>([]);
   const navigate = useNavigate();
+  console.log(allItems, 'THIS IS ALL ITEMS');
+  async function getAllItems() {
+    const res = await instance.get('/items/getAllItems');
+    setAllItems(res.data);
+  }
 
   const hover = () => {
     setDropdownNav(true);
@@ -19,6 +38,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   const leave = () => {
     setDropdownNav(false);
   };
+
   const LogOut = () => {
     Cookies.remove('UserjwtToken');
     localStorage.removeItem('basketItems');
@@ -40,6 +60,10 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
     usernameJWT();
   });
 
+  useEffect(() => {
+    getAllItems();
+  }, []);
+
   return (
     <>
       <nav className='fixed top-0 left-0 right-0 z-50 flex p-2 justify-evenly bg-white border-b border-neutral-300'>
@@ -58,8 +82,6 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
           id=''
           placeholder='Search Item'
           className='text-black w-3/6 ml-10 pl-10 border border-neutral-300 bg-neutral-100 focus:outline-none'
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
         />
         <ul className='flex'>
           <li
