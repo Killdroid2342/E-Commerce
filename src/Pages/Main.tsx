@@ -41,7 +41,7 @@ const Home = () => {
     );
   };
   async function getAccessories() {
-    const res = await instance.get('/items/getaccessoriesitems');
+    const res = await instance.get('/items/allItems');
     setAccessories(res.data);
   }
   async function getMainItems() {

@@ -28,7 +28,7 @@ const Accessories = () => {
   );
   const [accessories, setAccessories] = useState<AccessoriesItems[]>([]);
   async function getAccessories() {
-    const res = await instance.get('/items/getshoeitems');
+    const res = await instance.get('/items/allItems');
     setAccessories(res.data);
   }
   const openModal = (image: any) => {

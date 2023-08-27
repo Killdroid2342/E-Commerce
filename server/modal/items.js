@@ -11,7 +11,7 @@ const conn = mysql.createConnection({
 const getshoeitems = async () => {
   const res = conn
     .promise()
-    .query('SELECT * FROM shoeitems')
+    .query('SELECT * FROM allItems')
     .then(([rows, fields]) => {
       return rows;
     });
@@ -29,7 +29,7 @@ const getMainItems = async () => {
 };
 const insertItems = (img, des, lowPrice, price, name) => {
   const res = conn.query(
-    'INSERT INTO shoeItems (img, des, lowPrice, price, name) VALUES (?, ?, ?, ?, ?)',
+    'INSERT INTO allItems (img, des, lowPrice, price, name) VALUES (?, ?, ?, ?, ?)',
     [img, des, lowPrice, price, name]
   );
 };

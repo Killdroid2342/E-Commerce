@@ -34,7 +34,7 @@ const Shoes = () => {
   const [shoes, setShoes] = useState<ShoeItem[]>([]);
 
   async function getShoes() {
-    const res = await instance.get('/items/getshoeitems');
+    const res = await instance.get('/items/allItems');
     setShoes(res.data);
   }
 

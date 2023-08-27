@@ -14,7 +14,7 @@ const {
 
 router.use(bodyParser.json());
 
-router.get('/getshoeitems', async (req, res) => {
+router.get('/allItems', async (req, res) => {
   const totalItems = await getshoeitems();
   res.send(JSON.stringify(totalItems));
 });

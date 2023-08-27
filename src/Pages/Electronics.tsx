@@ -30,7 +30,7 @@ const Electronics = () => {
   const [electronics, setElectronics] = useState<ElectronicsItems[]>([]);
 
   async function getElectronics() {
-    const res = await instance.get('/items/getshoeitems');
+    const res = await instance.get('/items/allItems');
     setElectronics(res.data);
   }
   const openModal = (image: any) => {
