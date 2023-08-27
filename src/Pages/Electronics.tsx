@@ -30,7 +30,7 @@ const Electronics = () => {
   const [electronics, setElectronics] = useState<ElectronicsItems[]>([]);
 
   async function getElectronics() {
-    const res = await instance.get('/items/getelectronicitems');
+    const res = await instance.get('/items/getshoeitems');
     setElectronics(res.data);
   }
   const openModal = (image: any) => {
@@ -88,7 +88,7 @@ const Electronics = () => {
         </div>
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {electronics.slice(0, 4).map((image, index) => (
+        {electronics.slice(12, 16).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer w-60'
@@ -117,7 +117,7 @@ const Electronics = () => {
         )}
       </div>
       <div className='flex justify-center flex-row '>
-        {electronics.slice(4, 8).map((image, index) => (
+        {electronics.slice(16, 20).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer w-60'
@@ -146,7 +146,7 @@ const Electronics = () => {
         )}
       </div>
       <div className='flex justify-center flex-row '>
-        {electronics.slice(8, 12).map((image, index) => (
+        {electronics.slice(20, 24).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer w-60'

@@ -28,7 +28,7 @@ const Accessories = () => {
   );
   const [accessories, setAccessories] = useState<AccessoriesItems[]>([]);
   async function getAccessories() {
-    const res = await instance.get('/items/getaccessoriesitems');
+    const res = await instance.get('/items/getshoeitems');
     setAccessories(res.data);
   }
   const openModal = (image: any) => {
@@ -86,7 +86,7 @@ const Accessories = () => {
         </div>
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {accessories.slice(0, 4).map((image, index) => (
+        {accessories.slice(24, 28).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer w-60'
@@ -115,7 +115,7 @@ const Accessories = () => {
         )}
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {accessories.slice(4, 8).map((image, index) => (
+        {accessories.slice(28, 32).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer w-60'
@@ -144,7 +144,7 @@ const Accessories = () => {
         )}
       </div>
       <div className='flex justify-center flex-row mt-20'>
-        {accessories.slice(8, 12).map((image, index) => (
+        {accessories.slice(32, 36).map((image, index) => (
           <div
             key={index}
             className='border border-neutral-400 m-10 cursor-pointer w-60'

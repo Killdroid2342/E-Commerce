@@ -26,8 +26,8 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   const [allItems, setAllItems] = useState<AllItems[]>([]);
   const navigate = useNavigate();
   console.log(allItems, 'THIS IS ALL ITEMS');
-  async function getAllItems() {
-    const res = await instance.get('/items/getAllItems');
+  async function searchBarItems() {
+    const res = await instance.get('/items/searchBarItems');
     setAllItems(res.data);
   }
 
@@ -61,7 +61,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   });
 
   useEffect(() => {
-    getAllItems();
+    searchBarItems();
   }, []);
 
   return (
