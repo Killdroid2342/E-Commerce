@@ -17,36 +17,7 @@ const getshoeitems = async () => {
     });
   return res;
 };
-const getelectronicitems = async () => {
-  const res = conn
-    .promise()
-    .query('SELECT * FROM electronicitems')
-    .then(([rows, fields]) => {
-      return rows;
-    });
-  return res;
-};
-const getaccessoriesitems = async () => {
-  const res = conn
-    .promise()
-    .query('SELECT * FROM accessoriesitems')
-    .then(([rows, fields]) => {
-      return rows;
-    });
-  return res;
-};
 
-const getAllItems = async () => {
-  const res = conn
-    .promise()
-    .query(
-      'SELECT * FROM accessoriesitems UNION SELECT * FROM electronicitems UNION SELECT * FROM shoeitems;'
-    )
-    .then(([rows, fields]) => {
-      return rows;
-    });
-  return res;
-};
 const getMainItems = async () => {
   const res = conn
     .promise()
@@ -56,17 +27,14 @@ const getMainItems = async () => {
     });
   return res;
 };
-const insertItems = (name, img) => {
-  const res = conn.query('INSERT INTO main (name, img) VALUES (?, ?)', [
-    name,
-    img,
-  ]);
+const insertItems = (img, des, lowPrice, price, name) => {
+  const res = conn.query(
+    'INSERT INTO shoeItems (img, des, lowPrice, price, name) VALUES (?, ?, ?, ?, ?)',
+    [img, des, lowPrice, price, name]
+  );
 };
 module.exports = {
   getshoeitems,
-  getelectronicitems,
-  getaccessoriesitems,
-  getAllItems,
   insertItems,
   getMainItems,
 };
