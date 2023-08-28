@@ -8,7 +8,7 @@ const conn = mysql.createConnection({
   database: 'ecommerce',
 });
 
-const getshoeitems = async () => {
+const getItems = async () => {
   const res = conn
     .promise()
     .query('SELECT * FROM allItems')
@@ -34,7 +34,7 @@ const insertItems = (img, des, lowPrice, price, name) => {
   );
 };
 module.exports = {
-  getshoeitems,
+  getItems,
   insertItems,
   getMainItems,
 };

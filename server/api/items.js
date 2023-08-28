@@ -3,19 +3,12 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-const {
-  getshoeitems,
-  getelectronicitems,
-  getaccessoriesitems,
-  searchBarItems,
-  insertItems,
-  getMainItems,
-} = require('../modal/items');
+const { getItems, insertItems, getMainItems } = require('../modal/items');
 
 router.use(bodyParser.json());
 
 router.get('/allItems', async (req, res) => {
-  const totalItems = await getshoeitems();
+  const totalItems = await getItems();
   res.send(JSON.stringify(totalItems));
 });
 

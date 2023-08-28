@@ -24,8 +24,10 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   const [basketModal, setBasketModal] = useState(false);
   const [clientUsername, setClientUsername] = useState('');
   const [allItems, setAllItems] = useState<AllItems[]>([]);
+  const [search, setSearch] = useState('');
+  console.log(search);
   const navigate = useNavigate();
-  console.log(allItems, 'THIS IS ALL ITEMS');
+  // console.log(allItems, 'THIS IS ALL ITEMS');
   async function searchBarItems() {
     const res = await instance.get('/items/allItems');
     setAllItems(res.data);
@@ -82,6 +84,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
           id=''
           placeholder='Search Item'
           className='text-black w-3/6 ml-10 pl-10 border border-neutral-300 bg-neutral-100 focus:outline-none'
+          onChange={(e) => setSearch(e.target.value)}
         />
         <ul className='flex'>
           <li
