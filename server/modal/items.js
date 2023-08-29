@@ -27,6 +27,15 @@ const getMainItems = async () => {
     });
   return res;
 };
+const searchItems = async (name) => {
+  const res = conn
+    .promise()
+    .query('SELECT * FROM allItems WHERE name LIKE CONCAT("%", ?, "%")', [name])
+    .then(([rows, fields]) => {
+      return rows;
+    });
+  return res;
+};
 const insertItems = (img, des, lowPrice, price, name) => {
   const res = conn.query(
     'INSERT INTO allItems (img, des, lowPrice, price, name) VALUES (?, ?, ?, ?, ?)',
@@ -37,4 +46,5 @@ module.exports = {
   getItems,
   insertItems,
   getMainItems,
+  searchItems,
 };

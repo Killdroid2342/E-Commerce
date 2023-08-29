@@ -27,7 +27,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   const [search, setSearch] = useState('');
   console.log(search);
   const navigate = useNavigate();
-  // console.log(allItems, 'THIS IS ALL ITEMS');
+  console.log(allItems, 'THIS IS ALL ITEMS');
   async function searchBarItems() {
     const res = await instance.get('/items/allItems');
     setAllItems(res.data);
