@@ -24,14 +24,22 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   const [basketModal, setBasketModal] = useState(false);
   const [clientUsername, setClientUsername] = useState('');
   const [allItems, setAllItems] = useState<AllItems[]>([]);
-  const [search, setSearch] = useState('');
-  console.log(search);
+  console.log(allItems);
   const navigate = useNavigate();
-  console.log(allItems, 'THIS IS ALL ITEMS');
-  async function searchBarItems() {
-    const res = await instance.get('/items/allItems');
-    setAllItems(res.data);
-  }
+  const handleChange = async (e: any) => {
+    const { value } = e.currentTarget;
+    console.log(value);
+    if (value) {
+      const res = await instance.post('/items/search', {
+        searchItem: value,
+      });
+      // console.log(res.data);
+      setAllItems(res.data);
+    } else {
+      console.log('empty');
+      setAllItems([]);
+    }
+  };
 
   const hover = () => {
     setDropdownNav(true);
@@ -62,10 +70,6 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
     usernameJWT();
   });
 
-  useEffect(() => {
-    searchBarItems();
-  }, []);
-
   return (
     <>
       <nav className='fixed top-0 left-0 right-0 z-50 flex p-2 justify-evenly bg-white border-b border-neutral-300'>
@@ -78,14 +82,16 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
             onClick={() => navigate('/main')}
           />
         </div>
-        <input
-          type='search'
-          name=''
-          id=''
-          placeholder='Search Item'
-          className='text-black w-3/6 ml-10 pl-10 border border-neutral-300 bg-neutral-100 focus:outline-none'
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <div className='flex flex-col w-3/6 '>
+          <input
+            type='search'
+            name=''
+            id=''
+            placeholder='Search Item'
+            className='text-black w-full ml-10 pl-10 h-16 border border-neutral-300 bg-neutral-100 focus:outline-none'
+            onChange={handleChange}
+          />
+        </div>
         <ul className='flex'>
           <li
             className='p-5 cursor-pointer relative'
