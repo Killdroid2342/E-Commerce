@@ -25,7 +25,9 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   const [clientUsername, setClientUsername] = useState('');
   const [allItems, setAllItems] = useState<AllItems[]>([]);
   console.log(allItems);
+
   const navigate = useNavigate();
+
   const handleChange = async (e: any) => {
     const { value } = e.currentTarget;
     console.log(value);
@@ -91,6 +93,31 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
             className='text-black w-full ml-10 pl-10 h-16 border border-neutral-300 bg-neutral-100 focus:outline-none'
             onChange={handleChange}
           />
+          <div className='mt-4'>
+            <ul className='grid grid-cols-2 gap-4'>
+              {allItems.map((item: any) => (
+                <li
+                  key={item.ID}
+                  className='flex items-center p-4 border rounded cursor-pointer'
+                  onClick={() => {
+                    if (item.des === 'This is a Electronics') {
+                      navigate('/Electronics');
+                    } else if (item.des === 'This is a shoe') {
+                      navigate('/shoes');
+                    } else if (item.des === 'This is an accessories') {
+                      navigate('/Accessories');
+                    }
+                  }}
+                >
+                  <img className='w-16 h-16 mr-4' src={item.img} />
+                  <div>
+                    <h3 className='font-bold'>{item.name}</h3>
+                    <p>{item.des}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <ul className='flex'>
           <li
