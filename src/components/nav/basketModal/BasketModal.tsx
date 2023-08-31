@@ -19,26 +19,30 @@ const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
   return (
     <>
       <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black'>
-        <div className='bg-white p-4 rounded-lg'>
+        <div className='bg-white p-4 rounded-lg overflow-auto max-h-96'>
           <button
             className='mt-2 px-4 py-2 bg-gray-500 text-white rounded-lg'
             onClick={closeModal}
           >
             X
           </button>
-          <h2>{'Current Basket 🛒'}</h2>
-          {basketItems?.map((item: Item, index: number) => (
-            <div key={index} className='flex'>
-              <img
-                src={item.shoe}
-                alt={`Item ${index}`}
-                className='w-16 h-16'
-              />
-              <p className='border border-black p-2'>Amount: {item.amount}</p>
-              <p className='border border-black p-2'>Price: £{item.price}</p>
-              <p className='border border-black p-2'>Name: {item.name}</p>
-            </div>
-          ))}
+          <h2 className='text-2xl font-semibold mb-4'>Current Basket 🛒</h2>
+          <div className='grid gap-4'>
+            {basketItems?.map((item: Item, index: number) => (
+              <div key={index} className='flex border p-4'>
+                <img
+                  src={item.shoe}
+                  alt={`Item ${index}`}
+                  className='w-16 h-16 mr-4'
+                />
+                <div className='flex-grow'>
+                  <p className='text-lg font-semibold'>{item.name}</p>
+                  <p className='text-gray-600 mt-1'>Amount: {item.amount}</p>
+                  <p className='text-gray-600'>Price: £{item.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
           <div className='flex flex-row justify-between'>
             <button
               onClick={removeItems}
