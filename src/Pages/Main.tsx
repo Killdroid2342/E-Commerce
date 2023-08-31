@@ -118,7 +118,7 @@ const Home = () => {
         </div>
         <p className='font-bold ml-80 mt-10'>Get The Latest Items</p>
         <div className='flex justify-center'>
-          {accessories.slice(0, 4).map((image, index) => (
+          {accessories.slice(20, 24).map((image, index) => (
             <div key={index} className='flex flex-col items-center'>
               <img
                 src={image.img}
