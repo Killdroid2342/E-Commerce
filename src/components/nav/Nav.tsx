@@ -24,21 +24,21 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   const [basketModal, setBasketModal] = useState(false);
   const [clientUsername, setClientUsername] = useState('');
   const [allItems, setAllItems] = useState<AllItems[]>([]);
-  console.log(allItems);
 
   const navigate = useNavigate();
 
+  const backToHome = () => {
+    Cookies.remove('UserjwtToken');
+    navigate('/');
+  };
   const handleChange = async (e: any) => {
     const { value } = e.currentTarget;
-    console.log(value);
     if (value) {
       const res = await instance.post('/items/search', {
         searchItem: value,
       });
-      // console.log(res.data);
       setAllItems(res.data);
     } else {
-      console.log('empty');
       setAllItems([]);
     }
   };
@@ -67,7 +67,14 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
       setClientUsername(decodedTokenUsername);
     } else return;
   };
-
+  const deleteAccount = async () => {
+    try {
+      await instance.post('/user/delete-user', { username: clientUsername });
+      backToHome();
+    } catch (e) {
+      console.error(e);
+    }
+  };
   useEffect(() => {
     usernameJWT();
   });
@@ -84,21 +91,21 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
             onClick={() => navigate('/main')}
           />
         </div>
-        <div className='flex flex-col w-3/6 '>
+        <div className='flex flex-col w-3/6'>
           <input
             type='search'
             name=''
             id=''
             placeholder='Search Item'
-            className='text-black w-full ml-10 pl-10 h-16 border border-neutral-300 bg-neutral-100 focus:outline-none'
+            className='text-black w-full pl-10 h-16 border border-neutral-300 bg-neutral-100 focus:outline-none'
             onChange={handleChange}
           />
           <div className='mt-4'>
-            <ul className='grid grid-cols-2 gap-4'>
+            <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
               {allItems.map((item: any) => (
                 <li
                   key={item.ID}
-                  className='flex items-center p-4 border rounded cursor-pointer'
+                  className='flex flex-col p-4 border rounded cursor-pointer hover:bg-gray-100 transition duration-300'
                   onClick={() => {
                     if (item.des === 'This is a Electronics') {
                       navigate('/Electronics');
@@ -109,10 +116,14 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
                     }
                   }}
                 >
-                  <img className='w-16 h-16 mr-4' src={item.img} />
-                  <div>
-                    <h3 className='font-bold'>{item.name}</h3>
-                    <p>{item.des}</p>
+                  <img
+                    className='w-16 h-16 mb-2 mx-auto'
+                    src={item.img}
+                    alt={item.name}
+                  />
+                  <div className='text-center'>
+                    <h3 className='text-lg font-semibold'>{item.name}</h3>
+                    <p className='text-sm text-gray-600'>{item.des}</p>
                   </div>
                 </li>
               ))}
@@ -163,6 +174,12 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
           )}
           <li className='p-5 ml-auto cursor-pointer' onClick={LogOut}>
             Log Out
+          </li>
+          <li
+            className='p-5 ml-auto cursor-pointer font-bold'
+            onClick={deleteAccount}
+          >
+            Delete Account
           </li>
         </ul>
       </nav>
