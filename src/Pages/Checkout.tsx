@@ -30,30 +30,35 @@ const Checkout = () => {
 
   return (
     <div className='otherBGColor'>
-      <div className='flex justify-center p-10 border-b border-neutral-300 bg-white'>
+      <div className='flex justify-center items-center py-8 bg-white'>
         <img
           src='src/assets/images/logo.png'
           alt=''
-          className='w-80 cursor-pointer'
+          className='w-60 cursor-pointer'
           onClick={() => navigate('/main')}
         />
       </div>
-      <div className='p-8'>
-        <h1 className='text-3xl font-semibold mb-4 text-center'>Checkout</h1>
+      <div className='p-8 max-w-xl mx-auto'>
+        <h1 className='text-4xl font-semibold mb-8 text-center'>Checkout</h1>
         {basketItems.length === 0 ? (
-          <p className='text-center'>
-            You Have Nothing In Your Cart.{' '}
-            <a className='font-bold'>Add Something</a>
-          </p>
+          <div className='text-center'>
+            <p className='text-lg mb-2'>Your cart is empty.</p>
+            <a
+              href='/main'
+              className='text-indigo-500 hover:underline font-semibold'
+            >
+              Browse products
+            </a>
+          </div>
         ) : (
-          basketItems
+          <div className='space-y-4'>{basketItems}</div>
         )}
-        <div className='flex flex-col justify-center'>
+        <div className='flex justify-center mt-8'>
           <button
             onClick={() => navigate('/Payment')}
-            className='border border-neutral-200 p-5 text-3xl font-bold block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 '
+            className='bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 text-white py-3 px-6 rounded-lg text-lg font-semibold'
           >
-            Payment
+            Proceed to Payment
           </button>
         </div>
       </div>
