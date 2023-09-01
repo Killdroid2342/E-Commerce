@@ -4,6 +4,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
   const navigate = useNavigate();
   const location = useLocation();
+  if (location.pathname === '/main') {
+    return null;
+  }
 
   const closeModal = () => {
     setBasketModal(false);
@@ -13,9 +16,10 @@ const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
     localStorage.removeItem('basketItems');
     setBasketItems([]);
   };
-  if (location.pathname === '/main') {
-    return null;
-  }
+  const totalPrice = basketItems.reduce((acc: any, item: any) => {
+    return acc + item.price * item.amount;
+  }, 0);
+
   return (
     <>
       <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black'>
@@ -43,6 +47,7 @@ const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
               </div>
             ))}
           </div>
+          <p className='font-bold'>Total Price: £{totalPrice}</p>
           <div className='flex flex-row justify-between'>
             <button
               onClick={removeItems}

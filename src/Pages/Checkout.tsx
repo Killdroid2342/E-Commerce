@@ -3,30 +3,22 @@ import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
   Auth();
-  const navigate = useNavigate();
   const itemsString = localStorage.getItem('basketItems');
-  let basketItems: any = [];
+  let basketItems: any[] = [];
+  let totalPrice = 0;
 
   if (itemsString !== null) {
     const items = JSON.parse(itemsString);
-    Array.isArray(items);
-    basketItems = items.map((item: any, index: any) => (
-      <div key={index} className='border border-black p-4 mb-4'>
-        <p className='text-xl font-semibold'>{item.name}</p>
-        <p>Amount: {item.amount}</p>
-        <p>Price: ${item.price}</p>
-        <div>
-          <img
-            src={item.shoe}
-            alt={item.name}
-            className='w-32 h-32 object-contain mt-2'
-          />
-        </div>
-      </div>
-    ));
+    if (Array.isArray(items)) {
+      basketItems = items;
+      totalPrice = items.reduce((acc: any, item: any) => {
+        return acc + item.price * item.amount;
+      }, 0);
+    }
   } else {
     return null;
   }
+  const navigate = useNavigate();
 
   return (
     <div className='otherBGColor'>
@@ -51,8 +43,24 @@ const Checkout = () => {
             </a>
           </div>
         ) : (
-          <div className='space-y-4'>{basketItems}</div>
+          <div className='space-y-4'>
+            {basketItems.map((item: any, index: any) => (
+              <div key={index} className='border border-black p-4 mb-4'>
+                <p className='text-xl font-semibold'>{item.name}</p>
+                <p>Amount: {item.amount}</p>
+                <p>Price: ${item.price}</p>
+                <div>
+                  <img
+                    src={item.shoe}
+                    alt={item.name}
+                    className='w-32 h-32 object-contain mt-2'
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         )}
+        <p className='font-bold'>Total Price: £{totalPrice}</p>
         <div className='flex justify-center mt-8'>
           <button
             onClick={() => navigate('/Payment')}
