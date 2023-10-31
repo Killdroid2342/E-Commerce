@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ResModal = (props: any) => {
   return (
     <div className='flex justify-center items-center'>
