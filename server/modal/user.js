@@ -1,25 +1,23 @@
 const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { getDbConn } = require('..');
 require('dotenv').config();
 
-let conn;
-try {
-  conn = mysql.createConnection(process.env.DATABASE_URL);
-} catch (e) {
-  console.log(e);
-}
 const createUser = async (username, password) => {
+  const conn = getDbConn();
   conn.query('INSERT INTO users (username, password) VALUES (?,?)', [
     username,
     password,
   ]);
+  conn.end();
 };
 const hashPassword = async (password, saltRounds) => {
   const res = bcrypt.hashSync(password, saltRounds);
   return res;
 };
 const isUserExists = async (username) => {
+  const conn = getDbConn();
   const res = conn
     .promise()
     .query('SELECT * FROM users WHERE username = ?', [username])
@@ -30,13 +28,16 @@ const isUserExists = async (username) => {
         return false;
       }
     });
+  conn.end();
   return res;
 };
 async function comparePassswords(passwords, hash) {
   return bcrypt.compareSync(passwords, hash);
 }
 const deleteUser = async (username) => {
+  const conn = getDbConn();
   conn.query('DELETE FROM users WHERE username = ?', [username]);
+  conn.end();
 };
 
 module.exports = {
