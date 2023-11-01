@@ -5,7 +5,7 @@ const getItems = async () => {
   const conn = getDbConn();
   const res = conn
     .promise()
-    .query('SELECT * FROM allItems')
+    .query('SELECT * FROM allitems')
     .then(([rows, fields]) => {
       return rows;
     });
