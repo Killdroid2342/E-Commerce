@@ -6,10 +6,6 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const routes = require('./api/index');
 
-export function getDbConn() {
-  return mysql.createConnection(process.env.DATABASE_URL);
-}
-
 const corsOptions = {
   origin: 'http://localhost:5173',
   optionsSuccessStatus: 200,
