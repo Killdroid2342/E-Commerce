@@ -1,12 +1,7 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-const conn = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'ecommerce',
-});
+const conn = mysql.createConnection(process.env.DATABASE_URL);
 
 const getItems = async () => {
   const res = conn
