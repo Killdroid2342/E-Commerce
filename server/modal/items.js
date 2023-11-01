@@ -1,7 +1,12 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-const conn = mysql.createConnection(process.env.DATABASE_URL);
+let conn;
+try {
+  conn = mysql.createConnection(process.env.DATABASE_URL);
+} catch (e) {
+  console.log(e);
+}
 
 const getItems = async () => {
   const res = conn
