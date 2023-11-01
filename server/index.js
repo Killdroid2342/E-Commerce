@@ -1,5 +1,5 @@
 const app = require('express')();
-const port = 4001;
+const port = 4000;
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
