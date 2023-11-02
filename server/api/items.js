@@ -18,7 +18,6 @@ router.get('/allItems', async (req, res) => {
 });
 router.post('/search', async (req, res) => {
   const { searchItem } = req.body;
-  console.log(searchItem);
   const matchingItems = await searchItems(searchItem);
   res.status(200).send(matchingItems);
 });

@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const createUser = async (username, password) => {
   const conn = getDbConn();
-  conn.query('INSERT INTO users (username, password) VALUES (?,?)', [
+  conn.query('INSERT INTO ecommerce_users (username, password) VALUES (?,?)', [
     username,
     password,
   ]);
@@ -19,7 +19,7 @@ const isUserExists = async (username) => {
   const conn = getDbConn();
   const res = conn
     .promise()
-    .query('SELECT * FROM users WHERE username = ?', [username])
+    .query('SELECT * FROM ecommerce_users WHERE username = ?', [username])
     .then(([rows, fields]) => {
       if (rows.length > 0) {
         return rows[0];
@@ -35,7 +35,7 @@ async function comparePassswords(passwords, hash) {
 }
 const deleteUser = async (username) => {
   const conn = getDbConn();
-  conn.query('DELETE FROM users WHERE username = ?', [username]);
+  conn.query('DELETE FROM ecommerce_users WHERE username = ?', [username]);
   conn.end();
 };
 

@@ -5,7 +5,7 @@ const getItems = async () => {
   const conn = getDbConn();
   const res = conn
     .promise()
-    .query('SELECT * FROM allitems')
+    .query('SELECT * FROM ecommerce_allitems')
     .then(([rows, fields]) => {
       return rows;
     });
@@ -17,7 +17,7 @@ const getMainItems = async () => {
   const conn = getDbConn();
   const res = conn
     .promise()
-    .query('SELECT * FROM main ')
+    .query('SELECT * FROM ecommerce_main ')
     .then(([rows, fields]) => {
       return rows;
     });
@@ -28,7 +28,10 @@ const searchItems = async (name) => {
   const conn = getDbConn();
   const res = conn
     .promise()
-    .query('SELECT * FROM allItems WHERE name LIKE CONCAT("%", ?, "%")', [name])
+    .query(
+      'SELECT * FROM ecommerce_allitems WHERE name LIKE CONCAT("%", ?, "%")',
+      [name]
+    )
     .then(([rows, fields]) => {
       return rows;
     });
@@ -38,7 +41,7 @@ const searchItems = async (name) => {
 const insertItems = (img, des, lowPrice, price, name) => {
   const conn = getDbConn();
   const res = conn.query(
-    'INSERT INTO allItems (img, des, lowPrice, price, name) VALUES (?, ?, ?, ?, ?)',
+    'INSERT INTO ecommerce_allitems (img, des, lowPrice, price, name) VALUES (?, ?, ?, ?, ?)',
     [img, des, lowPrice, price, name]
   );
   conn.end();

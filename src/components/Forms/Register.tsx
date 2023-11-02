@@ -18,7 +18,6 @@ const Register = ({ changeForm }: any) => {
       username: register.username,
       password: register.password,
     });
-
     setModal(res.data.message);
     setTimeout(() => {
       setModal(false);
