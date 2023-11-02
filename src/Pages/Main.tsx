@@ -21,8 +21,8 @@ interface Main {
   img: string;
 }
 const carouselImages = [
-  'src/assets/images/dummyImage1.png',
-  'src/assets/images/dummyImage2.png',
+  '/assets/images//dummyImage1.png',
+  '/assets/images//dummyImage2.png',
 ];
 
 const Home = () => {

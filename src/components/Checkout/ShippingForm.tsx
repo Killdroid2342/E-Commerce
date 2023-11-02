@@ -7,7 +7,7 @@ const ShippingForm = () => {
     <>
       <div className='flex justify-center p-10 border-b border-neutral-300 bg-white'>
         <img
-          src='src/assets/images/logo.png'
+          src='/assets/images/logo.png'
           alt=''
           onClick={() => navigate('/main')}
           className='w-80 cursor-pointer'

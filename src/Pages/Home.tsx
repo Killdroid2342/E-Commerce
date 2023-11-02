@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <div className='otherBGColor'>
       <div className='flex justify-center p-10 border-b border-neutral-300 bg-white'>
-        <img src='src/assets/images/logo.png' alt='' className='w-80' />
+        <img src='/assets/images//logo.png' alt='' className='w-80' />
       </div>
       {form === 'Register' ? (
         <Login changeForm={changeForm} />

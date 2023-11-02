@@ -84,7 +84,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
       <nav className='fixed top-0 left-0 right-0 z-50 flex p-2 justify-evenly bg-white border-b border-neutral-300'>
         <div>
           <img
-            src='src/assets/images/logo.png'
+            src='/assets/images/logo.png'
             alt=''
             width='200px'
             className='p-5 cursor-pointer'
