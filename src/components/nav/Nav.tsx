@@ -5,6 +5,7 @@ import { decodeToken } from 'react-jwt';
 import Cookies from 'js-cookie';
 const { VITE_API_URL } = import.meta.env;
 import axios from 'axios';
+import AccountInfo from './AccountInfo/AccountInfo';
 
 const instance = axios.create({
   baseURL: VITE_API_URL,
@@ -22,6 +23,7 @@ interface AllItems {
 const Nav = ({ basketItems, setBasketItems }: any) => {
   const [dropdownNav, setDropdownNav] = useState(false);
   const [basketModal, setBasketModal] = useState(false);
+  const [accountInfo, setAccountinfo] = useState(false);
   const [clientUsername, setClientUsername] = useState('');
   const [allItems, setAllItems] = useState<AllItems[]>([]);
 
@@ -58,6 +60,9 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   };
   const OpenModal = () => {
     setBasketModal(!basketModal);
+  };
+  const openAccountInfo = () => {
+    setAccountinfo(!accountInfo);
   };
   const usernameJWT = () => {
     const getJWT = Cookies.get('UserjwtToken');
@@ -160,7 +165,11 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
               </ul>
             )}
           </li>
-          <li className='p-5 ml-auto'>{`Account: ${clientUsername}`}</li>
+          <li
+            className='p-5 ml-auto'
+            onClick={openAccountInfo}
+          >{`Account: ${clientUsername}`}</li>
+          {accountInfo && <AccountInfo setAccountinfo={setAccountinfo} />}
           <li className='p-5 cursor-pointer relative' onClick={OpenModal}>
             {`Basket: 🛒`}
           </li>
