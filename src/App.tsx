@@ -7,6 +7,7 @@ import Accessories from './Pages/Accessories';
 import Electronics from './Pages/Electronics';
 import Checkout from './Pages/Checkout';
 import Payment from './Pages/Payment';
+import CreateCard from './Pages/CreateCard';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: '/Payment',
     element: <Payment />,
+  },
+  {
+    path: '/CreateCard',
+    element: <CreateCard />,
   },
   {
     path: '*',
