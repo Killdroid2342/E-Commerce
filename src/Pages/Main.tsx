@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Auth from '../hooks/Auth';
 const { VITE_API_URL } = import.meta.env;
 import axios from 'axios';
+import { Item } from './Shoes';
 
 const instance = axios.create({
   baseURL: VITE_API_URL,
@@ -30,6 +31,10 @@ const Home = () => {
   const [img, setImg] = useState(0);
   const [accessories, setAccessories] = useState<Items[]>([]);
   const [main, setMain] = useState<Main[]>([]);
+  const initialBasketItems = localStorage.getItem('basketItems');
+  const [basketItems, setBasketItems] = useState<Item[]>(
+    initialBasketItems ? JSON.parse(initialBasketItems) : []
+  );
   const navigate = useNavigate();
   const preivImg = () => {
     setImg((prevImg) => (prevImg + 1) % carouselImages.length);
@@ -52,9 +57,12 @@ const Home = () => {
     getAccessories();
     getMainItems();
   }, []);
+  useEffect(() => {
+    localStorage.setItem('basketItems', JSON.stringify(basketItems));
+  }, [basketItems]);
   return (
     <>
-      <Nav />
+      <Nav basketItems={basketItems} setBasketItems={setBasketItems} />
       <div className='flex flex-col '>
         <div className='flex justify-center mt-10'>
           <button className='font-bold text-2xl' onClick={preivImg}>
