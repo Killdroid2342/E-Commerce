@@ -1,12 +1,8 @@
 import { Item } from '../../../Pages/Shoes';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  if (location.pathname === '/main') {
-    return null;
-  }
 
   const closeModal = () => {
     setBasketModal(false);
@@ -16,9 +12,12 @@ const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
     localStorage.removeItem('basketItems');
     setBasketItems([]);
   };
-  const totalPrice = basketItems.reduce((acc: any, item: any) => {
-    return acc + item.price * item.amount;
-  }, 0);
+  const totalPrice = basketItems
+    ? basketItems.reduce(
+        (acc: any, item: any) => acc + item.price * item.amount,
+        0
+      )
+    : 0;
 
   return (
     <>

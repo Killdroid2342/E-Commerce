@@ -118,7 +118,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
                       navigate('/shoes');
                     } else if (item.des === 'This is an accessories') {
                       navigate('/Accessories');
-                    }
+                    } else return;
                   }}
                 >
                   <img
@@ -166,10 +166,15 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
             )}
           </li>
           <li
-            className='p-5 ml-auto'
+            className='p-5 ml-auto cursor-pointer'
             onClick={openAccountInfo}
           >{`Account: ${clientUsername}`}</li>
-          {accountInfo && <AccountInfo setAccountinfo={setAccountinfo} />}
+          {accountInfo && (
+            <AccountInfo
+              setAccountinfo={setAccountinfo}
+              clientUsername={clientUsername}
+            />
+          )}
           <li className='p-5 cursor-pointer relative' onClick={OpenModal}>
             {`Basket: 🛒`}
           </li>
