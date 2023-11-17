@@ -3,27 +3,14 @@ const CardForm = ({ submitCard, cardInput }: any) => {
     <div className='flex flex-col items-center'>
       <form className='border border-red-900 p-4 w-96' onSubmit={submitCard}>
         <div className='mb-2 flex flex-col'>
-          <label>First Name:</label>
+          <label>FullName:</label>
           <input
             type='text'
-            placeholder='John'
+            placeholder='John Doe'
             required
             maxLength={16}
             className='border border-neutral-500 p-2 focus:outline-none'
-            name='FirstName'
-            onChange={cardInput}
-          />
-        </div>
-
-        <div className='mb-2 flex flex-col'>
-          <label>Last Name:</label>
-          <input
-            type='text'
-            placeholder='Doe'
-            required
-            maxLength={16}
-            className='border border-neutral-500 p-2 focus:outline-none'
-            name='LastName'
+            name='FullName'
             onChange={cardInput}
           />
         </div>
