@@ -4,8 +4,7 @@ require('dotenv').config();
 
 const uploadCard = async (
   account,
-  FirstName,
-  LastName,
+  FullName,
   CardNumber,
   ExpirationDate,
   SecurityCode,
@@ -13,24 +12,17 @@ const uploadCard = async (
 ) => {
   const conn = getDbConn();
   conn.query(
-    'INSERT INTO ecommerce_carddetails (account, FirstName, LastName, CardNumber, ExpirationDate, SecurityCode, Money) VALUES (?,?,?,?,?,?,?)',
-    [
-      account,
-      FirstName,
-      LastName,
-      CardNumber,
-      ExpirationDate,
-      SecurityCode,
-      Money,
-    ]
+    'INSERT INTO ecommerce_carddetails (account, FullName, CardNumber, ExpirationDate, SecurityCode, Money) VALUES (?,?,?,?,?,?)',
+    [account, FullName, CardNumber, ExpirationDate, SecurityCode, Money]
   );
   conn.end();
 };
-const isCardForUserExists = () => {
+
+const isCardForUserExists = (account) => {
   const conn = getDbConn();
   const res = conn
     .promise()
-    .query('SELECT * FROM ecommerce_carddetails WHERE username = ?', [username])
+    .query('SELECT * FROM ecommerce_carddetails WHERE account = ?', [account])
     .then(([rows, fields]) => {
       if (rows.length > 0) {
         return rows[0];
@@ -41,7 +33,19 @@ const isCardForUserExists = () => {
   conn.end();
   return res;
 };
+const getAccountInfo = async () => {
+  const conn = getDbConn();
+  const res = conn
+    .promise()
+    .query('SELECT * FROM ecommerce_carddetails ')
+    .then(([rows, fields]) => {
+      return rows;
+    });
+  conn.end();
+  return res;
+};
 module.exports = {
   uploadCard,
   isCardForUserExists,
+  getAccountInfo,
 };
