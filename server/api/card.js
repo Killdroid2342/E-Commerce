@@ -3,25 +3,21 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-const { uploadCard, isCardForUserExists } = require('../modal/card');
+const {
+  uploadCard,
+  isCardForUserExists,
+  getAccountInfo,
+} = require('../modal/card');
 
 router.use(bodyParser.json());
 
 router.post('/uploadDetails', async (req, res) => {
-  const {
-    account,
-    FirstName,
-    LastName,
-    CardNumber,
-    ExpirationDate,
-    SecurityCode,
-    Money,
-  } = req.body;
-  if ((await isCardForUserExists(username)) == false) {
+  const { account, FullName, CardNumber, ExpirationDate, SecurityCode, Money } =
+    req.body;
+  if ((await isCardForUserExists(account)) == false) {
     uploadCard(
       account,
-      FirstName,
-      LastName,
+      FullName,
       CardNumber,
       ExpirationDate,
       SecurityCode,
@@ -35,6 +31,11 @@ router.post('/uploadDetails', async (req, res) => {
       message: 'You already have a card',
     });
   }
+});
+
+router.get('/accountInfo', async (req, res) => {
+  const accountDetails = await getAccountInfo();
+  res.send(JSON.stringify(accountDetails));
 });
 
 module.exports = router;
