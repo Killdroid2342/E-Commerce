@@ -72,6 +72,9 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
       setClientUsername(decodedTokenUsername);
     } else return;
   };
+  useEffect(() => {
+    usernameJWT();
+  });
   const deleteAccount = async () => {
     try {
       await instance.post('/user/delete-user', { username: clientUsername });
@@ -80,9 +83,6 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
       console.error(e);
     }
   };
-  useEffect(() => {
-    usernameJWT();
-  });
 
   return (
     <>
