@@ -51,15 +51,26 @@ const AccountInfo = ({ setAccountinfo, clientUsername }: any) => {
                   <p>Card Number: {account.CardNumber}</p>
                   <p>Expiration Date: {account.ExpirationDate}</p>
                   <p>Security Code: {account.SecurityCode}</p>
-                  <p>
-                    View Your Card{' '}
-                    <span
-                      onClick={() => navigate('/CreateCard')}
-                      className='text-blue-500 cursor-pointer'
-                    >
-                      Here
-                    </span>
-                  </p>
+                  <div className='flex flex-row'>
+                    <p>
+                      View Your Card{' '}
+                      <span
+                        onClick={() => navigate('/CreateCard')}
+                        className='text-blue-500 cursor-pointer'
+                      >
+                        Here
+                      </span>
+                    </p>
+                    <p>
+                      Purchased items{' '}
+                      <span
+                        onClick={() => navigate('/CreateCard')}
+                        className='text-blue-500 cursor-pointer'
+                      >
+                        Here
+                      </span>
+                    </p>
+                  </div>
                 </div>
               );
             }
