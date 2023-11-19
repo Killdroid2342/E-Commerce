@@ -36,35 +36,36 @@ const PaymentForm = () => {
     '2037',
     '2038',
   ];
+
   return (
     <>
       <h2 className='text-5xl text-center p-10'>Payment</h2>
       <div className='min-w-screen flex items-center justify-center px-5 pb-10 '>
-        <form className='w-full rounded-lg bg-white shadow-lg p-5'>
-          <div className='w-full pt-1 pb-5'></div>
-          <div className='mb-10'>
-            <h1 className='text-center font-bold text-xl'>
-              Secure payment info
-            </h1>
+        <form className='w-full rounded-lg bg-white shadow-lg p-5 pt-1 pb-5'>
+          <h1 className='text-center font-bold text-xl mb-10 pt-10'>
+            Secure payment info
+          </h1>
+          <div className='mb-3 flex -mx-2 px-2'>
+            <label className='flex items-center cursor-pointer'>
+              <input
+                type='radio'
+                className='h-5 w-5'
+                checked
+                onChange={() => setIsChecked(!isChecked)}
+              />
+              <img
+                src='https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png'
+                className='h-8 ml-3'
+              />
+            </label>
           </div>
-          <div className='mb-3 flex -mx-2'>
-            <div className='px-2'>
-              <label className='flex items-center cursor-pointer'>
-                <input
-                  type='radio'
-                  className=' h-5 w-5'
-                  checked
-                  onChange={() => setIsChecked(!isChecked)}
-                />
-                <img
-                  src='https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png'
-                  className='h-8 ml-3'
-                />
-              </label>
-            </div>
-            <div className='px-2'>
-              <label className='flex items-center cursor-pointer'></label>
-            </div>
+          <div className='mb-3'>
+            <label className='font-bold text-sm mb-2 ml-1'>Full Name</label>
+            <input
+              className='w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors'
+              placeholder='John Doe'
+              type='text'
+            />
           </div>
           <div className='mb-3'>
             <label className='font-bold text-sm mb-2 ml-1'>Card number</label>
@@ -113,7 +114,7 @@ const PaymentForm = () => {
           <div>
             <input
               type='submit'
-              onClick={() => navigate('/main')}
+              onClick={submitPayment}
               className='block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold'
               value='PAY NOW'
             />
