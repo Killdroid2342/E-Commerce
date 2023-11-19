@@ -23,13 +23,16 @@ const AccountInfo = ({ setAccountinfo, clientUsername }: any) => {
   const closeModal = () => {
     setAccountinfo(false);
   };
+
   async function getAccountInfo() {
     const res = await instance.get('/card/accountInfo');
     setAccountInfo(res.data);
   }
+
   useEffect(() => {
     getAccountInfo();
   }, []);
+
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black'>
       <div className='bg-white p-8 rounded-lg overflow-auto max-h-96 w-96'>
@@ -74,19 +77,19 @@ const AccountInfo = ({ setAccountinfo, clientUsername }: any) => {
                 </div>
               );
             }
-            return (
-              <p>
-                No card? Click{' '}
-                <span
-                  onClick={() => navigate('/CreateCard')}
-                  className='text-blue-500 cursor-pointer'
-                >
-                  Here
-                </span>{' '}
-                to create a card.
-              </p>
-            );
           })}
+          {accountInfo.length === 0 && (
+            <p>
+              No card? Click{' '}
+              <span
+                onClick={() => navigate('/CreateCard')}
+                className='text-blue-500 cursor-pointer'
+              >
+                Here
+              </span>{' '}
+              to create a card.
+            </p>
+          )}
         </div>
       </div>
     </div>
