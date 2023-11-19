@@ -51,8 +51,8 @@ const AccountInfo = ({ setAccountinfo, clientUsername }: any) => {
                   <p>Card Number: {account.CardNumber}</p>
                   <p>Expiration Date: {account.ExpirationDate}</p>
                   <p>Security Code: {account.SecurityCode}</p>
-                  <div className='flex flex-row'>
-                    <p>
+                  <div className='flex flex-col'>
+                    <p className='mt-5'>
                       View Your Card{' '}
                       <span
                         onClick={() => navigate('/CreateCard')}
@@ -61,10 +61,10 @@ const AccountInfo = ({ setAccountinfo, clientUsername }: any) => {
                         Here
                       </span>
                     </p>
-                    <p>
+                    <p className='mt-2'>
                       Purchased items{' '}
                       <span
-                        onClick={() => navigate('/CreateCard')}
+                        onClick={() => navigate('/PurchasedItems')}
                         className='text-blue-500 cursor-pointer'
                       >
                         Here
