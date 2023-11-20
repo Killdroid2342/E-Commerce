@@ -48,6 +48,7 @@ const CreateCard = () => {
   }, []);
   async function submitCard(e: React.FormEvent) {
     e.preventDefault();
+
     const res = await instance.post('/card/uploadDetails', {
       CardNumber: creditCard.CardNumber,
       ExpirationDate: creditCard.ExpirationDate,
@@ -74,6 +75,23 @@ const CreateCard = () => {
       [name]: value,
     }));
   }
+  const removeCard = async () => {
+    try {
+      const res = await instance.post('/card/removeCard', {
+        account: clientUsername,
+      });
+
+      setModal(res.data.message);
+
+      setTimeout(() => {
+        setModal(false);
+      }, 2000);
+
+      console.log(res, 'REMOVE CARD RESPONSE');
+    } catch (error) {
+      console.error('Error removing card:', error);
+    }
+  };
 
   useEffect(() => {
     localStorage.setItem('basketItems', JSON.stringify(basketItems));
@@ -98,7 +116,11 @@ const CreateCard = () => {
           </Canvas>
         </div>
         <div className='w-96'>
-          <CardForm submitCard={submitCard} cardInput={cardInput} />
+          <CardForm
+            submitCard={submitCard}
+            cardInput={cardInput}
+            removeCard={removeCard}
+          />
         </div>
       </div>
     </>
