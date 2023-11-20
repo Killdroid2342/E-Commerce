@@ -8,6 +8,7 @@ const {
   insertItems,
   getMainItems,
   searchItems,
+  purchasedItems,
 } = require('../modal/items');
 
 router.use(bodyParser.json());
@@ -32,6 +33,11 @@ router.get('/addToDatabase', async (req, res) => {
 router.get('/getMainItems', async (req, res) => {
   const totalItems = await getMainItems();
   res.send(JSON.stringify(totalItems));
+});
+
+router.post('/purchasedItems', async (req, res) => {
+  const { name, price, shoe, amount, account } = req.body;
+  purchasedItems(name, price, shoe, amount, account);
 });
 
 module.exports = router;
