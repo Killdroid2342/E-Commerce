@@ -7,6 +7,7 @@ const {
   uploadCard,
   isCardForUserExists,
   getAccountInfo,
+  removeCard,
 } = require('../modal/card');
 
 router.use(bodyParser.json());
@@ -33,6 +34,27 @@ router.post('/uploadDetails', async (req, res) => {
   }
 });
 
+router.post('/removeCard', async (req, res) => {
+  const { account } = req.body;
+
+  if (!account) {
+    return res.send({
+      message: 'Account is missing.',
+    });
+  }
+
+  const removed = await removeCard(account);
+
+  if (removed) {
+    res.send({
+      message: 'Card removed successfully.',
+    });
+  } else {
+    res.send({
+      message: 'Card not found.',
+    });
+  }
+});
 router.get('/accountInfo', async (req, res) => {
   const accountDetails = await getAccountInfo();
   res.send(JSON.stringify(accountDetails));
