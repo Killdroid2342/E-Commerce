@@ -44,8 +44,26 @@ const getAccountInfo = async () => {
   conn.end();
   return res;
 };
+const removeCard = (account) => {
+  const conn = getDbConn();
+  const res = conn
+    .promise()
+    .query('DELETE FROM ecommerce_carddetails WHERE account = ?', [account])
+    .then(([rows, fields]) => {
+      if (rows.affectedRows > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    .finally(() => {
+      conn.end();
+    });
+  return res;
+};
 module.exports = {
   uploadCard,
   isCardForUserExists,
   getAccountInfo,
+  removeCard,
 };
