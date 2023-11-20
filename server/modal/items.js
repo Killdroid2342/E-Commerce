@@ -46,9 +46,18 @@ const insertItems = (img, des, lowPrice, price, name) => {
   );
   conn.end();
 };
+const purchasedItems = (name, price, shoe, amount, account) => {
+  const conn = getDbConn();
+  const res = conn.query(
+    'INSERT INTO ecommerce_purchaseditems (name, price, shoe, amount, account ) VALUES (?, ?, ?, ?, ?)',
+    [name, price, shoe, amount, account]
+  );
+  conn.end();
+};
 module.exports = {
   getItems,
   insertItems,
   getMainItems,
   searchItems,
+  purchasedItems,
 };
