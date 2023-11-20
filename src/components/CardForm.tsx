@@ -1,4 +1,4 @@
-const CardForm = ({ submitCard, cardInput }: any) => {
+const CardForm = ({ submitCard, cardInput, removeCard }: any) => {
   return (
     <div className='flex flex-col items-center'>
       <form className='border border-red-900 p-4 w-96' onSubmit={submitCard}>
@@ -64,12 +64,19 @@ const CardForm = ({ submitCard, cardInput }: any) => {
             onChange={cardInput}
           />
         </div>
-
-        <input
-          type='submit'
-          value='Create Card'
-          className='bg-blue-500 text-white p-2 rounded-lg cursor-pointer hover:bg-blue-700'
-        />
+        <div className='flex flex-row'>
+          <input
+            type='submit'
+            value='Create Card'
+            className='bg-blue-500 text-white p-2 rounded-lg cursor-pointer hover:bg-blue-700'
+          />
+          <input
+            onClick={removeCard}
+            type='submit'
+            value='Remove Card'
+            className='bg-blue-500 text-white p-2 rounded-lg cursor-pointer hover:bg-blue-700 ml-2'
+          />
+        </div>
       </form>
     </div>
   );
