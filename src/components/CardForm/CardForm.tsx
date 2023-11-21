@@ -1,4 +1,11 @@
-const CardForm = ({ submitCard, cardInput, removeCard, addMoney }: any) => {
+import { useState } from 'react';
+import AddMoney from './AddMoney/AddMoney';
+
+const CardForm = ({ submitCard, cardInput, removeCard }: any) => {
+  const [moneyModal, setMoneyModal] = useState(false);
+  const openMoneyModal = () => {
+    setMoneyModal(true);
+  };
   return (
     <div className='flex flex-col items-center'>
       <form className='border border-red-900 p-4 ml-10' onSubmit={submitCard}>
@@ -47,7 +54,7 @@ const CardForm = ({ submitCard, cardInput, removeCard, addMoney }: any) => {
           />
         </div>
         <div className='mb-2 flex flex-col'>
-          <label>Add Money:</label>
+          <label>Set Initial Money:</label>
           <input
             type='number'
             placeholder='£0'
@@ -69,13 +76,16 @@ const CardForm = ({ submitCard, cardInput, removeCard, addMoney }: any) => {
             className='bg-blue-500 text-white p-2 rounded-lg cursor-pointer hover:bg-blue-700 m-2'
           />
           <input
-            onClick={addMoney}
-            type='submit'
+            onClick={openMoneyModal}
+            type='button'
             value='Add More Money'
             className='bg-blue-500 text-white p-2 rounded-lg cursor-pointer hover:bg-blue-700 m-2'
           />
         </div>
       </form>
+      {moneyModal && (
+        <AddMoney setMoneyModal={setMoneyModal} moneyModal={moneyModal} />
+      )}
     </div>
   );
 };
