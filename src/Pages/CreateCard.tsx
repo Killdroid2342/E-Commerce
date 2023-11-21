@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Nav from '../components/nav/Nav';
-import CardForm from '../components/CardForm';
+import CardForm from '../components/CardForm/CardForm';
 import { Item } from './Shoes';
 import { Canvas } from '@react-three/fiber';
 const { VITE_API_URL } = import.meta.env;
@@ -92,9 +92,7 @@ const CreateCard = () => {
       console.error('Error removing card:', error);
     }
   };
-  const addMoney = () => {
-    console.log('ADD Money');
-  };
+
   useEffect(() => {
     localStorage.setItem('basketItems', JSON.stringify(basketItems));
   }, [basketItems]);
@@ -122,7 +120,6 @@ const CreateCard = () => {
             submitCard={submitCard}
             cardInput={cardInput}
             removeCard={removeCard}
-            addMoney={addMoney}
           />
         </div>
       </div>
