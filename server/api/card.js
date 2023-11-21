@@ -8,6 +8,7 @@ const {
   isCardForUserExists,
   getAccountInfo,
   removeCard,
+  addMoney,
 } = require('../modal/card');
 
 router.use(bodyParser.json());
@@ -54,6 +55,12 @@ router.post('/removeCard', async (req, res) => {
       message: 'Card not found.',
     });
   }
+});
+
+router.post('/addMoney', async (req, res) => {
+  const { account, money } = req.body;
+  console.log(account, money, 'THIS IS ACCOUNT AND BODY');
+  addMoney(account, money);
 });
 router.get('/accountInfo', async (req, res) => {
   const accountDetails = await getAccountInfo();
