@@ -61,9 +61,26 @@ const removeCard = (account) => {
     });
   return res;
 };
+const addMoney = async (account, money) => {
+  const conn = getDbConn();
+  const res = await conn
+    .promise()
+    .query(
+      'UPDATE ecommerce_carddetails SET Money = Money + ? WHERE account = ?',
+      [money, account]
+    )
+    .then(([rows, fields]) => {
+      return rows;
+    })
+    .finally(() => {
+      conn.end();
+    });
+  return res;
+};
 module.exports = {
   uploadCard,
   isCardForUserExists,
   getAccountInfo,
   removeCard,
+  addMoney,
 };
