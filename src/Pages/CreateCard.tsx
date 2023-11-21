@@ -13,7 +13,7 @@ interface CreditCard {
   CardNumber: string;
   ExpirationDate: string;
   FullName: string;
-  Money: string;
+  Money: number;
   SecurityCode: string;
 }
 const CreateCard = () => {
@@ -21,7 +21,7 @@ const CreateCard = () => {
     CardNumber: '',
     ExpirationDate: '',
     FullName: '',
-    Money: '',
+    Money: 0,
     SecurityCode: '',
   });
   const initialBasketItems = localStorage.getItem('basketItems');
@@ -92,7 +92,9 @@ const CreateCard = () => {
       console.error('Error removing card:', error);
     }
   };
-
+  const addMoney = () => {
+    console.log('ADD Money');
+  };
   useEffect(() => {
     localStorage.setItem('basketItems', JSON.stringify(basketItems));
   }, [basketItems]);
@@ -120,6 +122,7 @@ const CreateCard = () => {
             submitCard={submitCard}
             cardInput={cardInput}
             removeCard={removeCard}
+            addMoney={addMoney}
           />
         </div>
       </div>

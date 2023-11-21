@@ -25,7 +25,6 @@ const Checkout = () => {
       <div className='flex justify-center items-center py-8 bg-white'>
         <img
           src='/assets/images//logo.png'
-          alt=''
           className='w-60 cursor-pointer'
           onClick={() => navigate('/main')}
         />

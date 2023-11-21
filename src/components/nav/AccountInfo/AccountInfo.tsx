@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 const { VITE_API_URL } = import.meta.env;
 interface Account {
   account: string;
-  Money: string;
+  money: number;
   CardNumber: string;
   ExpirationDate: string;
   SecurityCode: string;
@@ -50,7 +50,7 @@ const AccountInfo = ({ setAccountinfo, clientUsername }: any) => {
                 <div key={account.account}>
                   <p className='font-bold'>Account Name: {clientUsername}</p>
                   <p>Full Name: {account.FullName}</p>
-                  <p>{`Balance: £${account.Money}`}</p>
+                  <p>{`Balance: £${account.money}`}</p>
                   <p>Card Number: {account.CardNumber}</p>
                   <p>Expiration Date: {account.ExpirationDate}</p>
                   <p>Security Code: {account.SecurityCode}</p>
