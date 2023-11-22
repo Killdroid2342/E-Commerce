@@ -120,6 +120,7 @@ const CreateCard = () => {
             submitCard={submitCard}
             cardInput={cardInput}
             removeCard={removeCard}
+            clientUsername={clientUsername}
           />
         </div>
       </div>

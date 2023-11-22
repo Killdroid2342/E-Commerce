@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import AddMoney from './AddMoney/AddMoney';
 
-const CardForm = ({ submitCard, cardInput, removeCard }: any) => {
+const CardForm = ({
+  submitCard,
+  cardInput,
+  removeCard,
+  clientUsername,
+}: any) => {
   const [moneyModal, setMoneyModal] = useState(false);
   const openMoneyModal = () => {
     setMoneyModal(true);
@@ -84,7 +89,11 @@ const CardForm = ({ submitCard, cardInput, removeCard }: any) => {
         </div>
       </form>
       {moneyModal && (
-        <AddMoney setMoneyModal={setMoneyModal} moneyModal={moneyModal} />
+        <AddMoney
+          setMoneyModal={setMoneyModal}
+          moneyModal={moneyModal}
+          clientUsername={clientUsername}
+        />
       )}
     </div>
   );
