@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import axios from 'axios';
+const { VITE_API_URL } = import.meta.env;
 
 interface Money {
   money: Number;
@@ -10,12 +12,20 @@ const AddMoney = ({ setMoneyModal, clientUsername }: any) => {
     account: clientUsername,
     money: 0,
   });
+  const instance = axios.create({
+    baseURL: VITE_API_URL,
+  });
   const closeModal = () => {
     setMoneyModal(false);
   };
 
-  const addMoneyForm = (e: React.FormEvent) => {
+  const addMoneyForm = async (e: React.FormEvent) => {
     e.preventDefault();
+    const res = await instance.post('/card/addMoney', {
+      Money: addMoney.money,
+      account: clientUsername,
+    });
+    console.log(res);
     console.log(addMoney);
   };
 
