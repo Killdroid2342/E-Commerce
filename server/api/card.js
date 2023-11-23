@@ -59,8 +59,17 @@ router.post('/removeCard', async (req, res) => {
 
 router.post('/addMoney', async (req, res) => {
   const { account, money } = req.body;
-  console.log(account, money, 'THIS IS ACCOUNT AND BODY');
-  addMoney(account, money);
+  try {
+    addMoney(account, money);
+    res.send({
+      message: 'You have added money',
+    });
+  } catch (e) {
+    console.log(e);
+    res.send({
+      message: 'There was an error adding money',
+    });
+  }
 });
 router.get('/accountInfo', async (req, res) => {
   const accountDetails = await getAccountInfo();
