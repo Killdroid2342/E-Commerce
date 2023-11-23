@@ -37,7 +37,17 @@ router.get('/getMainItems', async (req, res) => {
 
 router.post('/purchasedItems', async (req, res) => {
   const { name, price, shoe, amount, account } = req.body;
-  purchasedItems(name, price, shoe, amount, account);
+  try {
+    purchasedItems(name, price, shoe, amount, account);
+    res.send({
+      message: 'You have bought items',
+    });
+  } catch (e) {
+    console.log(e);
+    res.send({
+      message: 'Failed to buy items',
+    });
+  }
 });
 
 module.exports = router;
