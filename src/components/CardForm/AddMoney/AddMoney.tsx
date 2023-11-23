@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import ResModal from '../../Forms/Form-Modal/ResModal';
 const { VITE_API_URL } = import.meta.env;
 
 interface Money {
@@ -12,6 +13,8 @@ const AddMoney = ({ setMoneyModal, clientUsername }: any) => {
     account: clientUsername,
     money: 0,
   });
+  const [modal, setModal] = useState(false);
+
   const instance = axios.create({
     baseURL: VITE_API_URL,
   });
@@ -22,11 +25,13 @@ const AddMoney = ({ setMoneyModal, clientUsername }: any) => {
   const addMoneyForm = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await instance.post('/card/addMoney', {
-      Money: addMoney.money,
+      money: addMoney.money,
       account: clientUsername,
     });
-    console.log(res);
-    console.log(addMoney);
+    setModal(res.data.message);
+    setTimeout(() => {
+      setModal(false);
+    }, 2000);
   };
 
   function addMoneyInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -38,6 +43,7 @@ const AddMoney = ({ setMoneyModal, clientUsername }: any) => {
   }
   return (
     <>
+      {modal !== false ? <ResModal responseMessage={modal} /> : ''}
       <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black'>
         <div className='bg-white p-4 rounded-lg overflow-auto max-h-96'>
           <button
