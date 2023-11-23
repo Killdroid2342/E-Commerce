@@ -1,7 +1,8 @@
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import ResModal from './Forms/Form-Modal/ResModal';
 
 const { VITE_API_URL } = import.meta.env;
 interface Account {
@@ -14,9 +15,10 @@ interface Account {
 }
 
 const PaymentForm = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(true);
   const [accountInfo, setAccountInfo] = useState<Account[]>([]);
+  const [modal, setModal] = useState(false);
   const [formData, setFormData] = useState({
     FullName: '',
     CardNumber: '',
@@ -70,25 +72,30 @@ const PaymentForm = () => {
       formData.ExpirationDate === accountInfo[0]?.ExpirationDate &&
       formData.SecurityCode === accountInfo[0]?.SecurityCode
     ) {
-      const storedItems = localStorage.getItem('basketItems');
-      const items = storedItems ? JSON.parse(storedItems) : [];
-
+      console.log('test');
       try {
-        await Promise.all(
-          items.map(async (item: any) => {
-            const res = await instance.post('/items/purchasedItems', {
-              name: item.name,
-              price: item.price,
-              shoe: item.shoe,
-              amount: item.amount,
-              account: accountInfo[0]?.account,
-            });
-            console.log(res, 'this is res for item:', item);
-          })
-        );
+        items.map(async (item: any) => {
+          const res = await instance.post('/items/purchasedItems', {
+            name: item.name,
+            price: item.price,
+            shoe: item.shoe,
+            amount: item.amount,
+            account: accountInfo[0]?.account,
+          });
+          console.log(res, 'this is res for item:', item);
+          setModal(res.data.message);
+
+          setTimeout(() => {
+            setModal(false);
+          }, 2000);
+        });
+
         console.log('All purchases successful');
+
         localStorage.removeItem('basketItems');
-        // navigate('/PurchasedItems');
+        setTimeout(() => {
+          navigate('/PurchasedItems');
+        }, 5000);
       } catch (e) {
         console.log(e);
       }
@@ -99,6 +106,8 @@ const PaymentForm = () => {
 
   return (
     <>
+      {modal !== false ? <ResModal responseMessage={modal} /> : ''}
+
       <h2 className='text-5xl text-center p-10'>Payment</h2>
       <div className='min-w-screen flex items-center justify-center px-5 pb-10 '>
         <form className='w-full rounded-lg bg-white shadow-lg p-5 pt-1 pb-5'>
