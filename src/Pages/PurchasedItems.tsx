@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import Nav from '../components/nav/Nav';
 import Auth from '../hooks/Auth';
-
+import Cookies from 'js-cookie';
+import { decodeToken } from 'react-jwt';
+const { VITE_API_URL } = import.meta.env;
+import axios from 'axios';
+const instance = axios.create({
+  baseURL: VITE_API_URL,
+});
 interface Items {
   img: string;
   des: string;
@@ -17,6 +23,32 @@ const PurchasedItems = () => {
     initialBasketItems ? JSON.parse(initialBasketItems) : []
   );
   const [purchasedItems, setPurchasedItems] = useState([]);
+  const [clientUsername, setClientUsername] = useState('');
+
+  const usernameJWT = () => {
+    const getJWT = Cookies.get('UserjwtToken');
+    if (getJWT) {
+      const decodedTokenUsername = (decodeToken(getJWT) as { username: string })
+        .username;
+      setClientUsername(decodedTokenUsername);
+    } else return;
+  };
+  const account = clientUsername;
+
+  const getPurchasedItems = async () => {
+    const res = await instance.get('/items/getPurchasedItems');
+
+    const filteredItems = res.data.filter(
+      (item: any) => item.account === account
+    );
+    setPurchasedItems(filteredItems);
+  };
+
+  useEffect(() => {
+    localStorage.setItem('basketItems', JSON.stringify(basketItems));
+    getPurchasedItems();
+    usernameJWT();
+  }, [basketItems, usernameJWT]);
 
   return (
     <>
