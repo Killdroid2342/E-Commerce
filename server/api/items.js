@@ -9,6 +9,7 @@ const {
   getMainItems,
   searchItems,
   purchasedItems,
+  getPurchasedItems,
 } = require('../modal/items');
 
 router.use(bodyParser.json());
@@ -34,7 +35,14 @@ router.get('/getMainItems', async (req, res) => {
   const totalItems = await getMainItems();
   res.send(JSON.stringify(totalItems));
 });
-
+router.get('/getPurchasedItems', async (req, res) => {
+  try {
+    const allPurchasedItems = await getPurchasedItems();
+    res.send(JSON.stringify(allPurchasedItems));
+  } catch (e) {
+    console.log(e);
+  }
+});
 router.post('/purchasedItems', async (req, res) => {
   const { name, price, shoe, amount, account } = req.body;
   try {
