@@ -73,11 +73,8 @@ const Shoes = () => {
   };
 
   useEffect(() => {
-    getShoes();
-  }, []);
-
-  useEffect(() => {
     localStorage.setItem('basketItems', JSON.stringify(basketItems));
+    getShoes();
   }, [shoes, basketItems]);
 
   return (
