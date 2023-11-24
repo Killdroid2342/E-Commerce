@@ -32,7 +32,9 @@ const AccountInfo = ({ setAccountinfo, clientUsername }: any) => {
   useEffect(() => {
     getAccountInfo();
   }, []);
-
+  const filteredAccountInfo = accountInfo.filter(
+    (account) => account.account === clientUsername
+  );
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black'>
       <div className='bg-white p-8 rounded-lg overflow-auto max-h-96 w-96'>
@@ -44,52 +46,50 @@ const AccountInfo = ({ setAccountinfo, clientUsername }: any) => {
         </button>
         <h2 className='text-2xl font-semibold mb-4'>Account Information</h2>
         <div className='grid gap-4'>
-          {accountInfo.map((account) => {
-            if (clientUsername === account.account) {
-              return (
-                <div key={account.account}>
-                  <p className='font-bold'>Account Name: {clientUsername}</p>
-                  <p>Full Name: {account.FullName}</p>
-                  <p>{`Balance: £${account.money}`}</p>
-                  <p>Card Number: {account.CardNumber}</p>
-                  <p>Expiration Date: {account.ExpirationDate}</p>
-                  <p>Security Code: {account.SecurityCode}</p>
-                  <div className='flex flex-col'>
-                    <p className='mt-5'>
-                      View Your Card{' '}
-                      <span
-                        onClick={() => navigate('/CreateCard')}
-                        className='text-blue-500 cursor-pointer'
-                      >
-                        Here
-                      </span>
-                    </p>
-                    <p className='mt-2'>
-                      Purchased items{' '}
-                      <span
-                        onClick={() => navigate('/PurchasedItems')}
-                        className='text-blue-500 cursor-pointer'
-                      >
-                        Here
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              );
-            }
-          })}
-          {accountInfo.length === 0 && (
-            <p>
-              No card? Click{' '}
-              <span
-                onClick={() => navigate('/CreateCard')}
-                className='text-blue-500 cursor-pointer'
-              >
-                Here
-              </span>{' '}
-              to create a card.
-            </p>
+          {filteredAccountInfo.map((account) => (
+            <div key={account.account}>
+              <p className='font-bold'>Account Name: {account.account}</p>
+              <p>Full Name: {account.FullName}</p>
+              <p>{`Balance: £${account.money}`}</p>
+              <p>Card Number: {account.CardNumber}</p>
+              <p>Expiration Date: {account.ExpirationDate}</p>
+              <p>Security Code: {account.SecurityCode}</p>
+              <div className='flex flex-col'>
+                <p className='mt-5'>
+                  View Your Card{' '}
+                  <span
+                    onClick={() => navigate('/CreateCard')}
+                    className='text-blue-500 cursor-pointer'
+                  >
+                    Here
+                  </span>
+                </p>
+              </div>
+            </div>
+          ))}
+          {filteredAccountInfo.length === 0 && (
+            <div>
+              <p>
+                No card? Click{' '}
+                <span
+                  onClick={() => navigate('/CreateCard')}
+                  className='text-blue-500 cursor-pointer'
+                >
+                  Here
+                </span>{' '}
+                to create a card.
+              </p>
+            </div>
           )}
+          <p className='mt-2'>
+            Purchased items{' '}
+            <span
+              onClick={() => navigate('/PurchasedItems')}
+              className='text-blue-500 cursor-pointer'
+            >
+              Here
+            </span>
+          </p>
         </div>
       </div>
     </div>
