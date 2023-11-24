@@ -24,6 +24,17 @@ const getMainItems = async () => {
   conn.end();
   return res;
 };
+const getPurchasedItems = async () => {
+  const conn = getDbConn();
+  const res = conn
+    .promise()
+    .query('SELECT * FROM ecommerce_purchaseditems')
+    .then(([rows, fields]) => {
+      return rows;
+    });
+  conn.end();
+  return res;
+};
 const searchItems = async (name) => {
   const conn = getDbConn();
   const res = conn
@@ -60,4 +71,5 @@ module.exports = {
   getMainItems,
   searchItems,
   purchasedItems,
+  getPurchasedItems,
 };
