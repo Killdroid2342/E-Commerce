@@ -64,26 +64,33 @@ const PaymentForm = () => {
   };
   const submitPayment = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData, 'this is form data');
-
     if (
       formData.CardNumber === accountInfo[0]?.CardNumber &&
       formData.FullName === accountInfo[0]?.FullName &&
       formData.ExpirationDate === accountInfo[0]?.ExpirationDate &&
       formData.SecurityCode === accountInfo[0]?.SecurityCode
     ) {
-      console.log('test');
+      const totalPrice = items.reduce(
+        (acc: any, item: any) => acc + item.price,
+        0
+      );
+
       try {
-        items.map(async (item: any) => {
-          const res = await instance.post('/items/purchasedItems', {
+        await instance.post('/card/addMoney', {
+          account: accountInfo[0]?.account,
+          money: -totalPrice,
+        });
+
+        items.forEach(async (item: any) => {
+          const response = await instance.post('/items/purchasedItems', {
             name: item.name,
             price: item.price,
             shoe: item.shoe,
             amount: item.amount,
             account: accountInfo[0]?.account,
           });
-          console.log(res, 'this is res for item:', item);
-          setModal(res.data.message);
+          console.log(response, 'this is the response for item:', item);
+          setModal(response.data.message);
 
           setTimeout(() => {
             setModal(false);
@@ -93,14 +100,13 @@ const PaymentForm = () => {
         console.log('All purchases successful');
 
         localStorage.removeItem('basketItems');
+
         setTimeout(() => {
           navigate('/PurchasedItems');
         }, 5000);
       } catch (e) {
         console.log(e);
       }
-    } else {
-      console.log('Incorrect payment details');
     }
   };
 
