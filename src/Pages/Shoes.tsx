@@ -20,7 +20,7 @@ interface ShoeItem {
   img: string;
   des: string;
   lowPrice: string;
-  price: string;
+  price: number;
   name: string;
 }
 const Shoes = () => {
