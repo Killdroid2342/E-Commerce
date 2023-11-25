@@ -15,7 +15,7 @@ interface ElectronicsItems {
   img: string;
   des: string;
   lowPrice: string;
-  price: string;
+  price: number;
   name: string;
 }
 
