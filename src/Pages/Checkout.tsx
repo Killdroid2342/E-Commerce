@@ -11,9 +11,9 @@ const Checkout = () => {
     const items = JSON.parse(itemsString);
     if (Array.isArray(items)) {
       basketItems = items;
-      totalPrice = items.reduce((acc: any, item: any) => {
-        return acc + item.price * item.amount;
-      }, 0);
+      totalPrice = basketItems
+        ? basketItems.reduce((acc: any, item: any) => acc + item.price, 0)
+        : 0;
     }
   } else {
     return null;
