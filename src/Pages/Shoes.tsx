@@ -3,7 +3,6 @@ const { VITE_API_URL } = import.meta.env;
 import Footer from '../components/Footer';
 import Nav from '../components/nav/Nav';
 import Modal from '../components/Modal';
-import Auth from '../hooks/Auth';
 import axios from 'axios';
 
 const instance = axios.create({
@@ -24,7 +23,6 @@ interface ShoeItem {
   name: string;
 }
 const Shoes = () => {
-  Auth();
   const [modalI, setModalI] = useState(null);
   const [amount, setAmount] = useState(1);
   const initialBasketItems = localStorage.getItem('basketItems');

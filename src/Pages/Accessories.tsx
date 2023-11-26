@@ -3,7 +3,7 @@ import Nav from '../components/nav/Nav';
 import Footer from '../components/Footer';
 import Modal from '../components/Modal';
 import { Item } from './Shoes';
-import Auth from '../hooks/Auth';
+
 import axios from 'axios';
 const { VITE_API_URL } = import.meta.env;
 
@@ -19,7 +19,6 @@ interface AccessoriesItems {
   name: string;
 }
 const Accessories = () => {
-  Auth();
   const [modalI, setModalI] = useState(null);
   const [amount, setAmount] = useState(1);
   const initialBasketItems = localStorage.getItem('basketItems');

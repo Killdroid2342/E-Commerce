@@ -1,8 +1,6 @@
-import Auth from '../hooks/Auth';
 import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
-  Auth();
   const itemsString = localStorage.getItem('basketItems');
   let basketItems: any[] = [];
   let totalPrice = 0;

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Nav from '../components/nav/Nav';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
-import Auth from '../hooks/Auth';
 const { VITE_API_URL } = import.meta.env;
 import axios from 'axios';
 import { Item } from './Shoes';
@@ -27,7 +26,6 @@ const carouselImages = [
 ];
 
 const Home = () => {
-  Auth();
   const [img, setImg] = useState(0);
   const [accessories, setAccessories] = useState<Items[]>([]);
   const [main, setMain] = useState<Main[]>([]);

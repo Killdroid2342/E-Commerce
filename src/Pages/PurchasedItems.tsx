@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Nav from '../components/nav/Nav';
-import Auth from '../hooks/Auth';
 import Cookies from 'js-cookie';
 import { decodeToken } from 'react-jwt';
 const { VITE_API_URL } = import.meta.env;
@@ -17,7 +16,6 @@ interface Items {
 }
 
 const PurchasedItems = () => {
-  Auth();
   const initialBasketItems = localStorage.getItem('basketItems');
   const [basketItems, setBasketItems] = useState<Items[]>(
     initialBasketItems ? JSON.parse(initialBasketItems) : []
