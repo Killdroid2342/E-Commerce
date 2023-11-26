@@ -26,7 +26,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   const [accountInfo, setAccountinfo] = useState(false);
   const [clientUsername, setClientUsername] = useState('');
   const [allItems, setAllItems] = useState<AllItems[]>([]);
-
+  const isLoggedIn = !!clientUsername;
   const navigate = useNavigate();
 
   const backToHome = () => {
@@ -165,36 +165,47 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
               </ul>
             )}
           </li>
-          <li
-            className='p-5 ml-auto cursor-pointer'
-            onClick={openAccountInfo}
-          >{`Account: ${clientUsername}`}</li>
-          {accountInfo && (
-            <AccountInfo
-              setAccountinfo={setAccountinfo}
-              clientUsername={clientUsername}
-            />
+          {isLoggedIn ? (
+            <>
+              <li
+                className='p-5 ml-auto cursor-pointer'
+                onClick={openAccountInfo}
+              >{`Account: ${clientUsername}`}</li>
+              {accountInfo && (
+                <AccountInfo
+                  setAccountinfo={setAccountinfo}
+                  clientUsername={clientUsername}
+                />
+              )}
+              <li className='p-5 cursor-pointer relative' onClick={OpenModal}>
+                {`Basket: 🛒`}
+              </li>
+              {basketModal && (
+                <BasketModal
+                  setBasketModal={setBasketModal}
+                  basketItems={basketItems}
+                  setBasketItems={setBasketItems}
+                  basketModal={basketModal}
+                />
+              )}
+              <li className='p-5 ml-auto cursor-pointer' onClick={LogOut}>
+                Log Out
+              </li>
+              <li
+                className='p-5 ml-auto cursor-pointer font-bold'
+                onClick={deleteAccount}
+              >
+                Delete Account
+              </li>
+            </>
+          ) : (
+            <li
+              className='p-5 ml-auto cursor-pointer'
+              onClick={() => navigate('/')}
+            >
+              Sign Up
+            </li>
           )}
-          <li className='p-5 cursor-pointer relative' onClick={OpenModal}>
-            {`Basket: 🛒`}
-          </li>
-          {basketModal && (
-            <BasketModal
-              setBasketModal={setBasketModal}
-              basketItems={basketItems}
-              setBasketItems={setBasketItems}
-              basketModal={basketModal}
-            />
-          )}
-          <li className='p-5 ml-auto cursor-pointer' onClick={LogOut}>
-            Log Out
-          </li>
-          <li
-            className='p-5 ml-auto cursor-pointer font-bold'
-            onClick={deleteAccount}
-          >
-            Delete Account
-          </li>
         </ul>
       </nav>
       <div className='pt-24'>
