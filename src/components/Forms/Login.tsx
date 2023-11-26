@@ -77,10 +77,16 @@ const Login = ({ changeForm }: any) => {
                 className='mt-10 text-xl cursor-pointer border-2 border-white p-3 rounded-lg font-semibold'
               />
               <p
-                className='mt-5 cursor-pointer font-semibold'
+                className='mt-5 cursor-pointer font-semibold text-center'
                 onClick={changeForm}
               >
                 Not A User? Register Here.
+              </p>
+              <p
+                className='mt-5 cursor-pointer font-semibold pb-5'
+                onClick={() => navigate('/main')}
+              >
+                Do not want to Sign Up? Click Here.
               </p>
             </div>
           </form>
