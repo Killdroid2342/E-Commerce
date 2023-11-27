@@ -64,50 +64,51 @@ const PaymentForm = () => {
   };
   const submitPayment = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      formData.CardNumber === accountInfo[0]?.CardNumber &&
-      formData.FullName === accountInfo[0]?.FullName &&
-      formData.ExpirationDate === accountInfo[0]?.ExpirationDate &&
-      formData.SecurityCode === accountInfo[0]?.SecurityCode
-    ) {
-      const totalPrice = items.reduce(
-        (acc: any, item: any) => acc + item.price,
-        0
-      );
+    console.log('test');
+    // if (
+    //   formData.CardNumber === accountInfo[0]?.CardNumber &&
+    //   formData.FullName === accountInfo[0]?.FullName &&
+    //   formData.ExpirationDate === accountInfo[0]?.ExpirationDate &&
+    //   formData.SecurityCode === accountInfo[0]?.SecurityCode
+    // ) {
+    const totalPrice = items.reduce(
+      (acc: any, item: any) => acc + item.price,
+      0
+    );
+    console.log('test2');
+    try {
+      await instance.post('/card/addMoney', {
+        account: accountInfo[0]?.account,
+        money: -totalPrice,
+      });
 
-      try {
-        await instance.post('/card/addMoney', {
+      items.forEach(async (item: any) => {
+        const response = await instance.post('/items/purchasedItems', {
+          name: item.name,
+          price: item.price,
+          shoe: item.shoe,
+          amount: item.amount,
           account: accountInfo[0]?.account,
-          money: -totalPrice,
         });
-
-        items.forEach(async (item: any) => {
-          const response = await instance.post('/items/purchasedItems', {
-            name: item.name,
-            price: item.price,
-            shoe: item.shoe,
-            amount: item.amount,
-            account: accountInfo[0]?.account,
-          });
-          console.log(response, 'this is the response for item:', item);
-          setModal(response.data.message);
-
-          setTimeout(() => {
-            setModal(false);
-          }, 2000);
-        });
-
-        console.log('All purchases successful');
-
-        localStorage.removeItem('basketItems');
+        console.log(response, 'this is the response for item:', item);
+        setModal(response.data.message);
 
         setTimeout(() => {
-          navigate('/PurchasedItems');
-        }, 5000);
-      } catch (e) {
-        console.log(e);
-      }
+          setModal(false);
+        }, 2000);
+      });
+
+      console.log('All purchases successful');
+
+      // localStorage.removeItem('basketItems');
+
+      // setTimeout(() => {
+      //   navigate('/PurchasedItems');
+      // }, 5000);
+    } catch (e) {
+      console.log(e);
     }
+    // }
   };
 
   return (
