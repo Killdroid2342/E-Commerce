@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
+import { decodeToken } from 'react-jwt';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import ResModal from './Forms/Form-Modal/ResModal';
@@ -19,6 +20,8 @@ const PaymentForm = () => {
   const [isChecked, setIsChecked] = useState(true);
   const [accountInfo, setAccountInfo] = useState<Account[]>([]);
   const [modal, setModal] = useState(false);
+  const [clientUsername, setClientUsername] = useState('');
+
   const [formData, setFormData] = useState({
     FullName: '',
     CardNumber: '',
@@ -30,12 +33,21 @@ const PaymentForm = () => {
   const instance = axios.create({
     baseURL: VITE_API_URL,
   });
+  const usernameJWT = () => {
+    const getJWT = Cookies.get('UserjwtToken');
+    if (getJWT) {
+      const decodedTokenUsername = (decodeToken(getJWT) as { username: string })
+        .username;
+      setClientUsername(decodedTokenUsername);
+    } else return;
+  };
   async function getAccountInfo() {
     const res = await instance.get('/card/accountInfo');
     setAccountInfo(res.data);
   }
   useEffect(() => {
     getAccountInfo();
+    usernameJWT();
   }, []);
   const storedItems = localStorage.getItem('basketItems');
   const items = storedItems ? JSON.parse(storedItems) : [];
@@ -49,7 +61,7 @@ const PaymentForm = () => {
         item.price,
         item.shoe,
         item.amount,
-        accountInfo[0]?.account,
+        clientUsername,
         'this is the data sent to the database'
       );
     });
@@ -64,51 +76,67 @@ const PaymentForm = () => {
   };
   const submitPayment = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('test');
-    // if (
-    //   formData.CardNumber === accountInfo[0]?.CardNumber &&
-    //   formData.FullName === accountInfo[0]?.FullName &&
-    //   formData.ExpirationDate === accountInfo[0]?.ExpirationDate &&
-    //   formData.SecurityCode === accountInfo[0]?.SecurityCode
-    // ) {
+
     const totalPrice = items.reduce(
       (acc: any, item: any) => acc + item.price,
       0
     );
-    console.log('test2');
+
     try {
-      await instance.post('/card/addMoney', {
-        account: accountInfo[0]?.account,
-        money: -totalPrice,
-      });
+      const matchingAccount = accountInfo.find(
+        (account) => account.account === clientUsername
+      );
 
-      items.forEach(async (item: any) => {
-        const response = await instance.post('/items/purchasedItems', {
-          name: item.name,
-          price: item.price,
-          shoe: item.shoe,
-          amount: item.amount,
-          account: accountInfo[0]?.account,
-        });
-        console.log(response, 'this is the response for item:', item);
-        setModal(response.data.message);
+      if (matchingAccount) {
+        const {
+          CardNumber: savedCardNumber,
+          FullName: savedFullName,
+          ExpirationDate: savedExpirationDate,
+          SecurityCode: savedSecurityCode,
+        } = matchingAccount;
 
-        setTimeout(() => {
-          setModal(false);
-        }, 2000);
-      });
+        if (
+          formData.CardNumber === savedCardNumber &&
+          formData.FullName === savedFullName &&
+          formData.ExpirationDate === savedExpirationDate &&
+          formData.SecurityCode === savedSecurityCode
+        ) {
+          await instance.post('/card/addMoney', {
+            account: clientUsername,
+            money: -totalPrice,
+          });
 
-      console.log('All purchases successful');
+          items.forEach(async (item: any) => {
+            const response = await instance.post('/items/purchasedItems', {
+              name: item.name,
+              price: item.price,
+              shoe: item.shoe,
+              amount: item.amount,
+              account: clientUsername,
+            });
 
-      // localStorage.removeItem('basketItems');
+            console.log(response, 'this is the response for item:', item);
+            setModal(response.data.message);
 
-      // setTimeout(() => {
-      //   navigate('/PurchasedItems');
-      // }, 5000);
+            setTimeout(() => {
+              setModal(false);
+            }, 2000);
+          });
+
+          console.log('All purchases successful');
+        } else {
+          console.log(
+            'Payment form data does not match the account information'
+          );
+        }
+      } else {
+        console.log(
+          'Client username does not match any account in accountInfo'
+        );
+      }
     } catch (e) {
       console.log(e);
     }
-    // }
   };
 
   return (
@@ -154,6 +182,7 @@ const PaymentForm = () => {
               maxLength={16}
               onChange={handleInputChange}
               name='CardNumber'
+              required
             />
           </div>
           <div className='mb-3'>
@@ -167,6 +196,7 @@ const PaymentForm = () => {
               maxLength={5}
               name='ExpirationDate'
               onChange={handleInputChange}
+              required
             />
           </div>
           <div className='mb-10 flex flex-col'>
@@ -178,6 +208,7 @@ const PaymentForm = () => {
               maxLength={3}
               onChange={handleInputChange}
               name='SecurityCode'
+              required
             />
           </div>
           <div>
