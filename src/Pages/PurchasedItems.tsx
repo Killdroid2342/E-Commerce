@@ -57,24 +57,31 @@ const PurchasedItems = () => {
           No items bought for this account.
         </p>
       ) : (
-        purchasedItems.map((item: any, key: any) => (
-          <div
-            key={key}
-            className='mb-4 p-4 border border-gray-300 rounded shadow-md'
-          >
-            <div className='flex flex-row items-center'>
-              <div className='mr-4'>
-                <img src={item.shoe} alt='' className='w-40' />
-              </div>
-              <div>
-                <p className='text-lg font-bold'>{item.name}</p>
-                <p>Account: {item.account}</p>
-                <p>Amount: {item.amount}</p>
-                <p>Price: ${item.price}</p>
+        <>
+          {purchasedItems.map((item: any, key: any) => (
+            <div
+              key={key}
+              className='mb-4 p-4 border border-gray-300 rounded shadow-md'
+            >
+              <div className='flex flex-row items-center'>
+                <div className='mr-4'>
+                  <img src={item.shoe} alt='' className='w-40' />
+                </div>
+                <div>
+                  <p className='text-lg font-bold'>{item.name}</p>
+                  <p>Account: {item.account}</p>
+                  <p>Amount: {item.amount}</p>
+                  <p>Price: ${item.price}</p>
+                </div>
               </div>
             </div>
+          ))}
+          <div className='text-center'>
+            <button className='bg-blue-500 text-white px-4 py-2 rounded mb-10 mt-10'>
+              Clear Purchase History
+            </button>
           </div>
-        ))
+        </>
       )}
     </>
   );
