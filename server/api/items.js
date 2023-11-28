@@ -10,6 +10,7 @@ const {
   searchItems,
   purchasedItems,
   getPurchasedItems,
+  clearPurchasedItems,
 } = require('../modal/items');
 
 router.use(bodyParser.json());
@@ -57,5 +58,19 @@ router.post('/purchasedItems', async (req, res) => {
     });
   }
 });
-
+router.post('/removePurchasedItems', async (req, res) => {
+  const { account } = req.body;
+  console.log(account);
+  try {
+    clearPurchasedItems(account);
+    res.send({
+      message: 'You have Cleared Items',
+    });
+  } catch (e) {
+    console.log(e);
+    res.send({
+      message: 'Failed to Clear Items',
+    });
+  }
+});
 module.exports = router;
