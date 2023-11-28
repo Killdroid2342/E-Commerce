@@ -23,7 +23,7 @@ interface AllItems {
 const Nav = ({ basketItems, setBasketItems }: any) => {
   const [dropdownNav, setDropdownNav] = useState(false);
   const [basketModal, setBasketModal] = useState(false);
-  const [accountInfo, setAccountinfo] = useState(false);
+  const [accountInfoModal, setAccountinfomodal] = useState(false);
   const [clientUsername, setClientUsername] = useState('');
   const [allItems, setAllItems] = useState<AllItems[]>([]);
   const isLoggedIn = !!clientUsername;
@@ -62,7 +62,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
     setBasketModal(!basketModal);
   };
   const openAccountInfo = () => {
-    setAccountinfo(!accountInfo);
+    setAccountinfomodal(!accountInfoModal);
   };
   const usernameJWT = () => {
     const getJWT = Cookies.get('UserjwtToken');
@@ -74,7 +74,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   };
   useEffect(() => {
     usernameJWT();
-  });
+  }, []);
   const deleteAccount = async () => {
     try {
       await instance.post('/user/delete-user', { username: clientUsername });
@@ -171,9 +171,9 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
                 className='p-5 ml-auto cursor-pointer'
                 onClick={openAccountInfo}
               >{`Account: ${clientUsername}`}</li>
-              {accountInfo && (
+              {accountInfoModal && (
                 <AccountInfo
-                  setAccountinfo={setAccountinfo}
+                  setAccountinfomodal={setAccountinfomodal}
                   clientUsername={clientUsername}
                 />
               )}

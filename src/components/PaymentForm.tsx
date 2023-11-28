@@ -120,6 +120,7 @@ const PaymentForm = () => {
 
             setTimeout(() => {
               setModal(false);
+              navigate('/PurchasedItems');
             }, 2000);
           });
 
