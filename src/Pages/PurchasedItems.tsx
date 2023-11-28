@@ -41,7 +41,20 @@ const PurchasedItems = () => {
     );
     setPurchasedItems(filteredItems);
   };
+  const clearPurchasedItems = async () => {
+    try {
+      const res = await instance.post('/items/removePurchasedItems', {
+        account: clientUsername,
+      });
 
+      const filteredItems = res.data.filter(
+        (item: any) => item.account === clientUsername
+      );
+      setPurchasedItems(filteredItems);
+    } catch (error) {
+      console.error('Error clearing purchased items:', error);
+    }
+  };
   useEffect(() => {
     localStorage.setItem('basketItems', JSON.stringify(basketItems));
     getPurchasedItems();
@@ -77,7 +90,10 @@ const PurchasedItems = () => {
             </div>
           ))}
           <div className='text-center'>
-            <button className='bg-blue-500 text-white px-4 py-2 rounded mb-10 mt-10'>
+            <button
+              onClick={clearPurchasedItems}
+              className='bg-blue-500 text-white px-4 py-2 rounded mb-10 mt-10'
+            >
               Clear Purchase History
             </button>
           </div>
