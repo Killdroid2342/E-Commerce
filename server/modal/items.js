@@ -35,6 +35,14 @@ const getPurchasedItems = async () => {
   conn.end();
   return res;
 };
+const clearPurchasedItems = async (account) => {
+  const conn = getDbConn();
+  const res = await conn
+    .promise()
+    .query('DELETE FROM ecommerce_purchaseditems WHERE account = ?', [account]);
+  conn.end();
+  return res;
+};
 const searchItems = async (name) => {
   const conn = getDbConn();
   const res = conn
@@ -72,4 +80,5 @@ module.exports = {
   searchItems,
   purchasedItems,
   getPurchasedItems,
+  clearPurchasedItems,
 };
