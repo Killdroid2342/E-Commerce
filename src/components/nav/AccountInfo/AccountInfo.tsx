@@ -11,7 +11,7 @@ interface Account {
   SecurityCode: string;
   FullName: string;
 }
-const AccountInfo = ({ setAccountinfo, clientUsername }: any) => {
+const AccountInfo = ({ setAccountinfomodal, clientUsername }: any) => {
   const [accountInfo, setAccountInfo] = useState<Account[]>([]);
   console.log(accountInfo);
   const instance = axios.create({
@@ -21,17 +21,21 @@ const AccountInfo = ({ setAccountinfo, clientUsername }: any) => {
   const navigate = useNavigate();
 
   const closeModal = () => {
-    setAccountinfo(false);
+    setAccountinfomodal(false);
   };
-
-  async function getAccountInfo() {
-    const res = await instance.get('/card/accountInfo');
-    setAccountInfo(res.data);
-  }
-
+  const getAccountInfo = async () => {
+    try {
+      const res = await instance.get('/card/accountInfo');
+      setAccountInfo(res.data);
+    } catch (error) {
+      console.log('Error fetching account information:', error);
+    }
+  };
   useEffect(() => {
+    console.log('asd');
     getAccountInfo();
   }, []);
+
   const filteredAccountInfo = accountInfo.filter(
     (account) => account.account === clientUsername
   );
