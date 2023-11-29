@@ -38,10 +38,16 @@ router.get('/getMainItems', async (req, res) => {
 });
 router.get('/getPurchasedItems', async (req, res) => {
   try {
-    const allPurchasedItems = await getPurchasedItems();
+    const { username } = req.query;
+    console.log(username, 'this is username');
+
+    const allPurchasedItems = await getPurchasedItems(username);
     res.send(JSON.stringify(allPurchasedItems));
   } catch (e) {
     console.log(e);
+    res.send({
+      message: 'Internal Server Error',
+    });
   }
 });
 router.post('/purchasedItems', async (req, res) => {
