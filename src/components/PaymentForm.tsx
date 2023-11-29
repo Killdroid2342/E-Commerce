@@ -117,7 +117,7 @@ const PaymentForm = () => {
 
             console.log(response, 'this is the response for item:', item);
             setModal(response.data.message);
-
+            localStorage.removeItem('basketItems');
             setTimeout(() => {
               setModal(false);
               navigate('/PurchasedItems');
