@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import Nav from '../components/nav/Nav';
 import Cookies from 'js-cookie';
 import { decodeToken } from 'react-jwt';
-const { VITE_API_URL } = import.meta.env;
 import axios from 'axios';
+
+const { VITE_API_URL } = import.meta.env;
 const instance = axios.create({
   baseURL: VITE_API_URL,
 });
+
 interface Items {
   img: string;
   des: string;
@@ -22,25 +24,8 @@ const PurchasedItems = () => {
   );
   const [purchasedItems, setPurchasedItems] = useState([]);
   const [clientUsername, setClientUsername] = useState('');
+  console.log(purchasedItems, 'this is purchased itemns');
 
-  const usernameJWT = () => {
-    const getJWT = Cookies.get('UserjwtToken');
-    if (getJWT) {
-      const decodedTokenUsername = (decodeToken(getJWT) as { username: string })
-        .username;
-      setClientUsername(decodedTokenUsername);
-    } else return;
-  };
-  const account = clientUsername;
-
-  const getPurchasedItems = async () => {
-    const res = await instance.get('/items/getPurchasedItems');
-
-    const filteredItems = res.data.filter(
-      (item: any) => item.account === account
-    );
-    setPurchasedItems(filteredItems);
-  };
   const clearPurchasedItems = async () => {
     try {
       const res = await instance.post('/items/removePurchasedItems', {
@@ -56,10 +41,38 @@ const PurchasedItems = () => {
     }
   };
   useEffect(() => {
-    localStorage.setItem('basketItems', JSON.stringify(basketItems));
-    getPurchasedItems();
+    const usernameJWT = async () => {
+      const getJWT = Cookies.get('UserjwtToken');
+      if (getJWT) {
+        const decodedTokenUsername = (
+          decodeToken(getJWT) as { username: string }
+        ).username;
+        setClientUsername(decodedTokenUsername);
+      }
+    };
+
     usernameJWT();
-  }, [basketItems, usernameJWT]);
+
+    const fetchPurchasedItems = async () => {
+      if (clientUsername) {
+        try {
+          const res = await instance.get('/items/getPurchasedItems', {
+            params: { username: clientUsername },
+          });
+          const filteredItems = res.data;
+          setPurchasedItems(filteredItems);
+        } catch (error) {
+          console.error('Error fetching purchased items:', error);
+        }
+      }
+    };
+
+    fetchPurchasedItems();
+  }, [clientUsername]);
+
+  useEffect(() => {
+    localStorage.setItem('basketItems', JSON.stringify(basketItems));
+  }, [basketItems, clientUsername]);
 
   return (
     <>
