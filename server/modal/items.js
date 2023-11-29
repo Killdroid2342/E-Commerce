@@ -24,17 +24,17 @@ const getMainItems = async () => {
   conn.end();
   return res;
 };
-const getPurchasedItems = async () => {
+const getPurchasedItems = async (account) => {
   const conn = getDbConn();
-  const res = conn
+  const [rows, fields] = await conn
     .promise()
-    .query('SELECT * FROM ecommerce_purchaseditems')
-    .then(([rows, fields]) => {
-      return rows;
-    });
+    .query('SELECT * FROM ecommerce_purchaseditems WHERE account = ?', [
+      account,
+    ]);
   conn.end();
-  return res;
+  return rows;
 };
+
 const clearPurchasedItems = async (account) => {
   const conn = getDbConn();
   const res = await conn
