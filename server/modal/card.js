@@ -33,17 +33,16 @@ const isCardForUserExists = (account) => {
   conn.end();
   return res;
 };
-const getAccountInfo = async () => {
+
+const getAccountInfo = async (account) => {
   const conn = getDbConn();
-  const res = conn
+  const [rows, fields] = await conn
     .promise()
-    .query('SELECT * FROM ecommerce_carddetails ')
-    .then(([rows, fields]) => {
-      return rows;
-    });
+    .query('SELECT * FROM ecommerce_carddetails WHERE account = ?', [account]);
   conn.end();
-  return res;
+  return rows;
 };
+
 const removeCard = (account) => {
   const conn = getDbConn();
   const res = conn
