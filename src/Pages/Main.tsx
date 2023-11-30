@@ -75,10 +75,10 @@ const Home = () => {
             {'>'}
           </button>
         </div>
-        <p className='font-bold ml-80 mt-10'>Recommended For You</p>
+        <p className='font-bold mt-10'>Recommended For You</p>
         <div className='flex justify-center'>
           {main.slice(0, 6).map((image, index) => (
-            <div key={index} className='relative group'>
+            <div key={index}>
               <img
                 src={image.img}
                 alt={`Product ${index}`}
@@ -97,7 +97,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <p className='font-bold ml-80 mt-10'>Popular Brands</p>
+        <p className='font-bold mt-10'>Popular Brands</p>
         <div className='flex justify-center'>
           {main.slice(6, 12).map((image, index) => (
             <div key={index} className='flex flex-col items-center'>
@@ -110,7 +110,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <p className='font-bold ml-80 mt-10'>Get The Latest Shoes</p>
+        <p className='font-bold mt-10'>Get The Latest Shoes</p>
         <div className='flex justify-center'>
           {main.slice(16, 20).map((image, index) => (
             <div key={index} className='flex flex-col items-center'>
@@ -122,7 +122,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <p className='font-bold ml-80 mt-10'>Get The Latest Items</p>
+        <p className='font-bold  mt-10'>Get The Latest Items</p>
         <div className='flex justify-center'>
           {accessories.slice(20, 24).map((image, index) => (
             <div key={index} className='flex flex-col items-center'>
@@ -134,7 +134,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <p className='font-bold ml-80 mt-10'>As Seen On Instagram</p>
+        <p className='font-bold mt-10'>As Seen On Instagram</p>
         <div className='flex justify-center'>
           {main.slice(12, 16).map((image, index) => (
             <div key={index} className='flex flex-col items-center'>
