@@ -23,16 +23,19 @@ const AccountInfo = ({ setAccountinfomodal, clientUsername }: any) => {
   const closeModal = () => {
     setAccountinfomodal(false);
   };
-  const getAccountInfo = async () => {
-    try {
-      const res = await instance.get('/card/accountInfo');
-      setAccountInfo(res.data);
-    } catch (error) {
-      console.log('Error fetching account information:', error);
-    }
-  };
+
   useEffect(() => {
-    console.log('asd');
+    const getAccountInfo = async () => {
+      try {
+        const res = await instance.get('/card/accountInfo', {
+          params: { username: clientUsername },
+        });
+        const filteredData = res.data;
+        setAccountInfo(filteredData);
+      } catch (error) {
+        console.log('Error fetching account information:', error);
+      }
+    };
     getAccountInfo();
   }, []);
 
