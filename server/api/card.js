@@ -71,9 +71,20 @@ router.post('/addMoney', async (req, res) => {
     });
   }
 });
+
 router.get('/accountInfo', async (req, res) => {
-  const accountDetails = await getAccountInfo();
-  res.send(JSON.stringify(accountDetails));
+  try {
+    const { username } = req.query;
+    console.log(username, 'this is username');
+
+    const accountDetails = await getAccountInfo(username);
+    res.send(JSON.stringify(accountDetails));
+  } catch (e) {
+    console.log(e);
+    res.send({
+      message: 'Internal Server Error',
+    });
+  }
 });
 
 module.exports = router;
