@@ -6,7 +6,6 @@
 .wholeCarousel {
   position: relative;
   display: inline-block;
-  border: 1px solid green;
 }
 
 .carouselContainer {
