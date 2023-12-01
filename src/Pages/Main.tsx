@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const { VITE_API_URL } = import.meta.env;
 import axios from 'axios';
 import { Item } from './Shoes';
-
+import './Main.css';
 const instance = axios.create({
   baseURL: VITE_API_URL,
 });
@@ -34,7 +34,7 @@ const Home = () => {
     initialBasketItems ? JSON.parse(initialBasketItems) : []
   );
   const navigate = useNavigate();
-  const preivImg = () => {
+  const prevImg = () => {
     setImg((prevImg) => (prevImg + 1) % carouselImages.length);
   };
 
@@ -61,90 +61,95 @@ const Home = () => {
   return (
     <>
       <Nav basketItems={basketItems} setBasketItems={setBasketItems} />
-      <div className='flex flex-col '>
-        <div className='flex justify-center mt-10'>
-          <button className='font-bold text-2xl' onClick={preivImg}>
-            {'<'}
-          </button>
-          <img
-            className='w-9/12 h-96'
-            src={carouselImages[img]}
-            alt={`Carousel Slide ${img}`}
-          />
-          <button className='font-bold text-2xl' onClick={nextImg}>
-            {'>'}
-          </button>
-        </div>
-        <p className='font-bold mt-10'>Recommended For You</p>
-        <div className='flex justify-center'>
-          {main.slice(0, 6).map((image, index) => (
-            <div key={index}>
+      <div className='outerAlign'>
+        <div className='flex flex-col border border-red-600 mb-10'>
+          <div className='wholeCarousel'>
+            <div className='carouselContainer'>
+              <button className='carouselButton' onClick={prevImg}>
+                {'<'}
+              </button>
               <img
-                src={image.img}
-                alt={`Product ${index}`}
-                className='w-56 h-48 m-1 border border-neutral-400 transition duration-300 ease-in-out transform group-hover:scale-105'
+                className='carousel'
+                src={carouselImages[img]}
+                alt={`Carousel Slide ${img}`}
               />
-              <div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-80 backdrop-blur-md transition-opacity duration-300'>
-                <div
-                  onClick={() => navigate('/shoes')}
-                  className='bg-black text-white text-center p-2 rounded-md'
-                >
-                  <p className='cursor-pointer'>
-                    Click here to go to shoes page
-                  </p>
+              <button className='carouselButton' onClick={nextImg}>
+                {'>'}
+              </button>
+            </div>
+          </div>
+
+          <p className='font-bold mt-10'>Recommended For You</p>
+          <div className='flex flex-row'>
+            {main.slice(0, 6).map((image, index) => (
+              <div key={index} className='relative group'>
+                <img
+                  src={image.img}
+                  alt={`Product ${index}`}
+                  className='w-56 h-48  border border-neutral-400 transition duration-300 ease-in-out transform group-hover:scale-105'
+                />
+                <div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-80 backdrop-blur-md transition-opacity duration-300'>
+                  <div
+                    onClick={() => navigate('/shoes')}
+                    className='bg-black text-white text-center p-2 rounded-md'
+                  >
+                    <p className='cursor-pointer'>
+                      Click here to go to shoes page
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-        <p className='font-bold mt-10'>Popular Brands</p>
-        <div className='flex justify-center'>
-          {main.slice(6, 12).map((image, index) => (
-            <div key={index} className='flex flex-col items-center'>
-              <img
-                src={image.img}
-                alt={`Product ${index}`}
-                className='w-56 h-48 m-1 border border-neutral-400'
-              />
-              <p>{image.name}</p>
-            </div>
-          ))}
-        </div>
-        <p className='font-bold mt-10'>Get The Latest Shoes</p>
-        <div className='flex justify-center'>
-          {main.slice(16, 20).map((image, index) => (
-            <div key={index} className='flex flex-col items-center'>
-              <img
-                src={image.img}
-                alt={'shoe Images'}
-                className='w-72 h-60 m-10 border border-neutral-400'
-              />
-            </div>
-          ))}
-        </div>
-        <p className='font-bold  mt-10'>Get The Latest Items</p>
-        <div className='flex justify-center'>
-          {accessories.slice(20, 24).map((image, index) => (
-            <div key={index} className='flex flex-col items-center'>
-              <img
-                src={image.img}
-                alt={'shoe Images'}
-                className='w-72 h-60 m-10 border border-neutral-400'
-              />
-            </div>
-          ))}
-        </div>
-        <p className='font-bold mt-10'>As Seen On Instagram</p>
-        <div className='flex justify-center'>
-          {main.slice(12, 16).map((image, index) => (
-            <div key={index} className='flex flex-col items-center'>
-              <img
-                src={image.img}
-                alt={'IG Images'}
-                className='w-72 h-72 m-10 border border-neutral-400'
-              />
-            </div>
-          ))}
+            ))}
+          </div>
+          <p className='font-bold mt-10'>Popular Brands</p>
+          <div className='flex flex-row'>
+            {main.slice(6, 12).map((image, index) => (
+              <div key={index} className='flex flex-col'>
+                <img
+                  src={image.img}
+                  alt={`Product ${index}`}
+                  className='w-56 h-48  border border-neutral-400'
+                />
+                <p>{image.name}</p>
+              </div>
+            ))}
+          </div>
+          <p className='font-bold mt-10'>Get The Latest Shoes</p>
+          <div className='flex flex-row'>
+            {main.slice(16, 20).map((image, index) => (
+              <div key={index} className='flex flex-col '>
+                <img
+                  src={image.img}
+                  alt={'shoe Images'}
+                  className='w-56 h-48  border border-neutral-400'
+                />
+              </div>
+            ))}
+          </div>
+          <p className='font-bold  mt-10'>Get The Latest Items</p>
+          <div className='flex flex-row'>
+            {accessories.slice(20, 24).map((image, index) => (
+              <div key={index} className=''>
+                <img
+                  src={image.img}
+                  alt={'shoe Images'}
+                  className='w-56 h-48 border border-neutral-400'
+                />
+              </div>
+            ))}
+          </div>
+          <p className='font-bold mt-10'>As Seen On Instagram</p>
+          <div className='flex flex-row'>
+            {main.slice(12, 16).map((image, index) => (
+              <div key={index} className='flex flex-col items-center'>
+                <img
+                  src={image.img}
+                  alt={'IG Images'}
+                  className='w-56 h-48 border border-neutral-400'
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <Footer />
