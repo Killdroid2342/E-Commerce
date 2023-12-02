@@ -11,7 +11,12 @@ interface Account {
   SecurityCode: string;
   FullName: string;
 }
-const AccountInfo = ({ setAccountinfomodal, clientUsername }: any) => {
+const AccountInfo = ({
+  setAccountinfomodal,
+  clientUsername,
+  LogOut,
+  deleteAccount,
+}: any) => {
   const [accountInfo, setAccountInfo] = useState<Account[]>([]);
   console.log(accountInfo);
   const instance = axios.create({
@@ -62,6 +67,15 @@ const AccountInfo = ({ setAccountinfomodal, clientUsername }: any) => {
               <p>Expiration Date: {account.ExpirationDate}</p>
               <p>Security Code: {account.SecurityCode}</p>
               <div className='flex flex-col'>
+                <li className='cursor-pointer font-bold' onClick={LogOut}>
+                  Log Out
+                </li>
+                <li
+                  className='cursor-pointer font-bold'
+                  onClick={deleteAccount}
+                >
+                  Delete Account
+                </li>
                 <p className='mt-5'>
                   View Your Card{' '}
                   <span
