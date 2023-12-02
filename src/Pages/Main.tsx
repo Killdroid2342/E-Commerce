@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const { VITE_API_URL } = import.meta.env;
 import axios from 'axios';
 import { Item } from './Shoes';
-import './Main.css';
+import '../Main.css';
 const instance = axios.create({
   baseURL: VITE_API_URL,
 });
@@ -25,7 +25,7 @@ const carouselImages = [
   '/assets/images//dummyImage2.png',
 ];
 
-const Home = () => {
+const Main = () => {
   const [img, setImg] = useState(0);
   const [accessories, setAccessories] = useState<Items[]>([]);
   const [main, setMain] = useState<Main[]>([]);
@@ -62,7 +62,7 @@ const Home = () => {
     <>
       <Nav basketItems={basketItems} setBasketItems={setBasketItems} />
       <div className='outerAlign'>
-        <div className='flex flex-col border border-red-600 mb-10'>
+        <div className='flex flex-col mb-10'>
           <div className='wholeCarousel'>
             <div className='carouselContainer'>
               <button className='carouselButton' onClick={prevImg}>
@@ -115,7 +115,7 @@ const Home = () => {
             ))}
           </div>
           <p className='font-bold mt-10'>Get The Latest Shoes</p>
-          <div className='flex flex-row'>
+          <div className='flex flex-row justify-between'>
             {main.slice(16, 20).map((image, index) => (
               <div key={index} className='flex flex-col '>
                 <img
@@ -126,8 +126,8 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <p className='font-bold  mt-10'>Get The Latest Items</p>
-          <div className='flex flex-row'>
+          <p className='font-bold mt-10'>Get The Latest Items</p>
+          <div className='flex flex-row justify-between'>
             {accessories.slice(20, 24).map((image, index) => (
               <div key={index} className=''>
                 <img
@@ -139,7 +139,7 @@ const Home = () => {
             ))}
           </div>
           <p className='font-bold mt-10'>As Seen On Instagram</p>
-          <div className='flex flex-row'>
+          <div className='flex flex-row justify-between'>
             {main.slice(12, 16).map((image, index) => (
               <div key={index} className='flex flex-col items-center'>
                 <img
@@ -157,4 +157,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Main;
