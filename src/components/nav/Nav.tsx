@@ -170,11 +170,13 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
               <li
                 className='p-5 ml-auto cursor-pointer'
                 onClick={openAccountInfo}
-              >{`Account: ${clientUsername}`}</li>
+              >{`Account Details`}</li>
               {accountInfoModal && (
                 <AccountInfo
                   setAccountinfomodal={setAccountinfomodal}
                   clientUsername={clientUsername}
+                  LogOut={LogOut}
+                  deleteAccount={deleteAccount}
                 />
               )}
               <li className='p-5 cursor-pointer relative' onClick={OpenModal}>
@@ -188,15 +190,6 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
                   basketModal={basketModal}
                 />
               )}
-              <li className='p-5 ml-auto cursor-pointer' onClick={LogOut}>
-                Log Out
-              </li>
-              <li
-                className='p-5 ml-auto cursor-pointer font-bold'
-                onClick={deleteAccount}
-              >
-                Delete Account
-              </li>
             </>
           ) : (
             <li
