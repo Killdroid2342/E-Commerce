@@ -37,3 +37,15 @@
   display: flex;
   justify-content: center;
 }
+.outerAlignFooter {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.footerMainContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1350px;
+  margin: 0 auto;
+}
