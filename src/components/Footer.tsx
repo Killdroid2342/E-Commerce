@@ -1,24 +1,29 @@
+import '../Main.css';
 const Footer = () => {
   return (
     <>
-      <footer className='bg-neutral-800'>
-        <h2 className='text-white pt-10 text-3xl'>StockX. Access the Now.</h2>
-        <ul className='flex flex-row justify-around'>
-          <li className='text-white text-2xl mt-10'>Shoes</li>
-          <li className='text-white text-2xl mt-10'>Accessories</li>
-          <li className='text-white text-2xl mt-10'>Electronics</li>
-        </ul>
-        <p className='font-bold text-white text-center mt-10 text-3xl'>
-          This is not the real StockX. This is just a project for my GitHub. DO
-          NOT ENTER ANY DETAILS ON THE SITE
-        </p>
+      <footer className='bg-neutral-800 flex flex-col justify-center'>
+        <div className='outerAlignFooter'>
+          <div className='footerMainContent'>
+            <h2 className='text-white pt-10 text-3xl'>
+              StockX. Access the Now.
+            </h2>
+            <ul className='flex flex-row'>
+              <li className='text-white text-2xl mt-10'>Shoes</li>
+              <li className='text-white text-2xl mt-10'>Accessories</li>
+              <li className='text-white text-2xl mt-10'>Electronics</li>
+            </ul>
+            <p className='font-bold text-white mt-10'>
+              This is not the real StockX. This is just a project for my GitHub.
+              DO NOT ENTER ANY DETAILS ON THE SITE
+            </p>
+            <p className='text-white mt-10 w-96 pl-5 p-2 border-2 border-white'>
+              United Kingdom | English | £GBP
+            </p>
+          </div>
+        </div>
         <div className='border border-neutral-500 mt-5'></div>
-
-        <p className='text-white mt-10 w-96 pl-5 p-2 text-2xl border-2 border-white'>
-          United Kingdom | English | £GBP
-        </p>
-
-        <div className='bg-neutral-950 text-center text-white p-10 mt-8'>
+        <div className='bg-neutral-950 text-white p-10 mt-8'>
           This GitHub repository, authored by Killdroid2342, is intended as a
           non-functional practice project, distinct from the actual StockX
           platform, and should not be mistaken for the genuine service. Serving
