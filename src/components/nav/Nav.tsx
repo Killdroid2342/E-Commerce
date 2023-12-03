@@ -86,28 +86,28 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
 
   return (
     <>
-      <nav className='fixed top-0 left-0 right-0 z-50 flex p-2 justify-evenly bg-white border-b border-neutral-300'>
+      <nav className='nav'>
         <img
           src='/assets/images/logo.png'
           alt=''
-          className='p-5 cursor-pointer h-20 w-40'
+          className='img'
           onClick={() => navigate('/main')}
         />
-        <div className='flex flex-col w-3/6'>
+        <div className='inputDiv'>
           <input
             type='search'
             name=''
             id=''
             placeholder='Search Item'
-            className='text-black w-full pl-10 h-16 border border-neutral-300 bg-neutral-100 focus:outline-none'
+            className='searchInput'
             onChange={handleChange}
           />
-          <div className='mt-4'>
-            <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+          <div className='ulDiv'>
+            <ul className='ulInputSearch'>
               {allItems.map((item: any) => (
                 <li
                   key={item.ID}
-                  className='flex flex-col p-4 border rounded cursor-pointer hover:bg-gray-100 transition duration-300'
+                  className='liSearch'
                   onClick={() => {
                     if (item.des === 'This is a Electronics') {
                       navigate('/Electronics');
