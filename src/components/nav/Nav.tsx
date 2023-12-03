@@ -87,15 +87,13 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   return (
     <>
       <nav className='fixed top-0 left-0 right-0 z-50 flex p-2 justify-evenly bg-white border-b border-neutral-300'>
-        <div>
-          <img
-            src='/assets/images/logo.png'
-            alt=''
-            width='200px'
-            className='p-5 cursor-pointer'
-            onClick={() => navigate('/main')}
-          />
-        </div>
+        <img
+          src='/assets/images/logo.png'
+          alt=''
+          width='200px'
+          className='p-5 cursor-pointer'
+          onClick={() => navigate('/main')}
+        />
         <div className='flex flex-col w-3/6'>
           <input
             type='search'
