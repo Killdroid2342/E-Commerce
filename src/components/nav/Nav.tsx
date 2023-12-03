@@ -90,46 +90,48 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
         <img
           src='/assets/images/logo.png'
           alt=''
-          width='200px'
-          className='p-5 cursor-pointer'
+          className='p-5 cursor-pointer h-20 w-40'
           onClick={() => navigate('/main')}
         />
-        <input
-          type='search'
-          name=''
-          id=''
-          placeholder='Search Item'
-          className='text-black pl-10 h-16 w-3/6 border border-neutral-300 bg-neutral-100 focus:outline-none'
-          onChange={handleChange}
-        />
-
-        <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4'>
-          {allItems.map((item: any) => (
-            <li
-              key={item.ID}
-              className='flex flex-col p-4 border rounded cursor-pointer hover:bg-gray-100 transition duration-300'
-              onClick={() => {
-                if (item.des === 'This is a Electronics') {
-                  navigate('/Electronics');
-                } else if (item.des === 'This is a shoe') {
-                  navigate('/shoes');
-                } else if (item.des === 'This is an accessories') {
-                  navigate('/Accessories');
-                } else return;
-              }}
-            >
-              <img
-                className='w-16 h-16 mb-2 mx-auto'
-                src={item.img}
-                alt={item.name}
-              />
-              <div className='text-center'>
-                <h3 className='text-lg font-semibold'>{item.name}</h3>
-                <p className='text-sm text-gray-600'>{item.des}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <div className='flex flex-col w-3/6'>
+          <input
+            type='search'
+            name=''
+            id=''
+            placeholder='Search Item'
+            className='text-black w-full pl-10 h-16 border border-neutral-300 bg-neutral-100 focus:outline-none'
+            onChange={handleChange}
+          />
+          <div className='mt-4'>
+            <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+              {allItems.map((item: any) => (
+                <li
+                  key={item.ID}
+                  className='flex flex-col p-4 border rounded cursor-pointer hover:bg-gray-100 transition duration-300'
+                  onClick={() => {
+                    if (item.des === 'This is a Electronics') {
+                      navigate('/Electronics');
+                    } else if (item.des === 'This is a shoe') {
+                      navigate('/shoes');
+                    } else if (item.des === 'This is an accessories') {
+                      navigate('/Accessories');
+                    } else return;
+                  }}
+                >
+                  <img
+                    className='w-16 h-16 mb-2 mx-auto'
+                    src={item.img}
+                    alt={item.name}
+                  />
+                  <div className='text-center'>
+                    <h3 className='text-lg font-semibold'>{item.name}</h3>
+                    <p className='text-sm text-gray-600'>{item.des}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
         <ul className='flex'>
           <li
             className='p-5 cursor-pointer relative'
@@ -196,26 +198,27 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
           )}
         </ul>
       </nav>
-
-      <div className='flex justify-evenly bg-neutral-100 p-5 pt-24 '>
-        <p
-          className='font-bold cursor-pointer'
-          onClick={() => navigate('/shoes')}
-        >
-          Shoes
-        </p>
-        <p
-          className='font-bold cursor-pointer'
-          onClick={() => navigate('/Accessories')}
-        >
-          Accessories
-        </p>
-        <p
-          className='font-bold cursor-pointer'
-          onClick={() => navigate('/Electronics')}
-        >
-          Electronics
-        </p>
+      <div className='pt-24'>
+        <div className='flex justify-evenly bg-neutral-100 p-5 '>
+          <p
+            className='font-bold cursor-pointer'
+            onClick={() => navigate('/shoes')}
+          >
+            Shoes
+          </p>
+          <p
+            className='font-bold cursor-pointer'
+            onClick={() => navigate('/Accessories')}
+          >
+            Accessories
+          </p>
+          <p
+            className='font-bold cursor-pointer'
+            onClick={() => navigate('/Electronics')}
+          >
+            Electronics
+          </p>
+        </div>
       </div>
     </>
   );
