@@ -132,21 +132,18 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
           <li className='browseLI' onMouseEnter={hover} onMouseLeave={leave}>
             Browse
             {dropdownNav && (
-              <ul className='absolute bg-neutral-50 p-2 mt-2 text-black border border-black rounded-md'>
-                <li
-                  className='hover:bg-neutral-400 cursor-pointer'
-                  onClick={() => navigate('/shoes')}
-                >
+              <ul className='hoverBrowse'>
+                <li className='liHover' onClick={() => navigate('/shoes')}>
                   Shoes
                 </li>
                 <li
-                  className='hover:bg-neutral-400 cursor-pointer'
+                  className='liHover'
                   onClick={() => navigate('/Accessories')}
                 >
                   Accessories
                 </li>
                 <li
-                  className='hover:bg-neutral-400 cursor-pointer'
+                  className='liHover'
                   onClick={() => navigate('/Electronics')}
                 >
                   Electronics
@@ -157,7 +154,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
           {isLoggedIn ? (
             <>
               <li
-                className='p-5 ml-auto cursor-pointer'
+                className='loginLIDetails'
                 onClick={openAccountInfo}
               >{`Account Details`}</li>
               {accountInfoModal && (
@@ -168,7 +165,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
                   deleteAccount={deleteAccount}
                 />
               )}
-              <li className='p-5 cursor-pointer relative' onClick={OpenModal}>
+              <li className='loginLIContent' onClick={OpenModal}>
                 {`Basket: 🛒`}
               </li>
               {basketModal && (
@@ -181,36 +178,32 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
               )}
             </>
           ) : (
-            <li
-              className='p-5 ml-auto cursor-pointer'
-              onClick={() => navigate('/')}
-            >
+            <li className='loginLIContent' onClick={() => navigate('/')}>
               Sign Up
             </li>
           )}
         </ul>
       </nav>
-      <div className='pt-24'>
-        <div className='flex justify-evenly bg-neutral-100 p-5 '>
-          <p
-            className='font-bold cursor-pointer'
-            onClick={() => navigate('/shoes')}
-          >
-            Shoes
-          </p>
-          <p
-            className='font-bold cursor-pointer'
-            onClick={() => navigate('/Accessories')}
-          >
-            Accessories
-          </p>
-          <p
-            className='font-bold cursor-pointer'
-            onClick={() => navigate('/Electronics')}
-          >
-            Electronics
-          </p>
-        </div>
+
+      <div className='contentDiv'>
+        <p
+          className='font-bold cursor-pointer'
+          onClick={() => navigate('/shoes')}
+        >
+          Shoes
+        </p>
+        <p
+          className='font-bold cursor-pointer'
+          onClick={() => navigate('/Accessories')}
+        >
+          Accessories
+        </p>
+        <p
+          className='font-bold cursor-pointer'
+          onClick={() => navigate('/Electronics')}
+        >
+          Electronics
+        </p>
       </div>
     </>
   );
