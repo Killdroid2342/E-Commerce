@@ -82,6 +82,33 @@ a {
 .liSearch :hover {
   background-color: #f3f4f6;
 }
+.searchImg {
+  margin-bottom: 0.5rem;
+  width: 4rem;
+  height: 4rem;
+}
+.contentDiv {
+  text-align: center;
+}
+
+.contentName {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+.contentDes {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #4b5563;
+}
+.browseUL {
+  display: flex;
+}
+.browseLI {
+  position: relative;
+  padding: 1.25rem;
+  cursor: pointer;
+}
 @media (min-width: 640px) {
   .ulInputSearch {
     grid-template-columns: repeat(2, minmax(0, 1fr));
