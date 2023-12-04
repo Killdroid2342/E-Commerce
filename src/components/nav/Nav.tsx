@@ -118,26 +118,18 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
                     } else return;
                   }}
                 >
-                  <img
-                    className='w-16 h-16 mb-2 mx-auto'
-                    src={item.img}
-                    alt={item.name}
-                  />
-                  <div className='text-center'>
-                    <h3 className='text-lg font-semibold'>{item.name}</h3>
-                    <p className='text-sm text-gray-600'>{item.des}</p>
+                  <img className='searchImg' src={item.img} alt={item.name} />
+                  <div className='contentDiv'>
+                    <h3 className='contentName'>{item.name}</h3>
+                    <p className='contentDes'>{item.des}</p>
                   </div>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <ul className='flex'>
-          <li
-            className='p-5 cursor-pointer relative'
-            onMouseEnter={hover}
-            onMouseLeave={leave}
-          >
+        <ul className='browseUL'>
+          <li className='browseLI' onMouseEnter={hover} onMouseLeave={leave}>
             Browse
             {dropdownNav && (
               <ul className='absolute bg-neutral-50 p-2 mt-2 text-black border border-black rounded-md'>
