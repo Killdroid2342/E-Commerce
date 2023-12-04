@@ -109,6 +109,37 @@ a {
   padding: 1.25rem;
   cursor: pointer;
 }
+.hoverBrowse {
+  position: absolute;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.375rem;
+  border-width: 1px;
+  border-color: #000000;
+  color: #000000;
+}
+.liHover {
+  cursor: pointer;
+}
+.liHover:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(163 163 163 / var(--tw-bg-opacity));
+}
+.loginLIDetails {
+  padding: 1.25rem;
+  cursor: pointer;
+}
+.loginLIContent {
+  position: relative;
+  padding: 1.25rem;
+  cursor: pointer;
+}
+.contentDiv {
+  display: flex;
+  padding: 1.25rem;
+  padding-top: 6rem;
+  justify-content: space-evenly;
+}
 @media (min-width: 640px) {
   .ulInputSearch {
     grid-template-columns: repeat(2, minmax(0, 1fr));
