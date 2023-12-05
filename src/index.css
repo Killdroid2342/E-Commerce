@@ -117,6 +117,7 @@ a {
   border-width: 1px;
   border-color: #000000;
   color: #000000;
+  background-color: white;
 }
 .liHover {
   cursor: pointer;
@@ -140,6 +141,16 @@ a {
   padding-top: 6rem;
   justify-content: space-evenly;
 }
+.mainContentDiv {
+  display: flex;
+  padding: 1.25rem;
+  margin-top: 6rem;
+  justify-content: space-evenly;
+}
+.mainContent {
+  font-weight: 700;
+  cursor: pointer;
+}
 @media (min-width: 640px) {
   .ulInputSearch {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -155,8 +166,18 @@ a {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
-/* @media screen and (max-width: 600px) {
-} */
+@media screen and (min-width: 601px) {
+  .menu-button {
+    display: none; /* Hide the menu button for widths greater than 600px */
+  }
+}
+@media screen and (max-width: 601px) {
+  .browseLI,
+  .loginLIDetails,
+  .loginLIContent {
+    display: none;
+  }
+}
 
 @tailwind base;
 @tailwind components;
