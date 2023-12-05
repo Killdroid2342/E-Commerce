@@ -88,6 +88,33 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   return (
     <>
       <nav className='nav'>
+        <button
+          className='menu-button'
+          onClick={() => setDropdownNav(!dropdownNav)}
+        >
+          <span className='menu-icon'>
+            &#9776;
+            {dropdownNav && (
+              <ul className='hoverBrowse'>
+                <li className='liHover' onClick={() => navigate('/shoes')}>
+                  Shoes
+                </li>
+                <li
+                  className='liHover'
+                  onClick={() => navigate('/Accessories')}
+                >
+                  Accessories
+                </li>
+                <li
+                  className='liHover'
+                  onClick={() => navigate('/Electronics')}
+                >
+                  Electronics
+                </li>
+              </ul>
+            )}
+          </span>
+        </button>
         <img
           src='/assets/images/logo.png'
           alt=''
@@ -129,33 +156,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
             </ul>
           </div>
         </div>
-        <button
-          className='menu-button'
-          onClick={() => setDropdownNav(!dropdownNav)}
-        >
-          <span className='menu-icon'>
-            &#9776;
-            {dropdownNav && (
-              <ul className='hoverBrowse'>
-                <li className='liHover' onClick={() => navigate('/shoes')}>
-                  Shoes
-                </li>
-                <li
-                  className='liHover'
-                  onClick={() => navigate('/Accessories')}
-                >
-                  Accessories
-                </li>
-                <li
-                  className='liHover'
-                  onClick={() => navigate('/Electronics')}
-                >
-                  Electronics
-                </li>
-              </ul>
-            )}
-          </span>
-        </button>
+
         <ul className='browseUL'>
           <li className='browseLI' onMouseEnter={hover} onMouseLeave={leave}>
             Browse

@@ -177,6 +177,9 @@ a {
   .loginLIContent {
     display: none;
   }
+  .hoverBrowse {
+    border: 1px solid red;
+  }
 }
 
 @tailwind base;
