@@ -72,6 +72,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
       setClientUsername(decodedTokenUsername);
     } else return;
   };
+
   useEffect(() => {
     usernameJWT();
   }, []);
@@ -128,6 +129,33 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
             </ul>
           </div>
         </div>
+        <button
+          className='menu-button'
+          onClick={() => setDropdownNav(!dropdownNav)}
+        >
+          <span className='menu-icon'>
+            &#9776;
+            {dropdownNav && (
+              <ul className='hoverBrowse'>
+                <li className='liHover' onClick={() => navigate('/shoes')}>
+                  Shoes
+                </li>
+                <li
+                  className='liHover'
+                  onClick={() => navigate('/Accessories')}
+                >
+                  Accessories
+                </li>
+                <li
+                  className='liHover'
+                  onClick={() => navigate('/Electronics')}
+                >
+                  Electronics
+                </li>
+              </ul>
+            )}
+          </span>
+        </button>
         <ul className='browseUL'>
           <li className='browseLI' onMouseEnter={hover} onMouseLeave={leave}>
             Browse
@@ -185,23 +213,14 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
         </ul>
       </nav>
 
-      <div className='contentDiv'>
-        <p
-          className='font-bold cursor-pointer'
-          onClick={() => navigate('/shoes')}
-        >
+      <div className='flex justify-evenly bg-neutral-100 p-5 mt-24 mainContentDiv'>
+        <p className='mainContent' onClick={() => navigate('/shoes')}>
           Shoes
         </p>
-        <p
-          className='font-bold cursor-pointer'
-          onClick={() => navigate('/Accessories')}
-        >
+        <p className='mainContent' onClick={() => navigate('/Accessories')}>
           Accessories
         </p>
-        <p
-          className='font-bold cursor-pointer'
-          onClick={() => navigate('/Electronics')}
-        >
+        <p className='mainContent' onClick={() => navigate('/Electronics')}>
           Electronics
         </p>
       </div>
