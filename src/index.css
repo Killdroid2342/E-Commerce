@@ -167,21 +167,48 @@ a {
   }
 }
 @media screen and (min-width: 601px) {
-  .menu-button {
-    display: none; /* Hide the menu button for widths greater than 600px */
+  .searchIcon {
+    display: none;
+  }
+
+  .inputDiv {
+    display: none;
+  }
+
+  .searchIcon.active {
+    display: block;
+  }
+
+  .inputDiv.active {
+    display: flex;
+    flex-direction: column;
   }
 }
+
 @media screen and (max-width: 601px) {
   .browseLI,
   .loginLIDetails,
   .loginLIContent {
     display: none;
   }
-  .hoverBrowse {
-    border: 1px solid red;
+
+  .searchIcon {
+    display: block;
+  }
+
+  .inputDiv {
+    display: none;
+  }
+
+  .searchIcon.active {
+    display: none;
+  }
+
+  .inputDiv.active {
+    display: flex;
+    flex-direction: column;
   }
 }
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
