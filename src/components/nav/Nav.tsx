@@ -26,6 +26,11 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   const [accountInfoModal, setAccountinfomodal] = useState(false);
   const [clientUsername, setClientUsername] = useState('');
   const [allItems, setAllItems] = useState<AllItems[]>([]);
+  const [searchActive, setSearchActive] = useState(false);
+
+  const toggleSearch = () => {
+    setSearchActive(!searchActive);
+  };
   const isLoggedIn = !!clientUsername;
   const navigate = useNavigate();
 
@@ -87,7 +92,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
 
   return (
     <>
-      <nav className='nav'>
+      <nav className={`nav ${searchActive ? 'search-active' : ''}`}>
         <button
           className='menu-button'
           onClick={() => setDropdownNav(!dropdownNav)}
@@ -121,7 +126,13 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
           className='img'
           onClick={() => navigate('/main')}
         />
-        <div className='inputDiv'>
+        <div
+          className={`searchIcon ${searchActive ? 'active' : ''}`}
+          onClick={toggleSearch}
+        >
+          X
+        </div>
+        <div className={`inputDiv ${searchActive ? 'active' : ''}`}>
           <input
             type='search'
             name=''
@@ -156,6 +167,11 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
             </ul>
           </div>
         </div>
+        {searchActive && (
+          <div className='closeSearchButton' onClick={toggleSearch}>
+            X
+          </div>
+        )}
 
         <ul className='browseUL'>
           <li className='browseLI' onMouseEnter={hover} onMouseLeave={leave}>
