@@ -151,6 +151,29 @@ a {
   font-weight: 700;
   cursor: pointer;
 }
+.hideLogo {
+  display: none;
+}
+
+.img.active {
+  display: none;
+}
+
+.img {
+  padding: 1.25rem;
+  width: 10rem;
+  height: 5rem;
+  cursor: pointer;
+}
+
+.img.active,
+.inputDiv {
+  padding-left: 0.5rem;
+}
+
+.inputDiv.active {
+  width: 70%;
+}
 @media (min-width: 640px) {
   .ulInputSearch {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -170,11 +193,6 @@ a {
   .searchIcon {
     display: none;
   }
-
-  .inputDiv {
-    display: none;
-  }
-
   .searchIcon.active {
     display: block;
   }
@@ -182,6 +200,9 @@ a {
   .inputDiv.active {
     display: flex;
     flex-direction: column;
+  }
+  .menu-button {
+    display: none;
   }
 }
 
@@ -191,9 +212,14 @@ a {
   .loginLIContent {
     display: none;
   }
-
-  .searchIcon {
-    display: block;
+  .hoverBrowse {
+    border: 1px solid red;
+  }
+  .searchIcon,
+  .closeSearchButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .inputDiv {
