@@ -123,14 +123,14 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
         <img
           src='/assets/images/logo.png'
           alt=''
-          className='img'
+          className={`img ${searchActive ? 'active' : ''}`}
           onClick={() => navigate('/main')}
         />
         <div
           className={`searchIcon ${searchActive ? 'active' : ''}`}
           onClick={toggleSearch}
         >
-          X
+          🔍
         </div>
         <div className={`inputDiv ${searchActive ? 'active' : ''}`}>
           <input
