@@ -226,6 +226,41 @@ a {
 .inputDiv.active {
   width: 70%;
 }
+.footerHeader {
+  padding-top: 2.5rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  color: #ffffff;
+}
+.navli {
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: #ffffff;
+}
+.footerDisclaimer {
+  margin-top: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+.languagefooter {
+  padding: 0.5rem;
+  padding-left: 1.25rem;
+  margin-top: 2.5rem;
+  border-width: 2px;
+  border-color: #ffffff;
+  width: 24rem;
+  color: #ffffff;
+}
+.aboveText {
+  margin-top: 1.25rem;
+  border-width: 1px;
+}
+.mainFooterText {
+  padding: 2.5rem;
+  margin-top: 2rem;
+  color: #ffffff;
+}
 @media (min-width: 640px) {
   .ulInputSearch {
     grid-template-columns: repeat(2, minmax(0, 1fr));
