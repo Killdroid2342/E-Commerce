@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const { VITE_API_URL } = import.meta.env;
 import axios from 'axios';
 import { Item } from './Shoes';
-import '../Main.css';
+
 const instance = axios.create({
   baseURL: VITE_API_URL,
 });
