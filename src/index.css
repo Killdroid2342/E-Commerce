@@ -261,6 +261,10 @@ a {
   margin-top: 2rem;
   color: #ffffff;
 }
+.aroundPages {
+  display: flex;
+  flex-direction: row;
+}
 @media (min-width: 640px) {
   .ulInputSearch {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -323,6 +327,16 @@ a {
   }
 }
 @media screen and (max-width: 390px) {
+  .languagefooter {
+    /* border: 1px solid green; */
+    width: 200px;
+  }
+}
+@media screen and (max-width: 325px) {
+  .aroundPages {
+    display: flex;
+    flex-direction: column;
+  }
 }
 @tailwind base;
 @tailwind components;
