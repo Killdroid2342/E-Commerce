@@ -5,7 +5,7 @@ const Footer = () => {
         <div className='outerAlignFooter'>
           <div className='footerMainContent'>
             <h2 className='footerHeader'>StockX. Access the Now.</h2>
-            <ul className='flex flex-row'>
+            <ul className='aroundPages'>
               <li className='navli'>Shoes</li>
               <li className='navli'>Accessories</li>
               <li className='navli'>Electronics</li>
