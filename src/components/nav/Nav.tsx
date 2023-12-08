@@ -27,6 +27,7 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
   const [clientUsername, setClientUsername] = useState('');
   const [allItems, setAllItems] = useState<AllItems[]>([]);
   const [searchActive, setSearchActive] = useState(false);
+  const [mobileItemsModal, setMobileItemsModal] = useState(false);
 
   const toggleSearch = () => {
     setSearchActive(!searchActive);
@@ -89,7 +90,9 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
       console.error(e);
     }
   };
-
+  const toggleMobileItemsModal = () => {
+    setMobileItemsModal(!mobileItemsModal);
+  };
   return (
     <>
       <nav className={`nav ${searchActive ? 'search-active' : ''}`}>
@@ -131,6 +134,12 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
           onClick={toggleSearch}
         >
           🔍
+        </div>
+        <div
+          className={`searchIcon ${searchActive ? 'active' : ''}`}
+          onClick={toggleMobileItemsModal}
+        >
+          🎒
         </div>
         <div className={`inputDiv ${searchActive ? 'active' : ''}`}>
           <input
@@ -205,6 +214,14 @@ const Nav = ({ basketItems, setBasketItems }: any) => {
               {accountInfoModal && (
                 <AccountInfo
                   setAccountinfomodal={setAccountinfomodal}
+                  clientUsername={clientUsername}
+                  LogOut={LogOut}
+                  deleteAccount={deleteAccount}
+                />
+              )}
+              {mobileItemsModal && (
+                <AccountInfo
+                  setAccountinfomodal={setMobileItemsModal}
                   clientUsername={clientUsername}
                   LogOut={LogOut}
                   deleteAccount={deleteAccount}
