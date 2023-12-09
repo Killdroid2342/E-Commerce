@@ -265,6 +265,24 @@ a {
   display: flex;
   flex-direction: row;
 }
+
+.outerDiv {
+  display: flex;
+  flex-direction: column;
+}
+.outerDescBox {
+  display: flex;
+  justify-content: center;
+}
+.mainBox {
+  padding: 4rem;
+  margin-top: 10rem;
+  width: 66.666667%;
+}
+.Heading {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
 @media (min-width: 640px) {
   .ulInputSearch {
     grid-template-columns: repeat(2, minmax(0, 1fr));
