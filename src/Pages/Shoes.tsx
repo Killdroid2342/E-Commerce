@@ -83,26 +83,23 @@ const Shoes = () => {
           <h2 className='Heading'>Shoes</h2>
           <p>
             Buy and Sell Shoes on StockX. Every item is
-            <a className='text-green-900'> StockX Verified.</a>
+            <a className='text-green-900 pText'> StockX Verified.</a>
           </p>
         </div>
       </div>
-      <div className='flex justify-center flex-row mt-20'>
+      <div className='imgGrid'>
         {shoes.slice(0, 4).map((image, index) => (
-          <div
-            key={index}
-            className='border border-neutral-400 m-10 cursor-pointer w-60'
-          >
+          <div key={index} className='imgDiv'>
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='h-48 border border-red-700'
+              className='mainImg'
               onClick={() => openModal(image.img)}
             />
-            <p className='font-bold'>{image.name}</p>
+            <p className='imgName'>{image.name}</p>
             <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
+            <p className='imgLowPrice'>{image.lowPrice}</p>
+            <p className='imgPrice'>{image.price}</p>
           </div>
         ))}
         {modalI && (
