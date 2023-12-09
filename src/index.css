@@ -283,6 +283,37 @@ a {
   font-size: 2.25rem;
   line-height: 2.5rem;
 }
+.pText {
+  color: #064e3b;
+}
+.imgGrid {
+  display: flex;
+  margin-top: 5rem;
+  flex-direction: row;
+  justify-content: center;
+}
+.imgDiv {
+  margin: 2.5rem;
+  border-width: 1px;
+  cursor: pointer;
+}
+.mainImg {
+  border-width: 1px;
+  border-color: #b91c1c;
+  height: 12rem;
+}
+.imgName {
+  font-weight: bold;
+}
+.imgLowPrice {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.imgPrice {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
 @media (min-width: 640px) {
   .ulInputSearch {
     grid-template-columns: repeat(2, minmax(0, 1fr));
