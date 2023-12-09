@@ -76,11 +76,11 @@ const Shoes = () => {
   }, [shoes, basketItems]);
 
   return (
-    <div className='flex flex-col'>
+    <div className='outerDiv'>
       <Nav basketItems={basketItems} setBasketItems={setBasketItems} />
-      <div className='flex justify-center'>
-        <div className='mt-40 p-16 w-8/12 bg-neutral-200'>
-          <h2 className='text-4xl'>Shoes</h2>
+      <div className='outerDescBox'>
+        <div className='mainBox'>
+          <h2 className='Heading'>Shoes</h2>
           <p>
             Buy and Sell Shoes on StockX. Every item is
             <a className='text-green-900'> StockX Verified.</a>
@@ -96,7 +96,7 @@ const Shoes = () => {
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48 border border-red-700'
+              className='h-48 border border-red-700'
               onClick={() => openModal(image.img)}
             />
             <p className='font-bold'>{image.name}</p>
@@ -125,7 +125,7 @@ const Shoes = () => {
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48 '
+              className='h-48 border border-red-700'
               onClick={() => openModal(image.img)}
             />
             <p className='font-bold'>{image.name}</p>
@@ -154,7 +154,7 @@ const Shoes = () => {
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48'
+              className='h-48 border border-red-700'
               onClick={() => openModal(image.img)}
             />
             <p className='font-bold'>{image.name}</p>
