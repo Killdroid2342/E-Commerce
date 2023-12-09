@@ -96,7 +96,7 @@ const Shoes = () => {
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48 m-1 '
+              className='w-56 h-48 border border-red-700'
               onClick={() => openModal(image.img)}
             />
             <p className='font-bold'>{image.name}</p>
@@ -125,7 +125,7 @@ const Shoes = () => {
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48 m-1 '
+              className='w-56 h-48 '
               onClick={() => openModal(image.img)}
             />
             <p className='font-bold'>{image.name}</p>
@@ -154,7 +154,7 @@ const Shoes = () => {
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48 m-1 '
+              className='w-56 h-48'
               onClick={() => openModal(image.img)}
             />
             <p className='font-bold'>{image.name}</p>
