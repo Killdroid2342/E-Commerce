@@ -74,33 +74,30 @@ const Electronics = () => {
   }, [basketItems, electronics]);
 
   return (
-    <div className='flex flex-col'>
+    <div className='outerDiv'>
       <Nav basketItems={basketItems} setBasketItems={setBasketItems} />
-      <div className='flex justify-center'>
-        <div className='mt-40 p-16 w-8/12 bg-neutral-200'>
-          <h2 className='text-4xl'>Electronics</h2>
+      <div className='outerDescBox'>
+        <div className='mainBox'>
+          <h2 className='Heading'>Shoes</h2>
           <p>
             Buy and Sell Electronics on StockX. Every item is
-            <a className='text-green-900'> StockX Verified.</a>
+            <a className='pText'> StockX Verified.</a>
           </p>
         </div>
       </div>
-      <div className='flex justify-center flex-row mt-20'>
+      <div className='imgGrid'>
         {electronics.slice(12, 16).map((image, index) => (
-          <div
-            key={index}
-            className='border border-neutral-400 m-10 cursor-pointer w-60'
-          >
+          <div key={index} className='imgDiv'>
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48 m-1 '
+              className='mainImg'
               onClick={() => openModal(image.img)}
             />
-            <p className='font-bold'>{image.name}</p>
+            <p className='imgName'>{image.name}</p>
             <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
+            <p className='imgLowPrice'>{image.lowPrice}</p>
+            <p className='imgPrice'>{image.price}</p>
           </div>
         ))}
         {modalI && (
@@ -114,7 +111,7 @@ const Electronics = () => {
           />
         )}
       </div>
-      <div className='flex justify-center flex-row '>
+      <div className='flex justify-center flex-row'>
         {electronics.slice(16, 20).map((image, index) => (
           <div
             key={index}
@@ -123,7 +120,7 @@ const Electronics = () => {
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48 m-1 '
+              className='w-56 h-48'
               onClick={() => openModal(image.img)}
             />
             <p className='font-bold'>{image.name}</p>
@@ -152,7 +149,7 @@ const Electronics = () => {
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48 m-1 '
+              className='w-56 h-48'
               onClick={() => openModal(image.img)}
             />
             <p className='font-bold'>{image.name}</p>
