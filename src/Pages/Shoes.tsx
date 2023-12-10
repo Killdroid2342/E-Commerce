@@ -83,7 +83,7 @@ const Shoes = () => {
           <h2 className='Heading'>Shoes</h2>
           <p>
             Buy and Sell Shoes on StockX. Every item is
-            <a className='text-green-900 pText'> StockX Verified.</a>
+            <a className='pText'> StockX Verified.</a>
           </p>
         </div>
       </div>
