@@ -111,22 +111,19 @@ const Electronics = () => {
           />
         )}
       </div>
-      <div className='flex justify-center flex-row'>
+      <div className='imgGrid'>
         {electronics.slice(16, 20).map((image, index) => (
-          <div
-            key={index}
-            className='border border-neutral-400 m-10 cursor-pointer w-60'
-          >
+          <div key={index} className='imgDiv'>
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48'
+              className='mainImg'
               onClick={() => openModal(image.img)}
             />
-            <p className='font-bold'>{image.name}</p>
+            <p className='imgName'>{image.name}</p>
             <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
+            <p className='imgLowPrice'>{image.lowPrice}</p>
+            <p className='imgPrice'>{image.price}</p>
           </div>
         ))}
         {modalI && (
@@ -140,23 +137,19 @@ const Electronics = () => {
           />
         )}
       </div>
-      <div className='flex justify-center flex-row '>
+      <div className='imgGrid'>
         {electronics.slice(20, 24).map((image, index) => (
-          <div
-            key={index}
-            className='border border-neutral-400 m-10 cursor-pointer w-60'
-          >
+          <div key={index} className='imgDiv'>
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48'
+              className='mainImg'
               onClick={() => openModal(image.img)}
             />
-            <p className='font-bold'>{image.name}</p>
-
+            <p className='imgName'>{image.name}</p>
             <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
+            <p className='imgLowPrice'>{image.lowPrice}</p>
+            <p className='imgPrice'>{image.price}</p>
           </div>
         ))}
         {modalI && (
