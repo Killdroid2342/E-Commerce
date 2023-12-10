@@ -73,18 +73,18 @@ const Accessories = () => {
   }, [basketItems, accessories]);
 
   return (
-    <div className='flex flex-col'>
+    <div className='outerDiv'>
       <Nav basketItems={basketItems} setBasketItems={setBasketItems} />
-      <div className='flex justify-center'>
-        <div className='mt-40 p-16 w-8/12 bg-neutral-200'>
-          <h2 className='text-4xl'>Accessories</h2>
+      <div className='outerDescBox'>
+        <div className='mainBox'>
+          <h2 className='Heading'>Shoes</h2>
           <p>
             Buy and Sell Accessories on StockX. Every item is
-            <a className='text-green-900'> StockX Verified.</a>
+            <a className='pText'> StockX Verified.</a>
           </p>
         </div>
       </div>
-      <div className='flex justify-center flex-row mt-20'>
+      <div className='imgGrid'>
         {accessories.slice(24, 28).map((image, index) => (
           <div
             key={index}
@@ -113,7 +113,7 @@ const Accessories = () => {
           />
         )}
       </div>
-      <div className='flex justify-center flex-row mt-20'>
+      <div className='imgGrid'>
         {accessories.slice(28, 32).map((image, index) => (
           <div
             key={index}
@@ -142,7 +142,7 @@ const Accessories = () => {
           />
         )}
       </div>
-      <div className='flex justify-center flex-row mt-20'>
+      <div className='imgGrid'>
         {accessories.slice(32, 36).map((image, index) => (
           <div
             key={index}
