@@ -138,20 +138,17 @@ const Accessories = () => {
       </div>
       <div className='imgGrid'>
         {accessories.slice(32, 36).map((image, index) => (
-          <div
-            key={index}
-            className='border border-neutral-400 m-10 cursor-pointer w-60'
-          >
+          <div key={index} className='imgDiv'>
             <img
               src={image.img}
               alt={`Product ${index}`}
-              className='w-56 h-48 m-1 '
+              className='mainImg'
               onClick={() => openModal(image.img)}
             />
-            <p className='font-bold'>{image.name}</p>
+            <p className='imgName'>{image.name}</p>
             <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
+            <p className='imgLowPrice'>{image.lowPrice}</p>
+            <p className='imgPrice'>{image.price}</p>
           </div>
         ))}
         {modalI && (
