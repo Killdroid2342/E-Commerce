@@ -87,92 +87,96 @@ const Shoes = () => {
           </p>
         </div>
       </div>
-      <div className='flex justify-center flex-row mt-20'>
-        {shoes.slice(0, 4).map((image, index) => (
-          <div
-            key={index}
-            className='border border-neutral-400 m-10 cursor-pointer w-60'
-          >
-            <img
-              src={image.img}
-              alt={`Product ${index}`}
-              className='w-56 h-48 border border-red-700'
-              onClick={() => openModal(image.img)}
-            />
-            <p className='font-bold'>{image.name}</p>
-            <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
+      <div className='flex justify-center'>
+        <div className='w-8/12'>
+          <div className='flex flex-row justify-between'>
+            {shoes.slice(0, 4).map((image, index) => (
+              <div
+                key={index}
+                className='border border-neutral-400 cursor-pointer w-60 mt-10'
+              >
+                <img
+                  src={image.img}
+                  alt={`Product ${index}`}
+                  className='w-56 h-48'
+                  onClick={() => openModal(image.img)}
+                />
+                <p className='font-bold'>{image.name}</p>
+                <p>{image.des}</p>
+                <p className='text-xs'>{image.lowPrice}</p>
+                <p className='font-bold text-xl'>{image.price}</p>
+              </div>
+            ))}
+            {modalI && (
+              <Modal
+                onClose={closeModal}
+                image={modalI}
+                amount={amount}
+                add={add}
+                remove={remove}
+                addBasket={addBasket}
+              />
+            )}
           </div>
-        ))}
-        {modalI && (
-          <Modal
-            onClose={closeModal}
-            image={modalI}
-            amount={amount}
-            add={add}
-            remove={remove}
-            addBasket={addBasket}
-          />
-        )}
-      </div>
-      <div className='flex justify-center flex-row mt-20'>
-        {shoes.slice(4, 8).map((image, index) => (
-          <div
-            key={index}
-            className='border border-neutral-400 m-10 cursor-pointer w-60'
-          >
-            <img
-              src={image.img}
-              alt={`Product ${index}`}
-              className='w-56 h-48 '
-              onClick={() => openModal(image.img)}
-            />
-            <p className='font-bold'>{image.name}</p>
-            <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
+          <div className='flex flex-row justify-between'>
+            {shoes.slice(4, 8).map((image, index) => (
+              <div
+                key={index}
+                className='border border-neutral-400 mt-10 cursor-pointer w-60'
+              >
+                <img
+                  src={image.img}
+                  alt={`Product ${index}`}
+                  className='w-56 h-48 '
+                  onClick={() => openModal(image.img)}
+                />
+                <p className='font-bold'>{image.name}</p>
+                <p>{image.des}</p>
+                <p className='text-xs'>{image.lowPrice}</p>
+                <p className='font-bold text-xl'>{image.price}</p>
+              </div>
+            ))}
+            {modalI && (
+              <Modal
+                onClose={closeModal}
+                image={modalI}
+                amount={amount}
+                add={add}
+                remove={remove}
+                addBasket={addBasket}
+              />
+            )}
           </div>
-        ))}
-        {modalI && (
-          <Modal
-            onClose={closeModal}
-            image={modalI}
-            amount={amount}
-            add={add}
-            remove={remove}
-            addBasket={addBasket}
-          />
-        )}
-      </div>
-      <div className='flex justify-center flex-row mt-20'>
-        {shoes.slice(8, 12).map((image, index) => (
-          <div
-            key={index}
-            className='border border-neutral-400 m-10 cursor-pointer w-60'
-          >
-            <img
-              src={image.img}
-              alt={`Product ${index}`}
-              className='w-56 h-48'
-              onClick={() => openModal(image.img)}
-            />
-            <p className='font-bold'>{image.name}</p>
-            <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
+          <div className='flex flex-row justify-between'>
+            {shoes.slice(8, 12).map((image, index) => (
+              <div
+                key={index}
+                className='border border-neutral-400 mt-10 mb-10 cursor-pointer w-60'
+              >
+                <img
+                  src={image.img}
+                  alt={`Product ${index}`}
+                  className='w-56 h-48'
+                  onClick={() => openModal(image.img)}
+                />
+                <p className='font-bold'>{image.name}</p>
+                <p>{image.des}</p>
+                <p className='text-xs'>{image.lowPrice}</p>
+                <p className='font-bold text-xl'>{image.price}</p>
+              </div>
+            ))}
+            {modalI && (
+              <Modal
+                onClose={closeModal}
+                image={modalI}
+                amount={amount}
+                add={add}
+                remove={remove}
+                addBasket={addBasket}
+              />
+            )}
           </div>
-        ))}
-        {modalI && (
-          <Modal
-            onClose={closeModal}
-            image={modalI}
-            amount={amount}
-            add={add}
-            remove={remove}
-            addBasket={addBasket}
-          />
-        )}
+        </div>
       </div>
       <Footer />
     </div>
