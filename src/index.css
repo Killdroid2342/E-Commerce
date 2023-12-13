@@ -265,57 +265,6 @@ a {
   flex-direction: row;
 }
 
-.outerDiv {
-  display: flex;
-  flex-direction: column;
-}
-.outerDescBox {
-  display: flex;
-  justify-content: center;
-}
-.mainBox {
-  padding: 4rem;
-  margin-top: 10rem;
-  width: 66.666667%;
-}
-.Heading {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-.pText {
-  color: #064e3b;
-}
-.imgGrid {
-  display: flex;
-  margin-top: 5rem;
-  flex-direction: row;
-  justify-content: center;
-  border: 1px solid red;
-}
-.imgDiv {
-  margin: 2.5rem;
-  border-width: 1px;
-  cursor: pointer;
-  border: 1px solid black;
-}
-.mainImg {
-  border-width: 1px;
-  border-color: green;
-  height: 12rem;
-  /* width: 250px; */
-}
-.imgName {
-  font-weight: bold;
-}
-.imgLowPrice {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-.imgPrice {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  font-weight: 700;
-}
 @media (min-width: 640px) {
   .ulInputSearch {
     grid-template-columns: repeat(2, minmax(0, 1fr));
