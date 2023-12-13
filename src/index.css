@@ -93,8 +93,7 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1350px;
-  margin: 0 auto;
+  max-width: 1280px;
 }
 
 .inputDiv {
@@ -291,16 +290,19 @@ a {
   margin-top: 5rem;
   flex-direction: row;
   justify-content: center;
+  border: 1px solid red;
 }
 .imgDiv {
   margin: 2.5rem;
   border-width: 1px;
   cursor: pointer;
+  border: 1px solid black;
 }
 .mainImg {
   border-width: 1px;
-  border-color: #b91c1c;
+  border-color: green;
   height: 12rem;
+  /* width: 250px; */
 }
 .imgName {
   font-weight: bold;
