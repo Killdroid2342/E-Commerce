@@ -7,7 +7,6 @@ export default function Card() {
 
   useFrame(() => {
     boxRef.current.rotation.y += 0.01;
-    // boxRef.current.rotation.x += 0.01;
   });
 
   return (
