@@ -77,99 +77,103 @@ const Accessories = () => {
       <Nav basketItems={basketItems} setBasketItems={setBasketItems} />
       <div className='flex justify-center'>
         <div className='mt-40 p-16 w-8/12 bg-neutral-200'>
-          <h2 className='text-4xl'>Shoes</h2>
+          <h2 className='text-4xl'>Electronics</h2>
           <p>
-            Buy and Sell Shoes on StockX. Every item is
+            Buy and Sell Electronics on StockX. Every item is
             <a className='text-green-900'> StockX Verified.</a>
           </p>
         </div>
       </div>
-      <div className='flex justify-center flex-row mt-20'>
-        {accessories.slice(24, 28).map((image, index) => (
-          <div
-            key={index}
-            className='border border-neutral-400 m-10 cursor-pointer w-60'
-          >
-            <img
-              src={image.img}
-              alt={`Product ${index}`}
-              className='w-56 h-48 border border-red-700'
-              onClick={() => openModal(image.img)}
-            />
-            <p className='font-bold'>{image.name}</p>
-            <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
+      <div className='flex justify-center'>
+        <div className='w-8/12'>
+          <div className='flex flex-row justify-between'>
+            {accessories.slice(24, 28).map((image, index) => (
+              <div
+                key={index}
+                className='border border-neutral-400 cursor-pointer w-60 mt-10'
+              >
+                <img
+                  src={image.img}
+                  alt={`Product ${index}`}
+                  className='w-56 h-48'
+                  onClick={() => openModal(image.img)}
+                />
+                <p className='font-bold'>{image.name}</p>
+                <p>{image.des}</p>
+                <p className='text-xs'>{image.lowPrice}</p>
+                <p className='font-bold text-xl'>{image.price}</p>
+              </div>
+            ))}
+            {modalI && (
+              <Modal
+                onClose={closeModal}
+                image={modalI}
+                amount={amount}
+                add={add}
+                remove={remove}
+                addBasket={addBasket}
+              />
+            )}
           </div>
-        ))}
-        {modalI && (
-          <Modal
-            onClose={closeModal}
-            image={modalI}
-            amount={amount}
-            add={add}
-            remove={remove}
-            addBasket={addBasket}
-          />
-        )}
-      </div>
-      <div className='flex justify-center flex-row mt-20'>
-        {accessories.slice(28, 32).map((image, index) => (
-          <div
-            key={index}
-            className='border border-neutral-400 m-10 cursor-pointer w-60'
-          >
-            <img
-              src={image.img}
-              alt={`Product ${index}`}
-              className='w-56 h-48 '
-              onClick={() => openModal(image.img)}
-            />
-            <p className='font-bold'>{image.name}</p>
-            <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
+          <div className='flex flex-row justify-between'>
+            {accessories.slice(28, 32).map((image, index) => (
+              <div
+                key={index}
+                className='border border-neutral-400 mt-10 cursor-pointer w-60'
+              >
+                <img
+                  src={image.img}
+                  alt={`Product ${index}`}
+                  className='w-56 h-48 '
+                  onClick={() => openModal(image.img)}
+                />
+                <p className='font-bold'>{image.name}</p>
+                <p>{image.des}</p>
+                <p className='text-xs'>{image.lowPrice}</p>
+                <p className='font-bold text-xl'>{image.price}</p>
+              </div>
+            ))}
+            {modalI && (
+              <Modal
+                onClose={closeModal}
+                image={modalI}
+                amount={amount}
+                add={add}
+                remove={remove}
+                addBasket={addBasket}
+              />
+            )}
           </div>
-        ))}
-        {modalI && (
-          <Modal
-            onClose={closeModal}
-            image={modalI}
-            amount={amount}
-            add={add}
-            remove={remove}
-            addBasket={addBasket}
-          />
-        )}
-      </div>
-      <div className='flex justify-center flex-row mt-20'>
-        {accessories.slice(32, 36).map((image, index) => (
-          <div
-            key={index}
-            className='border border-neutral-400 m-10 cursor-pointer w-60'
-          >
-            <img
-              src={image.img}
-              alt={`Product ${index}`}
-              className='w-56 h-48'
-              onClick={() => openModal(image.img)}
-            />
-            <p className='font-bold'>{image.name}</p>
-            <p>{image.des}</p>
-            <p className='text-xs'>{image.lowPrice}</p>
-            <p className='font-bold text-xl'>{image.price}</p>
+          <div className='flex flex-row justify-between'>
+            {accessories.slice(32, 36).map((image, index) => (
+              <div
+                key={index}
+                className='border border-neutral-400 mt-10 mb-10 cursor-pointer w-60'
+              >
+                <img
+                  src={image.img}
+                  alt={`Product ${index}`}
+                  className='w-56 h-48'
+                  onClick={() => openModal(image.img)}
+                />
+                <p className='font-bold'>{image.name}</p>
+                <p>{image.des}</p>
+                <p className='text-xs'>{image.lowPrice}</p>
+                <p className='font-bold text-xl'>{image.price}</p>
+              </div>
+            ))}
+            {modalI && (
+              <Modal
+                onClose={closeModal}
+                image={modalI}
+                amount={amount}
+                add={add}
+                remove={remove}
+                addBasket={addBasket}
+              />
+            )}
           </div>
-        ))}
-        {modalI && (
-          <Modal
-            onClose={closeModal}
-            image={modalI}
-            amount={amount}
-            add={add}
-            remove={remove}
-            addBasket={addBasket}
-          />
-        )}
+        </div>
       </div>
       <Footer />
     </div>
