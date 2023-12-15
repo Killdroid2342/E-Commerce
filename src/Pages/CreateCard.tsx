@@ -106,22 +106,23 @@ const CreateCard = () => {
         Disclaimer: Do Not Put any real credit card details inside of these
         forms. This is only a demo and make your own details up.
       </h2>
-      <div className='flex flex-row justify-center items-center mt-24'>
-        <div className='border border-black w-96 h-96 mr-4'>
-          {' '}
-          <Canvas>
-            <ambientLight />
-            <pointLight position={[5, 5, 5]} />
-            <Card />
-          </Canvas>
-        </div>
-        <div className='w-96'>
-          <CardForm
-            submitCard={submitCard}
-            cardInput={cardInput}
-            removeCard={removeCard}
-            clientUsername={clientUsername}
-          />
+      <div className='flex flex-row justify-center'>
+        <div className='flex flex-col md:flex-row items-center justify-center mt-10 md:mt-2 w-8/12'>
+          <div className='border border-red-900 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 h-96 rounded-md mb-5'>
+            <Canvas>
+              <ambientLight />
+              <pointLight position={[5, 5, 5]} />
+              <Card />
+            </Canvas>
+          </div>
+          <div className='w-full md:w-1/2 lg:w-2/3 xl:w-3/4'>
+            <CardForm
+              submitCard={submitCard}
+              cardInput={cardInput}
+              removeCard={removeCard}
+              clientUsername={clientUsername}
+            />
+          </div>
         </div>
       </div>
     </>
