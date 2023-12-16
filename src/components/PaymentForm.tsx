@@ -28,8 +28,7 @@ const PaymentForm = () => {
     ExpirationDate: '',
     SecurityCode: '',
   });
-  console.log(accountInfo, 'this is accoutn info');
-  console.log(accountInfo[0]?.CardNumber, 'this is accoutn info');
+
   const instance = axios.create({
     baseURL: VITE_API_URL,
   });
@@ -51,23 +50,7 @@ const PaymentForm = () => {
   }, []);
   const storedItems = localStorage.getItem('basketItems');
   const items = storedItems ? JSON.parse(storedItems) : [];
-  console.log(items, 'these are the items');
 
-  if (items.length > 0) {
-    items.forEach((item: any, index: any) => {
-      console.log(
-        `Item ${index + 1}:`,
-        item.name,
-        item.price,
-        item.shoe,
-        item.amount,
-        clientUsername,
-        'this is the data sent to the database'
-      );
-    });
-  } else {
-    console.log('No items in the array');
-  }
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -115,7 +98,6 @@ const PaymentForm = () => {
               account: clientUsername,
             });
 
-            console.log(response, 'this is the response for item:', item);
             setModal(response.data.message);
             localStorage.removeItem('basketItems');
             setTimeout(() => {
@@ -123,8 +105,6 @@ const PaymentForm = () => {
               navigate('/PurchasedItems');
             }, 2000);
           });
-
-          console.log('All purchases successful');
         } else {
           console.log(
             'Payment form data does not match the account information'
