@@ -75,7 +75,6 @@ router.post('/addMoney', async (req, res) => {
 router.get('/accountInfo', async (req, res) => {
   try {
     const { username } = req.query;
-    console.log(username, 'this is username');
 
     const accountDetails = await getAccountInfo(username);
     res.send(JSON.stringify(accountDetails));

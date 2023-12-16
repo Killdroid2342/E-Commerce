@@ -39,8 +39,6 @@ router.get('/getMainItems', async (req, res) => {
 router.get('/getPurchasedItems', async (req, res) => {
   try {
     const { username } = req.query;
-    console.log(username, 'this is username');
-
     const allPurchasedItems = await getPurchasedItems(username);
     res.send(JSON.stringify(allPurchasedItems));
   } catch (e) {
@@ -66,7 +64,6 @@ router.post('/purchasedItems', async (req, res) => {
 });
 router.post('/removePurchasedItems', async (req, res) => {
   const { account } = req.body;
-  console.log(account);
   try {
     clearPurchasedItems(account);
     res.send({

@@ -18,7 +18,6 @@ const AccountInfo = ({
   deleteAccount,
 }: any) => {
   const [accountInfo, setAccountInfo] = useState<Account[]>([]);
-  console.log(accountInfo);
   const instance = axios.create({
     baseURL: VITE_API_URL,
   });

@@ -24,7 +24,6 @@ const PurchasedItems = () => {
   );
   const [purchasedItems, setPurchasedItems] = useState([]);
   const [clientUsername, setClientUsername] = useState('');
-  console.log(purchasedItems, 'this is purchased itemns');
 
   const clearPurchasedItems = async () => {
     try {

@@ -34,7 +34,6 @@ const CreateCard = () => {
   const instance = axios.create({
     baseURL: VITE_API_URL,
   });
-  console.log(clientUsername);
   const usernameJWT = () => {
     const getJWT = Cookies.get('UserjwtToken');
     if (getJWT) {
@@ -62,10 +61,6 @@ const CreateCard = () => {
     setTimeout(() => {
       setModal(false);
     }, 2000);
-
-    console.log(res, 'THIS IS RES');
-    console.log('FORM CLICKED');
-    console.log(creditCard);
   }
 
   function cardInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -86,8 +81,6 @@ const CreateCard = () => {
       setTimeout(() => {
         setModal(false);
       }, 2000);
-
-      console.log(res, 'REMOVE CARD RESPONSE');
     } catch (error) {
       console.error('Error removing card:', error);
     }
