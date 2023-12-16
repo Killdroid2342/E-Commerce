@@ -15,10 +15,7 @@ const BasketModal = ({ setBasketModal, basketItems, setBasketItems }: any) => {
   const totalPrice = basketItems
     ? basketItems.reduce((acc: any, item: any) => acc + item.price, 0)
     : 0;
-  basketItems?.forEach((item: Item, index: number) => {
-    console.log(`Item ${index + 1}:`, item);
-  });
-  console.log('Total Price:', totalPrice);
+
   return (
     <>
       <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black'>
