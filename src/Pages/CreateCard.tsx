@@ -4,11 +4,11 @@ import CardForm from '../components/CardForm/CardForm';
 import { Item } from './Shoes';
 import { Canvas } from '@react-three/fiber';
 const { VITE_API_URL } = import.meta.env;
-import Card from '../components/Card';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { decodeToken } from 'react-jwt';
 import ResModal from '../components/Forms/Form-Modal/ResModal';
+import { Model } from '../components/Model';
 interface CreditCard {
   CardNumber: string;
   ExpirationDate: string;
@@ -105,7 +105,7 @@ const CreateCard = () => {
             <Canvas>
               <ambientLight />
               <pointLight position={[5, 5, 5]} />
-              <Card />
+              <Model position={[0, 0, -1]} />
             </Canvas>
           </div>
           <div className='w-full md:w-1/2 lg:w-2/3 xl:w-3/4'>
