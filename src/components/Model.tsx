@@ -36,6 +36,11 @@ type GLTFResult = GLTF & {
 
 export function Model(props: JSX.IntrinsicElements['group']) {
   const [clientUsername, setClientUsername] = useState('');
+  const [accountInfo, setAccountInfo] = useState([]);
+  console.log(accountInfo);
+  const instance = axios.create({
+    baseURL: VITE_API_URL,
+  });
 
   const usernameJWT = () => {
     const getJWT = Cookies.get('UserjwtToken');
@@ -46,8 +51,20 @@ export function Model(props: JSX.IntrinsicElements['group']) {
     }
   };
 
+  const getAccountInfo = async () => {
+    try {
+      const res = await instance.get('/card/accountInfo', {
+        params: { username: clientUsername },
+      });
+      setAccountInfo(res.data);
+    } catch (e) {
+      console.log('Error fetching account information:', e);
+    }
+  };
+
   useEffect(() => {
     usernameJWT();
+    getAccountInfo();
   }, [clientUsername]);
 
   const { nodes, materials } = useGLTF('/ccglb.glb') as GLTFResult;
