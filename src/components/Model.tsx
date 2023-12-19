@@ -33,10 +33,17 @@ type GLTFResult = GLTF & {
     Silver: THREE.MeshStandardMaterial;
   };
 };
-
+interface Account {
+  account: string;
+  Money: string;
+  CardNumber: string;
+  ExpirationDate: string;
+  SecurityCode: string;
+  FullName: string;
+}
 export function Model(props: JSX.IntrinsicElements['group']) {
   const [clientUsername, setClientUsername] = useState('');
-  const [accountInfo, setAccountInfo] = useState([]);
+  const [accountInfo, setAccountInfo] = useState<Account[]>([]);
   console.log(accountInfo);
   const instance = axios.create({
     baseURL: VITE_API_URL,
