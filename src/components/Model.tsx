@@ -1,7 +1,13 @@
 import * as THREE from 'three';
-import React, { useRef } from 'react';
+import Cookies from 'js-cookie';
+
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { decodeToken } from 'react-jwt';
+
+const { VITE_API_URL } = import.meta.env;
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -28,12 +34,22 @@ type GLTFResult = GLTF & {
   };
 };
 
-type ContextType = Record<
-  string,
-  React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>
->;
-
 export function Model(props: JSX.IntrinsicElements['group']) {
+  const [clientUsername, setClientUsername] = useState('');
+
+  const usernameJWT = () => {
+    const getJWT = Cookies.get('UserjwtToken');
+    if (getJWT) {
+      const decodedTokenUsername = (decodeToken(getJWT) as { username: string })
+        .username;
+      setClientUsername(decodedTokenUsername);
+    }
+  };
+
+  useEffect(() => {
+    usernameJWT();
+  }, [clientUsername]);
+
   const { nodes, materials } = useGLTF('/ccglb.glb') as GLTFResult;
   return (
     <>
