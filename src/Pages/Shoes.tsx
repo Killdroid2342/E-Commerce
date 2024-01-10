@@ -3,6 +3,7 @@ const { VITE_API_URL } = import.meta.env;
 import Footer from '../components/Footer';
 import Nav from '../components/nav/Nav';
 import Modal from '../components/Modal';
+import Pagination from '../components/Pagination';
 import axios from 'axios';
 
 const instance = axios.create({
@@ -15,6 +16,7 @@ export interface Item {
   price: number;
   amount: number;
 }
+
 interface ShoeItem {
   img: string;
   des: string;
@@ -22,6 +24,7 @@ interface ShoeItem {
   price: number;
   name: string;
 }
+
 const Shoes = () => {
   const [modalI, setModalI] = useState(null);
   const [amount, setAmount] = useState(1);
@@ -30,6 +33,12 @@ const Shoes = () => {
     initialBasketItems ? JSON.parse(initialBasketItems) : []
   );
   const [shoes, setShoes] = useState<ShoeItem[]>([]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
 
   async function getShoes() {
     const res = await instance.get('/items/allItems');
@@ -87,97 +96,40 @@ const Shoes = () => {
           </p>
         </div>
       </div>
-      <div className='flex justify-center'>
-        <div className='w-8/12'>
-          <div className='flex flex-row justify-between'>
-            {shoes.slice(0, 4).map((image, index) => (
-              <div
-                key={index}
-                className='border border-neutral-400 cursor-pointer w-60 mt-10'
-              >
-                <img
-                  src={image.img}
-                  alt={`Product ${index}`}
-                  className='w-56 h-48'
-                  onClick={() => openModal(image.img)}
-                />
-                <p className='font-bold'>{image.name}</p>
-                <p>{image.des}</p>
-                <p className='text-xs'>{image.lowPrice}</p>
-                <p className='font-bold text-xl'>{image.price}</p>
-              </div>
-            ))}
-            {modalI && (
-              <Modal
-                onClose={closeModal}
-                image={modalI}
-                amount={amount}
-                add={add}
-                remove={remove}
-                addBasket={addBasket}
-              />
-            )}
+      <div className='grid grid-cols-4 gap-4'>
+        {shoes.slice(startIndex, endIndex).map((image, index) => (
+          <div
+            key={index}
+            className='border border-neutral-400 cursor-pointer mt-10'
+          >
+            <img
+              src={image.img}
+              alt={`Product ${index}`}
+              className='w-56 h-48'
+              onClick={() => openModal(image.img)}
+            />
+            <p className='font-bold'>{image.name}</p>
+            <p>{image.des}</p>
+            <p className='text-xs'>{image.lowPrice}</p>
+            <p className='font-bold text-xl'>{image.price}</p>
           </div>
-          <div className='flex flex-row justify-between'>
-            {shoes.slice(4, 8).map((image, index) => (
-              <div
-                key={index}
-                className='border border-neutral-400 mt-10 cursor-pointer w-60'
-              >
-                <img
-                  src={image.img}
-                  alt={`Product ${index}`}
-                  className='w-56 h-48 '
-                  onClick={() => openModal(image.img)}
-                />
-                <p className='font-bold'>{image.name}</p>
-                <p>{image.des}</p>
-                <p className='text-xs'>{image.lowPrice}</p>
-                <p className='font-bold text-xl'>{image.price}</p>
-              </div>
-            ))}
-            {modalI && (
-              <Modal
-                onClose={closeModal}
-                image={modalI}
-                amount={amount}
-                add={add}
-                remove={remove}
-                addBasket={addBasket}
-              />
-            )}
-          </div>
-          <div className='flex flex-row justify-between'>
-            {shoes.slice(8, 12).map((image, index) => (
-              <div
-                key={index}
-                className='border border-neutral-400 mt-10 mb-10 cursor-pointer w-60'
-              >
-                <img
-                  src={image.img}
-                  alt={`Product ${index}`}
-                  className='w-56 h-48'
-                  onClick={() => openModal(image.img)}
-                />
-                <p className='font-bold'>{image.name}</p>
-                <p>{image.des}</p>
-                <p className='text-xs'>{image.lowPrice}</p>
-                <p className='font-bold text-xl'>{image.price}</p>
-              </div>
-            ))}
-            {modalI && (
-              <Modal
-                onClose={closeModal}
-                image={modalI}
-                amount={amount}
-                add={add}
-                remove={remove}
-                addBasket={addBasket}
-              />
-            )}
-          </div>
-        </div>
+        ))}
+        {modalI && (
+          <Modal
+            onClose={closeModal}
+            image={modalI}
+            amount={amount}
+            add={add}
+            remove={remove}
+            addBasket={addBasket}
+          />
+        )}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={Math.ceil(shoes.length / itemsPerPage)}
+        onPageChange={(page: any) => setCurrentPage(page)}
+      />
       <Footer />
     </div>
   );
