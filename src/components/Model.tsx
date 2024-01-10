@@ -45,4 +45,4 @@ export function Model(props: JSX.IntrinsicElements['group']) {
   );
 }
 
-useGLTF.preload('/ccglb.glb');
+useGLTF.preload('/card.glb');
