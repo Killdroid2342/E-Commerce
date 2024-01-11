@@ -42,7 +42,11 @@ const Shoes = () => {
 
   async function getShoes() {
     const res = await instance.get('/items/allItems');
-    setShoes(res.data);
+    console.log(res.data);
+    const shoeItems = res.data.filter(
+      (item: any) => item.des === 'This is a shoe'
+    );
+    setShoes(shoeItems);
   }
 
   const openModal = (image: any) => {
